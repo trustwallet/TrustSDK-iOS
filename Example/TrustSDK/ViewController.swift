@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import TrustSDK
 
 class ViewController: UIViewController {
+
+    let trust = TrustSDK()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,5 +23,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func signTransaction(_ sender: Any) {
+        trust.signTransaction(in: self)
+    }
+
+    @IBAction func signMessage(_ sender: Any) {
+        trust.signMessage(in: self)
+    }
 }
 

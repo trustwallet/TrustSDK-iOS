@@ -1,0 +1,6 @@
+framework module Pods_TrustSDK_Tests {
+  umbrella header "Pods-TrustSDK_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

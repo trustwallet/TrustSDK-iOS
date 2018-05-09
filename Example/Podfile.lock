@@ -1,0 +1,16 @@
+PODS:
+  - TrustSDK (0.1.0)
+
+DEPENDENCIES:
+  - TrustSDK (from `../`)
+
+EXTERNAL SOURCES:
+  TrustSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  TrustSDK: a0aaabbd02f5cad62ac7ce208e17e66196c1994d
+
+PODFILE CHECKSUM: a298a8cd50144cae43237978aee13d1a668b5162
+
+COCOAPODS: 1.5.0
