@@ -20,19 +20,19 @@ public final class TrustSDK {
         guard schemeManager.isTrustInstalled else {
             return fallbackToInstall(in: viewController)
         }
-        open()
+        open(for: Command(type: .signTransaction))
     }
 
     public func signMessage(in viewController: UIViewController) {
         guard schemeManager.isTrustInstalled else {
             return fallbackToInstall(in: viewController)
         }
-        open()
+        open(for: Command(type: .signMessage))
     }
 
-    private func open() {
+    private func open(for command: Command) {
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(URL(string: "\(schemeManager.current.key)://")!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL(string: "\(schemeManager.current.key)://\(command.name)")!, options: [:], completionHandler: nil)
         } else {
             // Fallback on earlier versions
         }

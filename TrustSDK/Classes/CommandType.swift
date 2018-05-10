@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+public enum CommandType {
+    case signTransaction
+    case signMessage
+
+    var name: String {
+        switch self {
+        case .signMessage:
+            return "signMessage"
+        case .signTransaction:
+            return "signTransaction"
+        }
+    }
+}
