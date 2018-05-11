@@ -1,6 +1,0 @@
-framework module TrustSDK {
-  umbrella header "TrustSDK-umbrella.h"
-
-  export *
-  module * { export * }
-}

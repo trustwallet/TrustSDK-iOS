@@ -2,10 +2,4 @@ use_frameworks!
 
 target 'TrustSDK_Example' do
   pod 'TrustSDK', :path => '../'
-
-  target 'TrustSDK_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end
