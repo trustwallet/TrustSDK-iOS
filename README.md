@@ -1,6 +1,6 @@
 # TrustSDK
 
-[![CI Status](https://img.shields.io/travis/Viktor%20Radchenko/TrustSDK.svg?style=flat)](https://travis-ci.org/Viktor%20Radchenko/TrustSDK)
+[![CI Status](https://img.shields.io/travis/TrustWallet/TrustSDK-iOS.svg?style=flat)](https://travis-ci.org/TrustWallet/TrustSDK-iOS)
 [![Version](https://img.shields.io/cocoapods/v/TrustSDK.svg?style=flat)](https://cocoapods.org/pods/TrustSDK)
 [![License](https://img.shields.io/cocoapods/l/TrustSDK.svg?style=flat)](https://cocoapods.org/pods/TrustSDK)
 [![Platform](https://img.shields.io/cocoapods/p/TrustSDK.svg?style=flat)](https://cocoapods.org/pods/TrustSDK)
@@ -20,10 +20,10 @@ it, simply add the following line to your Podfile:
 pod 'TrustSDK'
 ```
 
-## Author
+## Authors
 
-Viktor Radchenko, yazexel@gmail.com
-Alejandro Isaza
+* Viktor Radchenko, yazexel@gmail.com
+* Alejandro Isaza
 
 ## License
 
