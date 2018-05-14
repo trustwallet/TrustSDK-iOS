@@ -6,16 +6,14 @@
 
 import Foundation
 
-public enum CommandType {
-    case signTransaction
-    case signMessage
+/// Describes a wallet app supporting the trust deeplink spec
+public struct WalletApp {
+    /// Wallet app name
+    var name: String
 
-    var name: String {
-        switch self {
-        case .signMessage:
-            return "signMessage"
-        case .signTransaction:
-            return "signTransaction"
-        }
-    }
+    /// App URL scheme
+    var scheme: String
+
+    /// App install URL
+    var installURL: URL
 }

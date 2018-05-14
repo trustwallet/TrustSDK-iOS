@@ -6,10 +6,13 @@
 
 import Foundation
 
-public struct Command {
-    let type: CommandType
+public protocol Command {
+    /// Command name
+    var name: String { get }
 
-    var name: String {
-        return type.name
-    }
+    /// Wallet request URL
+    func requestURL(scheme: String) -> URL
+
+    /// Handles a callback URL
+    func handleCallback(url: URL) -> Bool
 }

@@ -1,6 +1,6 @@
 # TrustSDK
 
-[![CI Status](https://img.shields.io/travis/Viktor Radchenko/TrustSDK.svg?style=flat)](https://travis-ci.org/Viktor Radchenko/TrustSDK)
+[![CI Status](https://img.shields.io/travis/Viktor\ Radchenko/TrustSDK.svg?style=flat)](https://travis-ci.org/Viktor\ Radchenko/TrustSDK)
 [![Version](https://img.shields.io/cocoapods/v/TrustSDK.svg?style=flat)](https://cocoapods.org/pods/TrustSDK)
 [![License](https://img.shields.io/cocoapods/l/TrustSDK.svg?style=flat)](https://cocoapods.org/pods/TrustSDK)
 [![Platform](https://img.shields.io/cocoapods/p/TrustSDK.svg?style=flat)](https://cocoapods.org/pods/TrustSDK)
@@ -23,6 +23,7 @@ pod 'TrustSDK'
 ## Author
 
 Viktor Radchenko, yazexel@gmail.com
+Alejandro Isaza
 
 ## License
 

@@ -4,44 +4,57 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-import Foundation
+import TrustCore
+import UIKit
 
 public final class TrustSDK {
+    /// The callback URL scheme.
+    public let callbackScheme: String
 
-    let schemeManager = SchemeManager()
+    /// Wallet application to use
+    public var walletApp: WalletApp?
 
-    public init() {
+    private var pendingCommand: Command?
 
+    public init(callbackScheme: String) {
+        self.callbackScheme = callbackScheme
+        walletApp = WalletAppManager.availableApps.first
     }
 
-    public func signTransaction(in viewController: UIViewController) {
-        guard schemeManager.isTrustInstalled else {
-            return fallbackToInstall(in: viewController)
+    /// Handles an open URL callback
+    ///
+    /// - Returns: `true` is the URL was handled; `false` otherwise.
+    public func handleCallback(url: URL) -> Bool {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false), components.scheme == callbackScheme else {
+            return false
         }
-        open(for: Command(type: .signTransaction))
+
+        return pendingCommand?.handleCallback(url: url) ?? false
     }
 
-    public func signMessage(in viewController: UIViewController) {
-        guard schemeManager.isTrustInstalled else {
-            return fallbackToInstall(in: viewController)
+    func execute(command: Command) {
+        guard let app = walletApp else {
+            return
         }
-        open(for: Command(type: .signMessage))
-    }
 
-    private func open(for command: Command) {
+        pendingCommand = command
+        let url = command.requestURL(scheme: app.scheme)
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(URL(string: "\(schemeManager.current.key)://\(command.name)")!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
-            UIApplication.shared.openURL(<#T##url: URL##URL#>)
-            // Fallback on earlier versions
+            UIApplication.shared.openURL(url)
         }
     }
 
-    func fallbackToInstall(in viewController: UIViewController) {
+    func fallbackToInstall() {
+        guard let app = walletApp else {
+            return
+        }
+
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(URL(string: "\(schemeManager.current.key)://")!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(app.installURL, options: [:], completionHandler: nil)
         } else {
-            // Fallback on earlier versions
+            UIApplication.shared.openURL(app.installURL)
         }
     }
 }
