@@ -6,36 +6,36 @@
 
 import TrustCore
 
-final class SignMessageCommand: Command {
-    let name = "sign-message"
+public final class SignMessageCommand: Command {
+    public  let name = "sign-message"
 
     /// Message data
-    var message: Data
+    public var message: Data
 
     /// Optional address to use
-    var address: Address?
+    public var address: Address?
 
     /// Callback scheme
-    var callbackScheme: String
+    public var callbackScheme: String
 
     /// Completion closure
-    var completion: (Data) -> Void
+    public var completion: (Data) -> Void
 
-    var callback: URL {
+    public var callback: URL {
         var components = URLComponents()
         components.scheme = callbackScheme
         components.host = name
         return components.url!
     }
 
-    init(message: Data, address: Address? = nil, callbackScheme: String, completion: @escaping (Data) -> Void) {
+    public init(message: Data, address: Address? = nil, callbackScheme: String, completion: @escaping (Data) -> Void) {
         self.message = message
         self.address = address
         self.callbackScheme = callbackScheme
         self.completion = completion
     }
 
-    func requestURL(scheme: String) -> URL {
+    public func requestURL(scheme: String) -> URL {
         var components = URLComponents()
         components.scheme = scheme
         components.host = name
@@ -49,7 +49,7 @@ final class SignMessageCommand: Command {
         return components.url!
     }
 
-    func handleCallback(url: URL) -> Bool {
+    public  func handleCallback(url: URL) -> Bool {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false), components.host == name else {
             return false
         }

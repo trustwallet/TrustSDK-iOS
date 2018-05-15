@@ -7,32 +7,32 @@
 import BigInt
 import TrustCore
 
-final class SignTransactionCommand: Command {
-    let name = "sign-transaction"
+public final class SignTransactionCommand: Command {
+    public let name = "sign-transaction"
 
     /// Transaction to sign
-    var transaction: Transaction
+    public var transaction: Transaction
 
     /// Completion closure
-    var completion: (Transaction) -> Void
+    public var completion: (Transaction) -> Void
 
     /// Callback scheme
-    var callbackScheme: String
+    public var callbackScheme: String
 
-    var callback: URL {
+    public var callback: URL {
         var components = URLComponents()
         components.scheme = callbackScheme
         components.host = name
         return components.url!
     }
 
-    init(transaction: Transaction, callbackScheme: String, completion: @escaping (Transaction) -> Void) {
+    public init(transaction: Transaction, callbackScheme: String, completion: @escaping (Transaction) -> Void) {
         self.transaction = transaction
         self.completion = completion
         self.callbackScheme = callbackScheme
     }
 
-    func requestURL(scheme: String) -> URL {
+    public func requestURL(scheme: String) -> URL {
         var components = URLComponents()
         components.scheme = scheme
         components.host = name
@@ -49,7 +49,7 @@ final class SignTransactionCommand: Command {
         return components.url!
     }
 
-    func handleCallback(url: URL) -> Bool {
+    public func handleCallback(url: URL) -> Bool {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false), components.host == name else {
             return false
         }
@@ -76,7 +76,7 @@ final class SignTransactionCommand: Command {
 }
 
 public extension TrustSDK {
-    func signTransaction(_ transaction: Transaction, completion: @escaping (Transaction) -> Void) {
+    public func signTransaction(_ transaction: Transaction, completion: @escaping (Transaction) -> Void) {
         guard WalletAppManager.hasWalletApp else {
             return fallbackToInstall()
         }
