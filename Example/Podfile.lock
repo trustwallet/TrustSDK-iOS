@@ -1,15 +1,34 @@
 PODS:
-  - TrustSDK (0.1.0)
+  - BigInt (3.0.1):
+    - SipHash (~> 1.2)
+  - SipHash (1.2.0)
+  - TrezorCrypto (0.0.5)
+  - TrustCore (0.0.7):
+    - BigInt
+    - TrezorCrypto
+  - TrustSDK (0.0.1):
+    - TrustCore
 
 DEPENDENCIES:
   - TrustSDK (from `../`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - BigInt
+    - SipHash
+    - TrezorCrypto
+    - TrustCore
 
 EXTERNAL SOURCES:
   TrustSDK:
     :path: "../"
 
 SPEC CHECKSUMS:
-  TrustSDK: a0aaabbd02f5cad62ac7ce208e17e66196c1994d
+  BigInt: 8e8a52161c745cd3ab78e3dc346a9fbee51e6cf6
+  SipHash: c6e9e43e9c531b5bc6602545130c26194a6d31ce
+  TrezorCrypto: ecef681446bf02af6248d3b5e394026d7e766e56
+  TrustCore: 688df9a241008cf9cfa3842ec8ef28777a8b7534
+  TrustSDK: 7bb08023395a746a724604962291b0cd4f621020
 
 PODFILE CHECKSUM: 65e40007981b5ea44b88ff10121073b278c4f0ff
 

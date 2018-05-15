@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,25 +22,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4a-w9-8dK">
-                                <rect key="frame" x="130" y="170" width="115" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Transaction"/>
-                                <connections>
-                                    <action selector="signTransaction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9zD-DF-LmF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5g-Rx-nSQ">
-                                <rect key="frame" x="139" y="318" width="96" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Message"/>
-                                <connections>
-                                    <action selector="signMessage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BbK-Nq-zyc"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uyg-l8-gWd">
+                                <rect key="frame" x="16" y="40" width="343" height="210"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nhj-CI-bvq">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f4C-E2-vtd">
+                                        <rect key="frame" x="0.0" y="38" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4a-w9-8dK">
+                                        <rect key="frame" x="0.0" y="76" width="343" height="30"/>
+                                        <state key="normal" title="Sign Transaction"/>
+                                        <connections>
+                                            <action selector="signTransaction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9zD-DF-LmF"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KzV-rf-pNF">
+                                        <rect key="frame" x="0.0" y="114" width="343" height="20"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Shc-Dc-hx9"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vPB-gl-SlU">
+                                        <rect key="frame" x="0.0" y="142" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5g-Rx-nSQ">
+                                        <rect key="frame" x="0.0" y="180" width="343" height="30"/>
+                                        <state key="normal" title="Sign Message"/>
+                                        <connections>
+                                            <action selector="signMessage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BbK-Nq-zyc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uyg-l8-gWd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="9Sj-Lk-f9E"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uyg-l8-gWd" secondAttribute="bottom" id="Vcz-Ye-vp8"/>
+                            <constraint firstItem="uyg-l8-gWd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="gNw-Sn-4At"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uyg-l8-gWd" secondAttribute="trailing" id="k1D-6u-nz8"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addressTextField" destination="nhj-CI-bvq" id="SLg-il-whg"/>
+                        <outlet property="amountTextField" destination="f4C-E2-vtd" id="ysL-GB-kBH"/>
+                        <outlet property="messageTextField" destination="vPB-gl-SlU" id="iBS-Kq-T30"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
