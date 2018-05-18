@@ -17,6 +17,8 @@ script:
   - set -o pipefail
   - xcodebuild clean test -workspace TrustSDK.xcworkspace -scheme "TrustSDK" -destination 'platform=iOS Simulator,name=iPhone 8'
   - xcodebuild clean test -workspace TrustSDK.xcworkspace -scheme "TrustSDK" -destination 'platform=iOS Simulator,name=iPhone 5s'
+  - xcodebuild clean test -workspace TrustSDK.xcworkspace -scheme "TrustWalletSDK" -destination 'platform=iOS Simulator,name=iPhone 8'
+  - xcodebuild clean test -workspace TrustSDK.xcworkspace -scheme "TrustWalletSDK" -destination 'platform=iOS Simulator,name=iPhone 5s'
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

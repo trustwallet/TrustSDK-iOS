@@ -1,9 +1,11 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
+use_frameworks!
 
 target 'TrustSDK' do
-  use_frameworks!
-  pod 'TrustCore'
+  pod 'TrustCore', inhibit_warnings: true
   pod 'SwiftLint'
 
   target 'TrustSDKTests'
+  target 'TrustWalletSDK'
+  target 'TrustWalletSDKTests'
 end
