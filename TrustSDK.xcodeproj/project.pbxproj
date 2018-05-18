@@ -17,7 +17,15 @@
 		6149DAE420A54F35004EDA7A /* SignTransactionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6149DAE320A54F35004EDA7A /* SignTransactionCommand.swift */; };
 		6149DAFC20A92E50004EDA7A /* SignMessageCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6149DAFB20A92E50004EDA7A /* SignMessageCommandTests.swift */; };
 		6149DAFE20A92E61004EDA7A /* SignTransactionCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6149DAFD20A92E61004EDA7A /* SignTransactionCommandTests.swift */; };
+		618C424F20AE982600D2F704 /* TrustWalletSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 618C424620AE982600D2F704 /* TrustWalletSDK.framework */; };
+		618C425D20AE982D00D2F704 /* TrustSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6149DAA920A53050004EDA7A /* TrustSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		618C425E20AE983300D2F704 /* TrustWalletSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C423D20AE956300D2F704 /* TrustWalletSDK.swift */; };
+		618C425F20AE983300D2F704 /* WalletDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C423F20AE95DC00D2F704 /* WalletDelegate.swift */; };
+		618C426520AE9B9F00D2F704 /* URLComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C426320AE9B9C00D2F704 /* URLComponents.swift */; };
+		618C426720AE9F1500D2F704 /* TrustWalletSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C426620AE9F1500D2F704 /* TrustWalletSDKTests.swift */; };
+		62607574112D306961D341C8 /* Pods_TrustSDK_TrustWalletSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE8ED9EAFE8E5A08D9F7067 /* Pods_TrustSDK_TrustWalletSDK.framework */; };
 		7558EF019B1FAEAA1A7120F2 /* Pods_TrustSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F5D371F4D1BC5896BA9642 /* Pods_TrustSDK.framework */; };
+		8B1F64449ED56221FC322F14 /* Pods_TrustSDK_TrustWalletSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BFFDED920C477EEE88B651 /* Pods_TrustSDK_TrustWalletSDKTests.framework */; };
 		BF91DE839E2B1B7737732A36 /* Pods_TrustSDK_TrustSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B625F4851358BD32C57BCB3 /* Pods_TrustSDK_TrustSDKTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,13 +37,22 @@
 			remoteGlobalIDString = 6149DAB420A53061004EDA7A;
 			remoteInfo = TrustSDK;
 		};
+		618C425020AE982600D2F704 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6149D9BB20A52FE3004EDA7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 618C424520AE982600D2F704;
+			remoteInfo = TrustWalletSDK;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0095D2EE6A6FF69F3963E995 /* Pods-TrustSDK-TrustSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK-TrustSDKTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrustSDK-TrustSDKTests/Pods-TrustSDK-TrustSDKTests.release.xcconfig"; sourceTree = "<group>"; };
+		10884017ECCF49138425F43E /* Pods-TrustSDK-TrustWalletSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK-TrustWalletSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrustSDK-TrustWalletSDKTests/Pods-TrustSDK-TrustWalletSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1AE8ED9EAFE8E5A08D9F7067 /* Pods_TrustSDK_TrustWalletSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK_TrustWalletSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7A87B64F15A88CF61F863A /* Pods-TrustSDK-TrustSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK-TrustSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrustSDK-TrustSDKTests/Pods-TrustSDK-TrustSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6149D9E020A53050004EDA7A /* TestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
-		6149D9E120A53050004EDA7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6149D9E020A53050004EDA7A /* TrustSDKTestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TrustSDKTestsInfo.plist; sourceTree = "<group>"; };
+		6149D9E120A53050004EDA7A /* TrustSDKInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TrustSDKInfo.plist; sourceTree = "<group>"; };
 		6149DAA720A53050004EDA7A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6149DAA920A53050004EDA7A /* TrustSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrustSDK.h; sourceTree = "<group>"; };
 		6149DAAA20A53050004EDA7A /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
@@ -49,10 +66,22 @@
 		6149DAE320A54F35004EDA7A /* SignTransactionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignTransactionCommand.swift; sourceTree = "<group>"; };
 		6149DAFB20A92E50004EDA7A /* SignMessageCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignMessageCommandTests.swift; sourceTree = "<group>"; };
 		6149DAFD20A92E61004EDA7A /* SignTransactionCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignTransactionCommandTests.swift; sourceTree = "<group>"; };
+		618C423D20AE956300D2F704 /* TrustWalletSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustWalletSDK.swift; sourceTree = "<group>"; };
+		618C423F20AE95DC00D2F704 /* WalletDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDelegate.swift; sourceTree = "<group>"; };
+		618C424620AE982600D2F704 /* TrustWalletSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrustWalletSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		618C424E20AE982600D2F704 /* TrustWalletSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrustWalletSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		618C425520AE982600D2F704 /* TrustWalletSDKTestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TrustWalletSDKTestsInfo.plist; sourceTree = "<group>"; };
+		618C426220AE988C00D2F704 /* TrustWalletSDKInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TrustWalletSDKInfo.plist; sourceTree = "<group>"; };
+		618C426320AE9B9C00D2F704 /* URLComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponents.swift; sourceTree = "<group>"; };
+		618C426620AE9F1500D2F704 /* TrustWalletSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustWalletSDKTests.swift; sourceTree = "<group>"; };
 		7B625F4851358BD32C57BCB3 /* Pods_TrustSDK_TrustSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK_TrustSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C8188F0F5606C32A9869E5E /* Pods-TrustSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrustSDK/Pods-TrustSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		9E6B2B45193D4F32DE5BAF7F /* Pods-TrustSDK-TrustWalletSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK-TrustWalletSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrustSDK-TrustWalletSDK/Pods-TrustSDK-TrustWalletSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		C05E6AAEB929E24BB8D3288F /* Pods-TrustSDK-TrustWalletSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK-TrustWalletSDKTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrustSDK-TrustWalletSDKTests/Pods-TrustSDK-TrustWalletSDKTests.release.xcconfig"; sourceTree = "<group>"; };
+		C9BFFDED920C477EEE88B651 /* Pods_TrustSDK_TrustWalletSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK_TrustWalletSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6797EADF852BBA8C1308A1F /* Pods-TrustSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrustSDK/Pods-TrustSDK.release.xcconfig"; sourceTree = "<group>"; };
 		E6F5D371F4D1BC5896BA9642 /* Pods_TrustSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7A4BA16B1025288FCC38A1E /* Pods-TrustSDK-TrustWalletSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK-TrustWalletSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrustSDK-TrustWalletSDK/Pods-TrustSDK-TrustWalletSDK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +99,23 @@
 			files = (
 				6149DABE20A53061004EDA7A /* TrustSDK.framework in Frameworks */,
 				BF91DE839E2B1B7737732A36 /* Pods_TrustSDK_TrustSDKTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		618C424220AE982600D2F704 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62607574112D306961D341C8 /* Pods_TrustSDK_TrustWalletSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		618C424B20AE982600D2F704 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				618C424F20AE982600D2F704 /* TrustWalletSDK.framework in Frameworks */,
+				8B1F64449ED56221FC322F14 /* Pods_TrustSDK_TrustWalletSDKTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +141,8 @@
 			children = (
 				6149DAB520A53061004EDA7A /* TrustSDK.framework */,
 				6149DABD20A53061004EDA7A /* TrustSDKTests.xctest */,
+				618C424620AE982600D2F704 /* TrustWalletSDK.framework */,
+				618C424E20AE982600D2F704 /* TrustWalletSDKTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,8 +150,8 @@
 		6149D9DE20A53050004EDA7A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6149DAFB20A92E50004EDA7A /* SignMessageCommandTests.swift */,
-				6149DAFD20A92E61004EDA7A /* SignTransactionCommandTests.swift */,
+				618C426120AE984100D2F704 /* TrustWalletSDK */,
+				618C426020AE983A00D2F704 /* TrustSDK */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -111,8 +159,10 @@
 		6149D9DF20A53050004EDA7A /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				6149D9E020A53050004EDA7A /* TestsInfo.plist */,
-				6149D9E120A53050004EDA7A /* Info.plist */,
+				6149D9E120A53050004EDA7A /* TrustSDKInfo.plist */,
+				6149D9E020A53050004EDA7A /* TrustSDKTestsInfo.plist */,
+				618C426220AE988C00D2F704 /* TrustWalletSDKInfo.plist */,
+				618C425520AE982600D2F704 /* TrustWalletSDKTestsInfo.plist */,
 			);
 			path = Metadata;
 			sourceTree = "<group>";
@@ -121,11 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				6149DAA920A53050004EDA7A /* TrustSDK.h */,
-				6149DAAA20A53050004EDA7A /* Command.swift */,
-				6149DAAC20A53050004EDA7A /* TrustSDK.swift */,
-				6149DAAB20A53050004EDA7A /* WalletApp.swift */,
-				6149DAAD20A53050004EDA7A /* WalletAppManager.swift */,
-				6149DAE520A54F43004EDA7A /* Commands */,
+				618C423B20AE952000D2F704 /* TrustWalletSDK */,
+				618C423C20AE952F00D2F704 /* TrustSDK */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -139,11 +186,52 @@
 			path = Commands;
 			sourceTree = "<group>";
 		};
+		618C423B20AE952000D2F704 /* TrustWalletSDK */ = {
+			isa = PBXGroup;
+			children = (
+				618C423D20AE956300D2F704 /* TrustWalletSDK.swift */,
+				618C423F20AE95DC00D2F704 /* WalletDelegate.swift */,
+				618C426320AE9B9C00D2F704 /* URLComponents.swift */,
+			);
+			path = TrustWalletSDK;
+			sourceTree = "<group>";
+		};
+		618C423C20AE952F00D2F704 /* TrustSDK */ = {
+			isa = PBXGroup;
+			children = (
+				6149DAAA20A53050004EDA7A /* Command.swift */,
+				6149DAAC20A53050004EDA7A /* TrustSDK.swift */,
+				6149DAAB20A53050004EDA7A /* WalletApp.swift */,
+				6149DAAD20A53050004EDA7A /* WalletAppManager.swift */,
+				6149DAE520A54F43004EDA7A /* Commands */,
+			);
+			path = TrustSDK;
+			sourceTree = "<group>";
+		};
+		618C426020AE983A00D2F704 /* TrustSDK */ = {
+			isa = PBXGroup;
+			children = (
+				6149DAFB20A92E50004EDA7A /* SignMessageCommandTests.swift */,
+				6149DAFD20A92E61004EDA7A /* SignTransactionCommandTests.swift */,
+			);
+			path = TrustSDK;
+			sourceTree = "<group>";
+		};
+		618C426120AE984100D2F704 /* TrustWalletSDK */ = {
+			isa = PBXGroup;
+			children = (
+				618C426620AE9F1500D2F704 /* TrustWalletSDKTests.swift */,
+			);
+			path = TrustWalletSDK;
+			sourceTree = "<group>";
+		};
 		7F2B3DAF5596C95C983EC913 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				E6F5D371F4D1BC5896BA9642 /* Pods_TrustSDK.framework */,
 				7B625F4851358BD32C57BCB3 /* Pods_TrustSDK_TrustSDKTests.framework */,
+				1AE8ED9EAFE8E5A08D9F7067 /* Pods_TrustSDK_TrustWalletSDK.framework */,
+				C9BFFDED920C477EEE88B651 /* Pods_TrustSDK_TrustWalletSDKTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,6 +243,10 @@
 				D6797EADF852BBA8C1308A1F /* Pods-TrustSDK.release.xcconfig */,
 				4B7A87B64F15A88CF61F863A /* Pods-TrustSDK-TrustSDKTests.debug.xcconfig */,
 				0095D2EE6A6FF69F3963E995 /* Pods-TrustSDK-TrustSDKTests.release.xcconfig */,
+				9E6B2B45193D4F32DE5BAF7F /* Pods-TrustSDK-TrustWalletSDK.debug.xcconfig */,
+				F7A4BA16B1025288FCC38A1E /* Pods-TrustSDK-TrustWalletSDK.release.xcconfig */,
+				10884017ECCF49138425F43E /* Pods-TrustSDK-TrustWalletSDKTests.debug.xcconfig */,
+				C05E6AAEB929E24BB8D3288F /* Pods-TrustSDK-TrustWalletSDKTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -167,6 +259,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6149DACC20A530B4004EDA7A /* TrustSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		618C424320AE982600D2F704 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				618C425D20AE982D00D2F704 /* TrustSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +313,45 @@
 			productReference = 6149DABD20A53061004EDA7A /* TrustSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		618C424520AE982600D2F704 /* TrustWalletSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 618C425720AE982600D2F704 /* Build configuration list for PBXNativeTarget "TrustWalletSDK" */;
+			buildPhases = (
+				753A7F9470F98C4CAE560BD4 /* [CP] Check Pods Manifest.lock */,
+				618C424120AE982600D2F704 /* Sources */,
+				618C424220AE982600D2F704 /* Frameworks */,
+				618C424320AE982600D2F704 /* Headers */,
+				618C424420AE982600D2F704 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TrustWalletSDK;
+			productName = TrustWalletSDK;
+			productReference = 618C424620AE982600D2F704 /* TrustWalletSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		618C424D20AE982600D2F704 /* TrustWalletSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 618C425A20AE982600D2F704 /* Build configuration list for PBXNativeTarget "TrustWalletSDKTests" */;
+			buildPhases = (
+				ADEE1F20321DAB033137AD54 /* [CP] Check Pods Manifest.lock */,
+				618C424A20AE982600D2F704 /* Sources */,
+				618C424B20AE982600D2F704 /* Frameworks */,
+				618C424C20AE982600D2F704 /* Resources */,
+				DB20213C5DE40864D3864BFE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				618C425120AE982600D2F704 /* PBXTargetDependency */,
+			);
+			name = TrustWalletSDKTests;
+			productName = TrustWalletSDKTests;
+			productReference = 618C424E20AE982600D2F704 /* TrustWalletSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -229,6 +368,13 @@
 					};
 					6149DABC20A53061004EDA7A = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
+					};
+					618C424520AE982600D2F704 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					618C424D20AE982600D2F704 = {
+						CreatedOnToolsVersion = 9.3.1;
 						LastSwiftMigration = 0930;
 					};
 				};
@@ -248,6 +394,8 @@
 			targets = (
 				6149DAB420A53061004EDA7A /* TrustSDK */,
 				6149DABC20A53061004EDA7A /* TrustSDKTests */,
+				618C424520AE982600D2F704 /* TrustWalletSDK */,
+				618C424D20AE982600D2F704 /* TrustWalletSDKTests */,
 			);
 		};
 /* End PBXProject section */
@@ -261,6 +409,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6149DABB20A53061004EDA7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		618C424420AE982600D2F704 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		618C424C20AE982600D2F704 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -327,6 +489,42 @@
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 			showEnvVarsInLog = 0;
 		};
+		753A7F9470F98C4CAE560BD4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TrustSDK-TrustWalletSDK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADEE1F20321DAB033137AD54 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TrustSDK-TrustWalletSDKTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C3FC0E99FF3E7B0104E2B28D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -343,6 +541,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB20213C5DE40864D3864BFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TrustSDK-TrustWalletSDKTests/Pods-TrustSDK-TrustWalletSDKTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
+				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
+				"${BUILT_PRODUCTS_DIR}/TrezorCrypto/TrezorCrypto.framework",
+				"${BUILT_PRODUCTS_DIR}/TrustCore/TrustCore.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrezorCrypto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustCore.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TrustSDK-TrustWalletSDKTests/Pods-TrustSDK-TrustWalletSDKTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -370,6 +592,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		618C424120AE982600D2F704 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				618C426520AE9B9F00D2F704 /* URLComponents.swift in Sources */,
+				618C425E20AE983300D2F704 /* TrustWalletSDK.swift in Sources */,
+				618C425F20AE983300D2F704 /* WalletDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		618C424A20AE982600D2F704 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				618C426720AE9F1500D2F704 /* TrustWalletSDKTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -377,6 +617,11 @@
 			isa = PBXTargetDependency;
 			target = 6149DAB420A53061004EDA7A /* TrustSDK */;
 			targetProxy = 6149DABF20A53061004EDA7A /* PBXContainerItemProxy */;
+		};
+		618C425120AE982600D2F704 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 618C424520AE982600D2F704 /* TrustWalletSDK */;
+			targetProxy = 618C425020AE982600D2F704 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -512,7 +757,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Metadata/Info.plist;
+				INFOPLIST_FILE = Metadata/TrustSDKInfo.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -539,7 +784,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Metadata/Info.plist;
+				INFOPLIST_FILE = Metadata/TrustSDKInfo.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -560,7 +805,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Metadata/TestsInfo.plist;
+				INFOPLIST_FILE = Metadata/TrustSDKTestsInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -580,13 +825,106 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Metadata/TestsInfo.plist;
+				INFOPLIST_FILE = Metadata/TrustSDKTestsInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.trustwalletapp.TrustSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		618C425820AE982600D2F704 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E6B2B45193D4F32DE5BAF7F /* Pods-TrustSDK-TrustWalletSDK.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Metadata/TrustWalletSDKInfo.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwalletapp.TrustWalletSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		618C425920AE982600D2F704 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7A4BA16B1025288FCC38A1E /* Pods-TrustSDK-TrustWalletSDK.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Metadata/TrustWalletSDKInfo.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwalletapp.TrustWalletSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		618C425B20AE982600D2F704 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10884017ECCF49138425F43E /* Pods-TrustSDK-TrustWalletSDKTests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Metadata/TrustWalletSDKTestsInfo.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwalletapp.TrustWalletSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		618C425C20AE982600D2F704 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C05E6AAEB929E24BB8D3288F /* Pods-TrustSDK-TrustWalletSDKTests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Metadata/TrustWalletSDKTestsInfo.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwalletapp.TrustWalletSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -619,6 +957,24 @@
 			buildConfigurations = (
 				6149DACA20A53061004EDA7A /* Debug */,
 				6149DACB20A53061004EDA7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		618C425720AE982600D2F704 /* Build configuration list for PBXNativeTarget "TrustWalletSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				618C425820AE982600D2F704 /* Debug */,
+				618C425920AE982600D2F704 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		618C425A20AE982600D2F704 /* Build configuration list for PBXNativeTarget "TrustWalletSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				618C425B20AE982600D2F704 /* Debug */,
+				618C425C20AE982600D2F704 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

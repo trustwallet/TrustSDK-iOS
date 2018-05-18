@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6149DAB420A53061004EDA7A"
-               BuildableName = "TrustSDK.framework"
-               BlueprintName = "TrustSDK"
+               BlueprintIdentifier = "618C424520AE982600D2F704"
+               BuildableName = "TrustWalletSDK.framework"
+               BlueprintName = "TrustWalletSDK"
                ReferencedContainer = "container:TrustSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6149DAB420A53061004EDA7A"
-            BuildableName = "TrustSDK.framework"
-            BlueprintName = "TrustSDK"
+            BlueprintIdentifier = "618C424520AE982600D2F704"
+            BuildableName = "TrustWalletSDK.framework"
+            BlueprintName = "TrustWalletSDK"
             ReferencedContainer = "container:TrustSDK.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -43,9 +43,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6149DABC20A53061004EDA7A"
-               BuildableName = "TrustSDKTests.xctest"
-               BlueprintName = "TrustSDKTests"
+               BlueprintIdentifier = "618C424D20AE982600D2F704"
+               BuildableName = "TrustWalletSDKTests.xctest"
+               BlueprintName = "TrustWalletSDKTests"
                ReferencedContainer = "container:TrustSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -53,9 +53,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6149DAB420A53061004EDA7A"
-            BuildableName = "TrustSDK.framework"
-            BlueprintName = "TrustSDK"
+            BlueprintIdentifier = "618C424520AE982600D2F704"
+            BuildableName = "TrustWalletSDK.framework"
+            BlueprintName = "TrustWalletSDK"
             ReferencedContainer = "container:TrustSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,9 +75,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6149DAB420A53061004EDA7A"
-            BuildableName = "TrustSDK.framework"
-            BlueprintName = "TrustSDK"
+            BlueprintIdentifier = "618C424520AE982600D2F704"
+            BuildableName = "TrustWalletSDK.framework"
+            BlueprintName = "TrustWalletSDK"
             ReferencedContainer = "container:TrustSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -93,9 +93,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6149DAB420A53061004EDA7A"
-            BuildableName = "TrustSDK.framework"
-            BlueprintName = "TrustSDK"
+            BlueprintIdentifier = "618C424520AE982600D2F704"
+            BuildableName = "TrustWalletSDK.framework"
+            BlueprintName = "TrustWalletSDK"
             ReferencedContainer = "container:TrustSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
