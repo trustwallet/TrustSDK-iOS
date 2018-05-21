@@ -46,22 +46,25 @@ public final class TrustWalletSDK {
         }
         let address = components.queryParameterValue(for: "address").flatMap({ Address(eip55: $0) })
         let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
-        let signed: Data
-        do {
-            signed = try delegate.signMessage(message, address: address)
-        } catch {
+        delegate.signMessage(message, address: address) { signedMessage in
             if let callback = callback {
-                callbackWithFailure(url: callback, error: error as NSError)
+                self.handleSignMessageResult(signedMessage, callback: callback)
             }
-            return true
-        }
-
-        if let callback = callback, var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
-            callbackComponents.queryItems = [URLQueryItem(name: "result", value: signed.hexString)]
-            UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
         }
 
         return true
+    }
+
+    private func handleSignMessageResult(_ signedMessage: Data?, callback: URL) {
+        guard let signedMessage = signedMessage else {
+            callbackWithFailure(url: callback)
+            return
+        }
+
+        if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
+            callbackComponents.queryItems = [URLQueryItem(name: "result", value: signedMessage.hexString)]
+            UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
+        }
     }
 
     private func handleSignTransaction(_ components: URLComponents) -> Bool {
@@ -88,17 +91,22 @@ public final class TrustWalletSDK {
         transaction.amount = amount
         transaction.payload = components.queryParameterValue(for: "payload").flatMap({ Data(hexString: $0) })
 
-        let signedTransaction: Transaction
-        do {
-            signedTransaction = try delegate.signTransaction(transaction)
-        } catch {
+        delegate.signTransaction(transaction) { signedTransaction in
             if let callback = callback {
-                callbackWithFailure(url: callback, error: error as NSError)
+                self.handleSignTransactionResult(signedTransaction, callback: callback)
             }
-            return true
         }
 
-        if let callback = callback, var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
+        return true
+    }
+
+    private func handleSignTransactionResult(_ signedTransaction: Transaction?, callback: URL) {
+        guard let signedTransaction = signedTransaction else {
+            callbackWithFailure(url: callback)
+            return
+        }
+
+        if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
             callbackComponents.queryItems = [
                 URLQueryItem(name: "v", value: signedTransaction.v.description),
                 URLQueryItem(name: "r", value: signedTransaction.r.description),
@@ -106,16 +114,9 @@ public final class TrustWalletSDK {
             ]
             UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
         }
-
-        return true
     }
 
-    private func callbackWithFailure(url: URL, error: NSError) {
-        if var callbackComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-            callbackComponents.queryItems = [
-                URLQueryItem(name: "error", value: error.localizedDescription),
-            ]
-            UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
-        }
+    private func callbackWithFailure(url: URL) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }

@@ -53,23 +53,25 @@ class MockWalletDelegate: WalletDelegate {
     var providedTransaction: Transaction?
     var shouldFail = false
 
-    func signMessage(_ message: Data, address: Address?) throws -> Data {
+    func signMessage(_ message: Data, address: Address?, completion: @escaping (Data?) -> Void) -> Void {
         if shouldFail {
-            throw NSError(domain: "test", code: 1, userInfo: [NSLocalizedDescriptionKey: "Test error"])
+            completion(nil)
+            return
         }
         providedMessage = message
-        return message
+        completion(message)
     }
 
-    func signTransaction(_ transaction: Transaction) throws -> Transaction {
+    func signTransaction(_ transaction: Transaction, completion: @escaping (Transaction?) -> Void) -> Void {
         if shouldFail {
-            throw NSError(domain: "test", code: 1, userInfo: [NSLocalizedDescriptionKey: "Test error"])
+            completion(nil)
+            return
         }
         providedTransaction = transaction
         var signed = transaction
         signed.v = BigInt(1)
         signed.r = BigInt(2)
         signed.s = BigInt(3)
-        return signed
+        completion(signed)
     }
 }
