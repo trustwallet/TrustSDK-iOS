@@ -14,12 +14,12 @@ public protocol WalletDelegate: class {
     ///   - message: message data to sign
     ///   - address: address to use for signing
     ///   - completion: completing closure to call with the signed message or `nil` on failure
-    func signMessage(_ message: Data, address: Address?, completion: @escaping (Data?) -> Void) -> Void
+    func signMessage(_ message: Data, address: Address?, completion: @escaping (Data?) -> Void)
 
     /// Signs a transaction
     ///
     /// - Parameters:
     ///   - transaction: transaction to sign
     ///   - completion: completing closure to call with the signed message or `nil` on failure
-    func signTransaction(_ transaction: Transaction, completion: @escaping (Transaction?) -> Void) -> Void
+    func signTransaction(_ transaction: Transaction, completion: @escaping (Transaction?) -> Void)
 }
