@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func signMessage(_ sender: Any) {
-        guard let message = Data(hexString: messageTextField.text!) else {
+        guard let message = messageTextField.text!.data(using: .utf8) else {
             let alert = UIAlertController(title: "Invalid Message", message: nil, preferredStyle: .alert)
             alert.addAction(.init(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -51,6 +51,7 @@ class ViewController: UIViewController {
 
         trustSDK.signMessage(message) { [weak self] signed in
             let alert = UIAlertController(title: "Signed Message", message: signed.hexString, preferredStyle: .alert)
+            alert.addAction(.init(title: "OK", style: .default, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }
     }
