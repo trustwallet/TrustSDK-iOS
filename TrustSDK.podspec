@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/TrustWallet/TrustSDK-iOS'
   s.authors      = { 'Alejandro Isaza' => 'al@isaza.ca', 'Viktor Radchenko' => 'yazexel@gmail.com' }
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
   s.swift_version = '4.0'
 
   s.source       = { git: 'https://github.com/TrustWallet/TrustSDK-iOS.git', tag: s.version }
