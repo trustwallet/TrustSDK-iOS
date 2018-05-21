@@ -21,7 +21,7 @@ class SignTransactionCommandTests: XCTestCase {
         }
         let url = command.requestURL(scheme: "trust")
 
-        XCTAssertEqual(url.absoluteString, "trust://sign-transaction?gasPrice=0&gasLimit=10&to=0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed&amount=100&callback=app://sign-transaction")
+        XCTAssertEqual(url.absoluteString, "trust://sign-transaction?gasPrice=0&gasLimit=10&to=0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed&amount=100&nonce=0&callback=app://sign-transaction")
     }
 
     func testHandleCallback() {
