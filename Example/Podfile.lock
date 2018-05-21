@@ -13,7 +13,7 @@ DEPENDENCIES:
   - TrustSDK (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - BigInt
     - SipHash
     - TrezorCrypto
@@ -28,8 +28,8 @@ SPEC CHECKSUMS:
   SipHash: c6e9e43e9c531b5bc6602545130c26194a6d31ce
   TrezorCrypto: ecef681446bf02af6248d3b5e394026d7e766e56
   TrustCore: 688df9a241008cf9cfa3842ec8ef28777a8b7534
-  TrustSDK: 3bcac7069e57ac1e5fc3389b4d21052c473edc67
+  TrustSDK: 10b7e02ec1ae7c875c3e3e6439971b4dce0e9f5d
 
 PODFILE CHECKSUM: 93fb70f9af698c621b1e6165138f070b0eafc5ce
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
