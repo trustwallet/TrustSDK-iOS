@@ -101,7 +101,7 @@ public final class TrustWalletSDK {
         return true
     }
 
-    private func handleSignTransactionResult(_ signedTransaction: Transaction?, callback: URL) {
+    private func handleSignTransactionResult(_ signedTransaction: Data?, callback: URL) {
         guard let signedTransaction = signedTransaction else {
             callbackWithFailure(url: callback)
             return
@@ -109,9 +109,7 @@ public final class TrustWalletSDK {
 
         if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
             callbackComponents.queryItems = [
-                URLQueryItem(name: "v", value: signedTransaction.v.description),
-                URLQueryItem(name: "r", value: signedTransaction.r.description),
-                URLQueryItem(name: "s", value: signedTransaction.s.description),
+                URLQueryItem(name: "result", value: signedTransaction.base64EncodedString())
             ]
             UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
         }
