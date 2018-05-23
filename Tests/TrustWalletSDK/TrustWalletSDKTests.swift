@@ -63,16 +63,12 @@ class MockWalletDelegate: WalletDelegate {
         completion(message)
     }
 
-    func signTransaction(_ transaction: Transaction, completion: @escaping (Transaction?) -> Void) {
+    func signTransaction(_ transaction: Transaction, completion: @escaping (Data?) -> Void) {
         if shouldFail {
             completion(nil)
             return
         }
         providedTransaction = transaction
-        var signed = transaction
-        signed.v = BigInt(1)
-        signed.r = BigInt(2)
-        signed.s = BigInt(3)
-        completion(signed)
+        completion(Data())
     }
 }

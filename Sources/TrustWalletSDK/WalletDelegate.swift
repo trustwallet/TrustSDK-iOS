@@ -21,5 +21,5 @@ public protocol WalletDelegate: class {
     /// - Parameters:
     ///   - transaction: transaction to sign
     ///   - completion: completing closure to call with the signed message or `nil` on failure
-    func signTransaction(_ transaction: Transaction, completion: @escaping (Transaction?) -> Void)
+    func signTransaction(_ transaction: Transaction, completion: @escaping (Data?) -> Void)
 }
