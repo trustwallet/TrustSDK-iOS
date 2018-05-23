@@ -69,10 +69,6 @@ class MockWalletDelegate: WalletDelegate {
             return
         }
         providedTransaction = transaction
-        //var signed = transaction
-        //signed.v = BigInt(1)
-        //signed.r = BigInt(2)
-        //signed.s = BigInt(3)
         completion(Data())
     }
 }

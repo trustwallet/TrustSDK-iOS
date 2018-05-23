@@ -60,24 +60,6 @@ public final class SignTransactionCommand: Command {
         guard let data = Data(base64Encoded: result) else {
             return false
         }
-
-//        guard let vs = components.queryItems?.first(where: { $0.name == "v" })?.value, let v = BigInt(vs) else {
-//            return false
-//        }
-//        guard let rs = components.queryItems?.first(where: { $0.name == "r" })?.value, let r = BigInt(rs) else {
-//            return false
-//        }
-//        guard let ss = components.queryItems?.first(where: { $0.name == "s" })?.value, let s = BigInt(ss) else {
-//            return false
-//        }
-//
-//        transaction.v = v
-//        transaction.r = r
-//        transaction.s = s
-//        if let nonce = components.queryItems?.first(where: { $0.name == "v" })?.value, let val = UInt64(nonce) {
-//            transaction.nonce = val
-//        }
-
         completion(data)
         return true
     }
