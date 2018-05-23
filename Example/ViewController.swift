@@ -16,8 +16,15 @@ class ViewController: UIViewController {
     @IBOutlet private weak var amountTextField: UITextField!
     @IBOutlet private weak var messageTextField: UITextField!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        addressTextField.text = "0xe47494379c1d48ee73454c251a6395fdd4f9eb43"
+        amountTextField.text = "1"
+    }
+
     @IBAction func signTransaction(_ sender: Any) {
-        guard let address = Address(eip55: addressTextField.text!) else {
+        guard let address = Address(string: addressTextField.text!) else {
             let alert = UIAlertController(title: "Invalid Address", message: nil, preferredStyle: .alert)
             alert.addAction(.init(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -35,7 +42,7 @@ class ViewController: UIViewController {
         transaction.amount = amount
 
         trustSDK.signTransaction(transaction) { [weak self] signedTransaction in
-            let alert = UIAlertController(title: "Signed Transaction", message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: "Signed Transaction", message: signedTransaction.hexString, preferredStyle: .alert)
             alert.addAction(.init(title: "OK", style: .default, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }
