@@ -90,7 +90,7 @@ public final class TrustWalletSDK {
         var transaction = Transaction(gasPrice: gasPrice, gasLimit: gasLimit, to: to)
         transaction.amount = amount
 
-        if let dataHex = components.queryParameterValue(for: "data").flatMap({ String($0) }),
+        if let dataHex = components.queryParameterValue(for: "data").flatMap({ String($0) })
             transaction.payload = Data(hexString: dataHex)
         }
 
