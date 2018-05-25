@@ -14,12 +14,14 @@ class ViewController: UIViewController {
 
     @IBOutlet private weak var addressTextField: UITextField!
     @IBOutlet private weak var amountTextField: UITextField!
+    @IBOutlet weak var dataTextField: UITextField!
     @IBOutlet private weak var messageTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addressTextField.text = "0xe47494379c1d48ee73454c251a6395fdd4f9eb43"
+        dataTextField.text = "0x8f834227000000000000000000000000000000005224"
         amountTextField.text = "1"
     }
 
@@ -40,7 +42,9 @@ class ViewController: UIViewController {
 
         var transaction = Transaction(gasPrice: BigInt(21), gasLimit: 21000, to: address)
         transaction.amount = amount
-        transaction.payload = Data(hexString: "0x8f834227000000000000000000000000000000005224")
+        if let dataString = addressTextField.text {
+            transaction.payload = Data(hexString: dataString)
+        }
 
         trustSDK.signTransaction(transaction) { [weak self] signedTransaction in
             let alert = UIAlertController(title: "Signed Transaction", message: signedTransaction.hexString, preferredStyle: .alert)
