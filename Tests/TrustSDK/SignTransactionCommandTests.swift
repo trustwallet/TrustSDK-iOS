@@ -29,14 +29,12 @@ class SignTransactionCommandTests: XCTestCase {
         transaction.amount = BigInt("100")
 
         let commandCompletedExpectation = expectation(description: "Command completed")
-        let command = SignTransactionCommand(transaction: transaction, callbackScheme: "app") { transaction in
+        let command = SignTransactionCommand(transaction: transaction, callbackScheme: "app") { _ in
             commandCompletedExpectation.fulfill()
-            XCTAssertEqual(transaction.v, BigInt(1))
-            XCTAssertEqual(transaction.r, BigInt(2))
-            XCTAssertEqual(transaction.s, BigInt(3))
+            XCTAssert(true)
         }
 
-        let url = URL(string: "app://sign-transaction?v=1&r=2&s=3")!
+        let url = URL(string: "app://sign-transaction?result=dGVzdA==")!
         let handled = command.handleCallback(url: url)
         XCTAssertTrue(handled)
 
