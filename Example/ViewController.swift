@@ -40,6 +40,7 @@ class ViewController: UIViewController {
 
         var transaction = Transaction(gasPrice: BigInt(21), gasLimit: 21000, to: address)
         transaction.amount = amount
+        transaction.payload = Data(hexString: "0x8f834227000000000000000000000000000000005224")
 
         trustSDK.signTransaction(transaction) { [weak self] signedTransaction in
             let alert = UIAlertController(title: "Signed Transaction", message: signedTransaction.hexString, preferredStyle: .alert)
