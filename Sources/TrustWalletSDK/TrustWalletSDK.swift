@@ -90,8 +90,11 @@ public final class TrustWalletSDK {
         var transaction = Transaction(gasPrice: gasPrice, gasLimit: gasLimit, to: to)
         transaction.amount = amount
 
-        let data = components.queryParameterValue(for: "data").flatMap({ String($0) })!
-        transaction.payload = Data(base64Encoded: data)
+        if
+            let dataBase64 = components.queryParameterValue(for: "data").flatMap({ Data(base64Encoded: $0) }),
+            let hexData = String(data: dataBase64, encoding: .utf8){
+            transaction.payload = Data(hexString: hexData)
+        }
 
         transaction.nonce = components.queryParameterValue(for: "nonce").flatMap({ UInt64($0) }) ?? 0
 
