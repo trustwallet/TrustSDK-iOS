@@ -94,7 +94,11 @@ public final class TrustWalletSDK {
 
         var transaction = Transaction(gasPrice: gasPrice, gasLimit: gasLimit, to: to)
         transaction.amount = amount
-        transaction.payload = components.queryParameterValue(for: "data").flatMap({ Data(hexString: $0) })
+
+        if let dataHex = components.queryParameterValue(for: "data").flatMap({ String($0) }) {
+           transaction.payload = Data(hexString: dataHex)
+        }
+
         transaction.nonce = components.queryParameterValue(for: "nonce").flatMap({ UInt64($0) }) ?? 0
 
         delegate.signTransaction(transaction) { signedTransaction in
@@ -114,7 +118,7 @@ public final class TrustWalletSDK {
 
         if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
             callbackComponents.queryItems = [
-                URLQueryItem(name: "result", value: signedTransaction.base64EncodedString())
+                URLQueryItem(name: "result", value: signedTransaction.base64EncodedString()),
             ]
             UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
         }

@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uyg-l8-gWd">
-                                <rect key="frame" x="16" y="40" width="343" height="210"/>
+                                <rect key="frame" x="16" y="40" width="343" height="248"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nhj-CI-bvq">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -31,34 +31,40 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f4C-E2-vtd">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gbn-gi-4dO">
                                         <rect key="frame" x="0.0" y="38" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4a-w9-8dK">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f4C-E2-vtd">
                                         <rect key="frame" x="0.0" y="76" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4a-w9-8dK">
+                                        <rect key="frame" x="0.0" y="114" width="343" height="30"/>
                                         <state key="normal" title="Sign Transaction"/>
                                         <connections>
                                             <action selector="signTransaction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9zD-DF-LmF"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KzV-rf-pNF">
-                                        <rect key="frame" x="0.0" y="114" width="343" height="20"/>
+                                        <rect key="frame" x="0.0" y="152" width="343" height="20"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Shc-Dc-hx9"/>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vPB-gl-SlU">
-                                        <rect key="frame" x="0.0" y="142" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="180" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5g-Rx-nSQ">
-                                        <rect key="frame" x="0.0" y="180" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="218" width="343" height="30"/>
                                         <state key="normal" title="Sign Message"/>
                                         <connections>
                                             <action selector="signMessage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BbK-Nq-zyc"/>
@@ -78,6 +84,7 @@
                     <connections>
                         <outlet property="addressTextField" destination="nhj-CI-bvq" id="SLg-il-whg"/>
                         <outlet property="amountTextField" destination="f4C-E2-vtd" id="ysL-GB-kBH"/>
+                        <outlet property="dataTextField" destination="Gbn-gi-4dO" id="3na-61-q6V"/>
                         <outlet property="messageTextField" destination="vPB-gl-SlU" id="iBS-Kq-T30"/>
                     </connections>
                 </viewController>

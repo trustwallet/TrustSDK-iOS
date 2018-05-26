@@ -42,7 +42,7 @@ public final class SignTransactionCommand: Command {
         queryItems.append(URLQueryItem(name: "to", value: transaction.to.description))
         queryItems.append(URLQueryItem(name: "amount", value: transaction.amount.description))
         if let payload = transaction.payload {
-            queryItems.append(URLQueryItem(name: "data", value: payload.base64EncodedString()))
+            queryItems.append(URLQueryItem(name: "data", value: payload.hexString))
         }
         queryItems.append(URLQueryItem(name: "nonce", value: transaction.nonce.description))
         queryItems.append(URLQueryItem(name: "callback", value: callback.absoluteString))

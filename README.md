@@ -9,6 +9,10 @@
 
 The TrustSDK lets you sign Ethereum transactions and messages so that you can bulid a native DApp without having to worry about keys or wallets. Follw these instructions to integrate TrustSDK in your native DApp.
 
+## Demo
+
+![Sign Message and Transaction](docs/demo.gif)
+
 ### Add dependency
 
 TrustSDK is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:

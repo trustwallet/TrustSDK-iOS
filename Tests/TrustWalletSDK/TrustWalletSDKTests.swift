@@ -28,7 +28,7 @@ class TrustWalletSDKTests: XCTestCase {
 
     func testHandleSignTransaction() {
         let sdk = TrustWalletSDK(delegate: delegate)
-        let url = URL(string: "trust://sign-transaction?gasPrice=0&gasLimit=10&to=0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed&amount=100&nonce=123&callback=app://sign-transaction")!
+        let url = URL(string: "trust://sign-transaction?gasPrice=0&gasLimit=10&to=0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed&amount=100&nonce=123&data=0x8f834227000000000000000000000000000000005224&callback=app://sign-transaction")!
         let handled = sdk.handleOpen(url: url)
 
         XCTAssertTrue(handled)
@@ -37,6 +37,7 @@ class TrustWalletSDKTests: XCTestCase {
         XCTAssertEqual(delegate.providedTransaction?.to, Address(string: "0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed"))
         XCTAssertEqual(delegate.providedTransaction?.amount, 100)
         XCTAssertEqual(delegate.providedTransaction?.nonce, 123)
+        XCTAssertEqual(delegate.providedTransaction?.payload, Data(hexString: "0x8f834227000000000000000000000000000000005224"))
     }
 
     func testHandleError() {

@@ -13,7 +13,7 @@ public class WalletAppManager {
             name: "Trust",
             scheme: "trust",
             installURL: URL(string: "https://itunes.apple.com/ru/app/trust-ethereum-wallet/id1288339409")!
-        )
+        ),
     ]
 
     private init() {}
