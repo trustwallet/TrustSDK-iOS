@@ -62,12 +62,7 @@ public final class TrustWalletSDK {
         }
 
         if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
-            let item = URLQueryItem(name: "result", value: signedMessage.base64EncodedString())
-            if callbackComponents.queryItems != nil {
-                callbackComponents.queryItems?.append(item)
-            } else {
-                callbackComponents.queryItems = [item]
-            }
+            callbackComponents.append(queryItem: URLQueryItem(name: "result", value: signedMessage.base64EncodedString()))
             UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
         }
     }
@@ -117,12 +112,7 @@ public final class TrustWalletSDK {
         }
 
         if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
-            let item = URLQueryItem(name: "result", value: signedTransaction.base64EncodedString())
-            if callbackComponents.queryItems != nil {
-                callbackComponents.queryItems?.append(item)
-            } else {
-                callbackComponents.queryItems = [item]
-            }
+            callbackComponents.append(queryItem: URLQueryItem(name: "result", value: signedTransaction.base64EncodedString()))
             UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
         }
     }

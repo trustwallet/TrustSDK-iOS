@@ -10,4 +10,12 @@ extension URLComponents {
     func queryParameterValue(for key: String) -> String? {
         return queryItems?.first(where: { $0.name == key })?.value
     }
+
+    mutating func append(queryItem: URLQueryItem) {
+        if queryItems != nil {
+            queryItems?.append(queryItem)
+        } else {
+            queryItems = [queryItem]
+        }
+    }
 }
