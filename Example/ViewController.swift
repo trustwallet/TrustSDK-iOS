@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 
         var transaction = Transaction(gasPrice: BigInt(21), gasLimit: 21000, to: address)
         transaction.amount = amount
-        if let dataString = addressTextField.text {
+        if let dataString = dataTextField.text {
             transaction.payload = Data(hexString: dataString)
         }
 

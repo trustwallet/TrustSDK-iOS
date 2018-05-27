@@ -117,9 +117,12 @@ public final class TrustWalletSDK {
         }
 
         if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
-            callbackComponents.queryItems = [
-                URLQueryItem(name: "result", value: signedTransaction.base64EncodedString()),
-            ]
+            let item = URLQueryItem(name: "result", value: signedTransaction.base64EncodedString())
+            if callbackComponents.queryItems != nil {
+                callbackComponents.queryItems?.append(item)
+            } else {
+                callbackComponents.queryItems = [item]
+            }
             UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
         }
     }
