@@ -71,6 +71,16 @@ trustSDK.signMessage(message) { [weak self] signedMessage in
 }
 ```
 
+### Sign a personal message
+
+To sign a message use this code
+
+```
+trustSDK.signPersonalMessage(message) { [weak self] signedMessage in
+    // Use signedMessage
+}
+```
+
 ## Example
 
 Trust SDK includes an example project with the above code. To run the example project clone the repo and run `pod install` from the Example directory. Open `TrustSDKExample.xcworkspace` and run. Make sure that you have Trust Wallet installed on the device or simulator to test the full callback flow.
