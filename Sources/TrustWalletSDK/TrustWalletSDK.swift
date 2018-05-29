@@ -26,7 +26,7 @@ public final class TrustWalletSDK {
         }
 
         switch url.host {
-        case "sign-message"?:
+        case "sign-message"?, "sign-personal-message"?:
             return handleSignMessage(components)
         case "sign-transaction"?:
             return handleSignTransaction(components)

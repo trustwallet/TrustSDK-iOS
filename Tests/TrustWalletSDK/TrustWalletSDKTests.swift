@@ -26,6 +26,15 @@ class TrustWalletSDKTests: XCTestCase {
         XCTAssertEqual(delegate.providedMessage, Data(hexString: "1234"))
     }
 
+    func testHandleSignPersonalMessage() {
+        let sdk = TrustWalletSDK(delegate: delegate)
+        let url = URL(string: "trust://sign-personal-message?message=EjQ%3D&callback=app://sign-personal-message")!
+        let handled = sdk.handleOpen(url: url)
+
+        XCTAssertTrue(handled)
+        XCTAssertEqual(delegate.providedMessage, Data(hexString: "1234"))
+    }
+
     func testHandleSignTransaction() {
         let sdk = TrustWalletSDK(delegate: delegate)
         let url = URL(string: "trust://sign-transaction?gasPrice=0&gasLimit=10&to=0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed&amount=100&nonce=123&data=0x8f834227000000000000000000000000000000005224&callback=app://sign-transaction")!
@@ -56,6 +65,15 @@ class MockWalletDelegate: WalletDelegate {
     var shouldFail = false
 
     func signMessage(_ message: Data, address: Address?, completion: @escaping (Data?) -> Void) {
+        if shouldFail {
+            completion(nil)
+            return
+        }
+        providedMessage = message
+        completion(message)
+    }
+
+    func signPersonalMessage(_ message: Data, address: Address?, completion: @escaping (Data?) -> Void) {
         if shouldFail {
             completion(nil)
             return
