@@ -6,8 +6,8 @@
 
 import TrustCore
 
-public final class SignMessageCommand: Command {
-    public  let name = "sign-message"
+public class SignMessageCommand: Command {
+    public var name = "sign-message"
 
     /// Message data
     public var message: Data
