@@ -6,8 +6,10 @@
 
 import TrustCore
 import UIKit
+import BigInt
 
-public final class TrustSDK {
+@objc(TrustSDK)
+public final class TrustSDK: NSObject {
     /// The callback URL scheme.
     public let callbackScheme: String
 
@@ -16,6 +18,7 @@ public final class TrustSDK {
 
     private var pendingCommand: Command?
 
+    @objc
     public init(callbackScheme: String) {
         self.callbackScheme = callbackScheme
         walletApp = WalletAppManager.availableApps.first
@@ -24,6 +27,7 @@ public final class TrustSDK {
     /// Handles an open URL callback
     ///
     /// - Returns: `true` is the URL was handled; `false` otherwise.
+    @objc(handleCallback:)
     public func handleCallback(url: URL) -> Bool {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false), components.scheme == callbackScheme else {
             return false
@@ -31,7 +35,6 @@ public final class TrustSDK {
 
         return pendingCommand?.handleCallback(url: url) ?? false
     }
-
     func execute(command: Command) {
         guard let app = walletApp else {
             return
@@ -56,5 +59,36 @@ public final class TrustSDK {
         } else {
             UIApplication.shared.openURL(app.installURL)
         }
+    }
+    @objc
+    public func signMessage(_ message: Data, address: String = "", completion: @escaping (Data) -> Void) {
+        guard WalletAppManager.hasWalletApp else {
+            return fallbackToInstall()
+        }
+        let addr = Address(string: address)
+        let command = SignMessageCommand(message: message, address: addr, callbackScheme: callbackScheme, completion: completion)
+        execute(command: command)
+    }
+    @objc
+    public func signTransaction(_ gasPrice: String, _ gasLimit: UInt64, _ address: String, amount: String, completion: @escaping (Data) -> Void) {
+        guard WalletAppManager.hasWalletApp else {
+            return fallbackToInstall()
+        }
+        let gp = BigInt(gasPrice)
+        let addr = Address(string: address)
+        var trans = Transaction(gasPrice: gp!, gasLimit: gasLimit, to: addr!)
+        let am = BigInt(amount)
+        trans.amount = am!
+        let command = SignTransactionCommand(transaction: trans, callbackScheme: callbackScheme, completion: completion)
+        execute(command: command)
+    }
+    @objc
+    public func signPersonalMessage(_ message: Data, address: String = "", completion: @escaping (Data) -> Void) {
+        guard WalletAppManager.hasWalletApp else {
+            return fallbackToInstall()
+        }
+        let addr = Address(string: address)
+        let command = SignPersonalMessageCommand(message: message, address: addr, callbackScheme: callbackScheme, completion: completion)
+        execute(command: command)
     }
 }

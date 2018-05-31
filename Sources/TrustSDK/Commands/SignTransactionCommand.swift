@@ -64,13 +64,3 @@ public final class SignTransactionCommand: Command {
         return true
     }
 }
-
-public extension TrustSDK {
-    public func signTransaction(_ transaction: Transaction, completion: @escaping (Data) -> Void) {
-        guard WalletAppManager.hasWalletApp else {
-            return fallbackToInstall()
-        }
-        let command = SignTransactionCommand(transaction: transaction, callbackScheme: callbackScheme, completion: completion)
-        execute(command: command)
-    }
-}
