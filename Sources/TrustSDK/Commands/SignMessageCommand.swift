@@ -63,13 +63,3 @@ public class SignMessageCommand: Command {
         return true
     }
 }
-
-public extension TrustSDK {
-    public func signMessage(_ message: Data, address: Address? = nil, completion: @escaping (Data) -> Void) {
-        guard WalletAppManager.hasWalletApp else {
-            return fallbackToInstall()
-        }
-        let command = SignMessageCommand(message: message, address: address, callbackScheme: callbackScheme, completion: completion)
-        execute(command: command)
-    }
-}

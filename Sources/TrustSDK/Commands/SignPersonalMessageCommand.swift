@@ -15,13 +15,3 @@ public final class SignPersonalMessageCommand: SignMessageCommand {
         set {}
     }
 }
-
-public extension TrustSDK {
-    public func signPersonalMessage(_ message: Data, address: Address? = nil, completion: @escaping (Data) -> Void) {
-        guard WalletAppManager.hasWalletApp else {
-            return fallbackToInstall()
-        }
-        let command = SignPersonalMessageCommand(message: message, address: address, callbackScheme: callbackScheme, completion: completion)
-        execute(command: command)
-    }
-}
