@@ -6,8 +6,8 @@
 
 import TrustCore
 import UIKit
-
-public final class TrustSDK {
+@objc(TrustSDK)
+public final class TrustSDK: NSObject {
     /// The callback URL scheme.
     public let callbackScheme: String
 
@@ -16,7 +16,7 @@ public final class TrustSDK {
 
     private var pendingCommand: Command?
 
-    public init(callbackScheme: String) {
+    @objc public init(callbackScheme: String) {
         self.callbackScheme = callbackScheme
         walletApp = WalletAppManager.availableApps.first
     }
@@ -24,7 +24,7 @@ public final class TrustSDK {
     /// Handles an open URL callback
     ///
     /// - Returns: `true` is the URL was handled; `false` otherwise.
-    public func handleCallback(url: URL) -> Bool {
+    @objc public func handleCallback(url: URL) -> Bool {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false), components.scheme == callbackScheme else {
             return false
         }
