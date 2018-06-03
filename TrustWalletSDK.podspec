@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
 
   s.source       = { git: 'https://github.com/TrustWallet/TrustSDK-iOS.git', tag: s.version }
   s.source_files = 'Sources/TrustWalletSDK/**/*.{swift}'
+  s.source_files = 'Sources/Shared/*.{swift}'
 
   s.dependency 'TrustCore'
   s.dependency 'Result'
