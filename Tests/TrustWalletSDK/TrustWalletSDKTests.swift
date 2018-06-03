@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import BigInt
+import Result
 import TrustCore
 import TrustWalletSDK
 import XCTest
@@ -64,30 +65,30 @@ class MockWalletDelegate: WalletDelegate {
     var providedTransaction: Transaction?
     var shouldFail = false
 
-    func signMessage(_ message: Data, address: Address?, completion: @escaping (Data?) -> Void) {
+    func signMessage(_ message: Data, address: Address?, completion: @escaping (Result<Data, WalletError>) -> Void) {
         if shouldFail {
-            completion(nil)
+            completion(.failure(.cancelled))
             return
         }
         providedMessage = message
-        completion(message)
+        completion(.success(message))
     }
 
-    func signPersonalMessage(_ message: Data, address: Address?, completion: @escaping (Data?) -> Void) {
+    func signPersonalMessage(_ message: Data, address: Address?, completion: @escaping (Result<Data, WalletError>) -> Void) {
         if shouldFail {
-            completion(nil)
+            completion(.failure(.cancelled))
             return
         }
         providedMessage = message
-        completion(message)
+        completion(.success(message))
     }
 
-    func signTransaction(_ transaction: Transaction, completion: @escaping (Data?) -> Void) {
+    func signTransaction(_ transaction: Transaction, completion: @escaping (Result<Data, WalletError>) -> Void) {
         if shouldFail {
-            completion(nil)
+            completion(.failure(.cancelled))
             return
         }
         providedTransaction = transaction
-        completion(Data())
+        completion(.success(Data()))
     }
 }

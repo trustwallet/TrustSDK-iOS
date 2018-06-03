@@ -21,8 +21,12 @@ class SignMessageCommandTests: XCTestCase {
     func testHandleCallback() {
         let message = Data(hexString: "1234")!
         let commandCompletedExpectation = expectation(description: "Command completed")
-        let command = SignMessageCommand(message: message, address: nil, callbackScheme: "app") { data in
+        let command = SignMessageCommand(message: message, address: nil, callbackScheme: "app") { result in
             commandCompletedExpectation.fulfill()
+            guard case .success(let data) = result else {
+                XCTFail("Expected success")
+                return
+            }
             XCTAssertEqual(data, message)
         }
 

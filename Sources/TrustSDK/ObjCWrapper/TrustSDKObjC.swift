@@ -3,7 +3,7 @@
 // This file is part of TrustSDK. The full TrustSDK copyright notice, including
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
-#if XAMARIN
+
 import Foundation
 import TrustCore
 import BigInt
@@ -11,37 +11,41 @@ import BigInt
 @objc(TrustSDK)
 public extension TrustSDK {
     @objc
-    public func signMessage(_ message: Data, address: String? = nil, completion: @escaping (Data) -> Void) {
-        guard WalletAppManager.hasWalletApp else {
-            return fallbackToInstall()
+    public func signMessage(_ message: Data, address: String? = nil, success: @escaping (Data) -> Void, failure: @escaping (NSError) -> Void) {
+        signMessage(message) { result in
+            switch result {
+            case .success(let signedMesssage):
+                success(signedMesssage)
+            case .failure(let error):
+                failure(error as NSError)
+            }
         }
-        let addr = Address(string: address!)
-        let command = SignMessageCommand(message: message, address: addr, callbackScheme: callbackScheme, completion: completion)
-        execute(command: command)
     }
-    @objc
-    public func signTransaction(_ gasPrice: String, _ gasLimit: UInt64, _ address: String, amount: String, completion: @escaping (Data) -> Void) {
-        guard WalletAppManager.hasWalletApp else {
-            return fallbackToInstall()
-        }
-        let gasP = BigInt(gasPrice)
-        let addr = Address(string: address)
-        var transaction = Transaction(gasPrice: gasP!, gasLimit: gasLimit, to: addr!)
-        let am = BigInt(amount)
-        transaction.amount = am!
 
-        let command = SignTransactionCommand(transaction: transaction, callbackScheme: callbackScheme, completion: completion)
-        execute(command: command)
-    }
     @objc
-    public func signPersonalMessage(_ message: Data, address: String? = nil, completion: @escaping (Data) -> Void) {
-        guard WalletAppManager.hasWalletApp else {
-            return fallbackToInstall()
+    public func signTransaction(_ gasPrice: String, _ gasLimit: UInt64, _ address: String, amount: String, success: @escaping (Data) -> Void, failure: @escaping (NSError) -> Void) {
+        var transaction = Transaction(gasPrice: BigInt(gasPrice)!, gasLimit: gasLimit, to: Address(string: address)!)
+        transaction.amount = BigInt(amount)!
+
+        signTransaction(transaction) { result in
+            switch result {
+            case .success(let signedMesssage):
+                success(signedMesssage)
+            case .failure(let error):
+                failure(error as NSError)
+            }
         }
-        let addr = Address(string: address!)
-        let command = SignPersonalMessageCommand(message: message, address: addr, callbackScheme: callbackScheme, completion: completion)
-        execute(command: command)
+    }
+
+    @objc
+    public func signPersonalMessage(_ message: Data, address: String? = nil, success: @escaping (Data) -> Void, failure: @escaping (NSError) -> Void) {
+        signPersonalMessage(message, address: address.flatMap({ Address(string: $0) })) { result in
+            switch result {
+            case .success(let signedMesssage):
+                success(signedMesssage)
+            case .failure(let error):
+                failure(error as NSError)
+            }
+        }
     }
 }
-
-#endif
