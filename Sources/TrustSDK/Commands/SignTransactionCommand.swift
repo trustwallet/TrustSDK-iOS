@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import BigInt
+import Result
 import TrustCore
 
 public final class SignTransactionCommand: Command {
@@ -14,7 +15,7 @@ public final class SignTransactionCommand: Command {
     public var transaction: Transaction
 
     /// Completion closure
-    public var completion: (Data) -> Void
+    public var completion: (Result<Data, WalletError>) -> Void
 
     /// Callback scheme
     public var callbackScheme: String
@@ -26,7 +27,7 @@ public final class SignTransactionCommand: Command {
         return components.url!
     }
 
-    public init(transaction: Transaction, callbackScheme: String, completion: @escaping (Data) -> Void) {
+    public init(transaction: Transaction, callbackScheme: String, completion: @escaping (Result<Data, WalletError>) -> Void) {
         self.transaction = transaction
         self.completion = completion
         self.callbackScheme = callbackScheme
@@ -54,19 +55,25 @@ public final class SignTransactionCommand: Command {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false), components.host == name else {
             return false
         }
+
+        if let errorString = components.queryItems?.first(where: { $0.name == "error" })?.value, let error = WalletError(rawValue: errorString) {
+            completion(.failure(error))
+            return true
+        }
+
         guard let result = components.queryItems?.first(where: { $0.name == "result" })?.value else {
             return false
         }
         guard let data = Data(base64Encoded: result) else {
             return false
         }
-        completion(data)
+        completion(.success(data))
         return true
     }
 }
 
 public extension TrustSDK {
-    public func signTransaction(_ transaction: Transaction, completion: @escaping (Data) -> Void) {
+    public func signTransaction(_ transaction: Transaction, completion: @escaping (Result<Data, WalletError>) -> Void) {
         guard WalletAppManager.hasWalletApp else {
             return fallbackToInstall()
         }

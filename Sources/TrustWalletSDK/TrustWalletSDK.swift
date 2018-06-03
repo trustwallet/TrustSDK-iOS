@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import BigInt
+import Result
 import TrustCore
 import UIKit
 
@@ -46,24 +47,24 @@ public final class TrustWalletSDK {
         }
         let address = components.queryParameterValue(for: "address").flatMap({ Address(eip55: $0) })
         let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
-        delegate.signMessage(message, address: address) { signedMessage in
+        delegate.signMessage(message, address: address) { result in
             if let callback = callback {
-                self.handleSignMessageResult(signedMessage, callback: callback)
+                self.handleSignMessageResult(result, callback: callback)
             }
         }
 
         return true
     }
 
-    private func handleSignMessageResult(_ signedMessage: Data?, callback: URL) {
-        guard let signedMessage = signedMessage else {
-            callbackWithFailure(url: callback)
-            return
-        }
-
-        if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
-            callbackComponents.append(queryItem: URLQueryItem(name: "result", value: signedMessage.base64EncodedString()))
-            UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
+    private func handleSignMessageResult(_ result: Result<Data, WalletError>, callback: URL) {
+        switch result {
+        case .success(let signedMessage):
+            if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
+                callbackComponents.append(queryItem: URLQueryItem(name: "result", value: signedMessage.base64EncodedString()))
+                UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
+            }
+        case .failure(let error):
+            callbackWithFailure(url: callback, error: error)
         }
     }
 
@@ -96,28 +97,30 @@ public final class TrustWalletSDK {
 
         transaction.nonce = components.queryParameterValue(for: "nonce").flatMap({ UInt64($0) }) ?? 0
 
-        delegate.signTransaction(transaction) { signedTransaction in
+        delegate.signTransaction(transaction) { result in
             if let callback = callback {
-                self.handleSignTransactionResult(signedTransaction, callback: callback)
+                self.handleSignTransactionResult(result, callback: callback)
             }
         }
 
         return true
     }
 
-    private func handleSignTransactionResult(_ signedTransaction: Data?, callback: URL) {
-        guard let signedTransaction = signedTransaction else {
-            callbackWithFailure(url: callback)
-            return
-        }
-
-        if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
-            callbackComponents.append(queryItem: URLQueryItem(name: "result", value: signedTransaction.base64EncodedString()))
-            UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
+    private func handleSignTransactionResult(_ result: Result<Data, WalletError>, callback: URL) {
+        switch result {
+        case .success(let signedTransaction):
+            if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
+                callbackComponents.append(queryItem: URLQueryItem(name: "result", value: signedTransaction.base64EncodedString()))
+                UIApplication.shared.open(callbackComponents.url!, options: [:], completionHandler: nil)
+            }
+        case .failure(let error):
+            callbackWithFailure(url: callback, error: error)
         }
     }
 
-    private func callbackWithFailure(url: URL) {
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    private func callbackWithFailure(url: URL, error: WalletError) {
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        components.queryItems = [URLQueryItem(name: "error", value: error.rawValue)]
+        UIApplication.shared.open(components.url!, options: [:], completionHandler: nil)
     }
 }

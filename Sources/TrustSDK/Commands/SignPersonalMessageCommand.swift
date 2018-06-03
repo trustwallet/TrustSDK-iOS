@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import Foundation
+import Result
 import TrustCore
 
 public final class SignPersonalMessageCommand: SignMessageCommand {
@@ -17,7 +18,7 @@ public final class SignPersonalMessageCommand: SignMessageCommand {
 }
 
 public extension TrustSDK {
-    public func signPersonalMessage(_ message: Data, address: Address? = nil, completion: @escaping (Data) -> Void) {
+    public func signPersonalMessage(_ message: Data, address: Address? = nil, completion: @escaping (Result<Data, WalletError>) -> Void) {
         guard WalletAppManager.hasWalletApp else {
             return fallbackToInstall()
         }
