@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/TrustSDK/**/*.{swift}'
 
   s.dependency 'TrustCore'
+  s.dependency 'Result'
 end
