@@ -15,7 +15,7 @@ DEPENDENCIES:
   - TrustCore
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - BigInt
     - Result
     - SipHash
@@ -33,4 +33,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 49f6a8bcaf5751c9c12fb27d8c8c9f7da0647622
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

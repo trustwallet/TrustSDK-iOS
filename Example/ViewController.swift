@@ -46,8 +46,15 @@ class ViewController: UIViewController {
             transaction.payload = Data(hexString: dataString)
         }
 
-        trustSDK.signTransaction(transaction) { [weak self] signedTransaction in
-            let alert = UIAlertController(title: "Signed Transaction", message: signedTransaction.hexString, preferredStyle: .alert)
+        trustSDK.signTransaction(transaction) { [weak self] result in
+            let alert = UIAlertController(title: "Signed Transaction", message: "", preferredStyle: .alert)
+            switch result {
+            case .success(let signedTransaction):
+                alert.message = signedTransaction.hexString
+            case .failure(let error):
+                alert.title = alert.title! + " Error"
+                alert.message = error.localizedDescription
+            }
             alert.addAction(.init(title: "OK", style: .default, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }
@@ -61,8 +68,15 @@ class ViewController: UIViewController {
             return
         }
 
-        trustSDK.signMessage(message) { [weak self] signed in
-            let alert = UIAlertController(title: "Signed Message", message: signed.hexString, preferredStyle: .alert)
+        trustSDK.signMessage(message) { [weak self] result in
+            let alert = UIAlertController(title: "Signed Message", message: "", preferredStyle: .alert)
+            switch result {
+            case .success(let signed):
+                alert.message = signed.hexString
+            case .failure(let error):
+                alert.title = alert.title! + " Error"
+                alert.message = error.localizedDescription
+            }
             alert.addAction(.init(title: "OK", style: .default, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }
