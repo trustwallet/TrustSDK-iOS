@@ -54,7 +54,9 @@ public class SignMessageCommand: Command {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false), components.host == name else {
             return false
         }
-        if let errorString = components.queryItems?.first(where: { $0.name == "error" })?.value, let error = WalletError(rawValue: errorString) {
+        if let value = components.queryItems?.first(where: { $0.name == "error" })?.value,
+            let errorCode = Int(value),
+            let error = WalletError(rawValue: errorCode) {
             completion(.failure(error))
             return true
         }

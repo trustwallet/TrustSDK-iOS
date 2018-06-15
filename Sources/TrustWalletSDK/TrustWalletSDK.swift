@@ -120,7 +120,7 @@ public final class TrustWalletSDK {
 
     private func callbackWithFailure(url: URL, error: WalletError) {
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        components.append(queryItem: URLQueryItem(name: "error", value: error.rawValue))
+        components.append(queryItem: URLQueryItem(name: "error", value: "\(error.rawValue)"))
         UIApplication.shared.open(components.url!, options: [:], completionHandler: nil)
     }
 }
