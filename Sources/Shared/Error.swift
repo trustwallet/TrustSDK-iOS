@@ -6,10 +6,36 @@
 
 import Foundation
 
-public enum WalletError: String, LocalizedError {
+public enum WalletError: Int {
+    /// Unknown Error
+    case unknown = -1
+
+    /// No Error occurred
+    case none = 0
+
     /// Error generated when the user cancells the sign request.
-    case cancelled
+    case cancelled = 1
 
     /// Error generated when the request is invalid.
-    case invalidRequest
+    case invalidRequest = 2
+
+    /// Error generated when current wallet is watch only
+    case watchOnly = 3
+}
+
+extension WalletError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .unknown:
+            return "Unknown Error"
+        case .none:
+            return "No Error"
+        case .cancelled:
+            return "User cancelled"
+        case .invalidRequest:
+            return "Signing request is invalid"
+        case .watchOnly:
+            return "Wallet is watch only"
+        }
+    }
 }

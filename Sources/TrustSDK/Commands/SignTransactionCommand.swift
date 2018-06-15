@@ -56,7 +56,9 @@ public final class SignTransactionCommand: Command {
             return false
         }
 
-        if let errorString = components.queryItems?.first(where: { $0.name == "error" })?.value, let error = WalletError(rawValue: errorString) {
+        if let value = components.queryItems?.first(where: { $0.name == "error" })?.value,
+            let errorCode = Int(value),
+            let error = WalletError(rawValue: errorCode) {
             completion(.failure(error))
             return true
         }
