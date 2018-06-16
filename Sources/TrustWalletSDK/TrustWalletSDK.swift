@@ -44,11 +44,14 @@ public final class TrustWalletSDK {
             return false
         }
 
+        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
         guard let message = components.queryParameterValue(for: "message").flatMap({ Data(base64Encoded: $0) }) else {
-            return false
+            if let callback = callback {
+                self.callbackWithFailure(url: callback, error: WalletError.invalidRequest)
+            }
+            return true
         }
         let address = components.queryParameterValue(for: "address").flatMap({ EthereumAddress(string: $0) })
-        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
         delegate.signMessage(message, address: address) { result in
             if let callback = callback {
                 self.handleSignMessageResult(result, callback: callback)
@@ -96,21 +99,17 @@ public final class TrustWalletSDK {
             return false
         }
 
-        guard let gasPrice = components.queryParameterValue(for: "gasPrice").flatMap({ BigInt($0) }) else {
-            return false
-        }
-        guard let gasLimit = components.queryParameterValue(for: "gasLimit").flatMap({ UInt64($0) }) else {
-            return false
-        }
-        guard let to = components.queryParameterValue(for: "to").flatMap({ EthereumAddress(string: $0) }) else {
-            return false
-        }
-        guard let amount = components.queryParameterValue(for: "amount").flatMap({ BigInt($0) }) else {
-            return false
-        }
-        let nonce = components.queryParameterValue(for: "nonce").flatMap({ BigInt($0) }) ?? 0
-        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
 
+        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
+        guard let gasPrice = components.queryParameterValue(for: "gasPrice").flatMap({ BigInt($0) }),
+        let gasLimit = components.queryParameterValue(for: "gasLimit").flatMap({ UInt64($0) }),
+        let to = components.queryParameterValue(for: "to").flatMap({ EthereumAddress(string: $0) }),
+        let amount = components.queryParameterValue(for: "amount").flatMap({ BigInt($0) }) else {
+            if let callback = callback {
+                self.callbackWithFailure(url: callback, error: WalletError.invalidRequest)
+            }
+            return true
+        }
         var transaction = EthereumTransaction(
             nonce: nonce,
             gasPrice: gasPrice,
