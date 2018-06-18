@@ -7,7 +7,7 @@
 import BigInt
 import Result
 import TrustCore
-import TrustWalletSDK
+@testable import TrustWalletSDK
 import XCTest
 
 class TrustWalletSDKTests: XCTestCase {
@@ -27,6 +27,16 @@ class TrustWalletSDKTests: XCTestCase {
         XCTAssertEqual(delegate.providedMessage, Data(hexString: "1234"))
     }
 
+    func testHandleSignMessageInvalidMessage() {
+        let sdk = TrustWalletSDK(delegate: delegate)
+        let url = URL(string: "trust://sign-message?messaged=&callback=app://sign-message")!
+        let component = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        let result = sdk.handleSignMessage(component)
+
+        XCTAssertTrue(result.handled)
+        XCTAssertEqual(result.error, WalletError.invalidRequest)
+    }
+
     func testHandleSignPersonalMessage() {
         let sdk = TrustWalletSDK(delegate: delegate)
         let url = URL(string: "trust://sign-personal-message?message=EjQ%3D&callback=app://sign-personal-message")!
@@ -34,6 +44,16 @@ class TrustWalletSDKTests: XCTestCase {
 
         XCTAssertTrue(handled)
         XCTAssertEqual(delegate.providedMessage, Data(hexString: "1234"))
+    }
+
+    func testHandleSignPersonalMessageInvalidMessage() {
+        let sdk = TrustWalletSDK(delegate: delegate)
+        let url = URL(string: "trust://sign-personal-message?callback=app://sign-personal-message")!
+        let component = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        let result = sdk.handleSignMessage(component)
+
+        XCTAssertTrue(result.handled)
+        XCTAssertEqual(result.error, WalletError.invalidRequest)
     }
 
     func testHandleSignTransaction() {
@@ -48,6 +68,46 @@ class TrustWalletSDKTests: XCTestCase {
         XCTAssertEqual(delegate.providedTransaction?.amount, 100)
         XCTAssertEqual(delegate.providedTransaction?.nonce, 123)
         XCTAssertEqual(delegate.providedTransaction?.payload, Data(hexString: "0x8f834227000000000000000000000000000000005224"))
+    }
+
+    func testHandleSignTransactionInvalidRequestTo() {
+        let sdk = TrustWalletSDK(delegate: delegate)
+        let url = URL(string: "trust://sign-transaction?gasPrice=0&gasLimit=10&to=&amount=100&callback=app://sign-transaction")!
+        let component = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        let result = sdk.handleSignTransaction(component)
+
+        XCTAssertTrue(result.handled)
+        XCTAssertEqual(result.error, .invalidRequest)
+    }
+
+    func testHandleSignTransactionInvalidRequestAmount() {
+        let sdk = TrustWalletSDK(delegate: delegate)
+        let url = URL(string: "trust://sign-transaction?gasPrice=0&gasLimit=10&to=0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed&callback=app://sign-transaction")!
+        let component = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        let result = sdk.handleSignTransaction(component)
+
+        XCTAssertTrue(result.handled)
+        XCTAssertEqual(result.error, .invalidRequest)
+    }
+
+    func testHandleSignTransactionInvalidRequestGasPrice() {
+        let sdk = TrustWalletSDK(delegate: delegate)
+        let url = URL(string: "trust://sign-transaction?callback=app://sign-transaction")!
+        let component = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        let result = sdk.handleSignTransaction(component)
+
+        XCTAssertTrue(result.handled)
+        XCTAssertEqual(result.error, .invalidRequest)
+    }
+
+    func testHandleSignTransactionInvalidRequestGasLimit() {
+        let sdk = TrustWalletSDK(delegate: delegate)
+        let url = URL(string: "trust://sign-transaction?gasPrice=0&gasLimit=&to=0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed&amount=100&callback=app://sign-transaction")!
+        let component = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        let result = sdk.handleSignTransaction(component)
+
+        XCTAssertTrue(result.handled)
+        XCTAssertEqual(result.error, .invalidRequest)
     }
 
     func testHandleError() {

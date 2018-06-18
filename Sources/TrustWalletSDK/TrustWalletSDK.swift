@@ -9,6 +9,8 @@ import Result
 import TrustCore
 import UIKit
 
+typealias HandleResult = (handled: Bool, error: WalletError)
+
 public final class TrustWalletSDK {
     /// Delegate providing wallet functionality
     weak var delegate: WalletDelegate?
@@ -32,16 +34,16 @@ public final class TrustWalletSDK {
         case "sign-personal-message"?:
             return handlePersonalSignMessage(components)
         case "sign-transaction"?:
-            return handleSignTransaction(components)
+            return handleSignTransaction(components).handled
         default:
             return false
         }
     }
 
-    private func handleSignMessage(_ components: URLComponents) -> Bool {
+    internal func handleSignMessage(_ components: URLComponents) -> HandleResult {
         guard let delegate = delegate else {
             // Missing delegate, ignore
-            return false
+            return (false, WalletError.none)
         }
 
         let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
@@ -49,7 +51,7 @@ public final class TrustWalletSDK {
             if let callback = callback {
                 self.callbackWithFailure(url: callback, error: WalletError.invalidRequest)
             }
-            return true
+            return (true, WalletError.invalidRequest)
         }
         let address = components.queryParameterValue(for: "address").flatMap({ EthereumAddress(string: $0) })
         delegate.signMessage(message, address: address) { result in
@@ -58,7 +60,7 @@ public final class TrustWalletSDK {
             }
         }
 
-        return true
+        return (true, WalletError.none)
     }
 
     private func handlePersonalSignMessage(_ components: URLComponents) -> Bool {
@@ -93,10 +95,10 @@ public final class TrustWalletSDK {
         }
     }
 
-    private func handleSignTransaction(_ components: URLComponents) -> Bool {
+    internal func handleSignTransaction(_ components: URLComponents) -> HandleResult {
         guard let delegate = delegate else {
             // Missing delegate, ignore
-            return false
+            return (false, WalletError.none)
         }
 
 
@@ -108,7 +110,7 @@ public final class TrustWalletSDK {
             if let callback = callback {
                 self.callbackWithFailure(url: callback, error: WalletError.invalidRequest)
             }
-            return true
+            return (true, WalletError.invalidRequest)
         }
         var transaction = EthereumTransaction(
             nonce: nonce,
@@ -129,7 +131,7 @@ public final class TrustWalletSDK {
             }
         }
 
-        return true
+        return (true, WalletError.none)
     }
 
     private func handleSignTransactionResult(_ result: Result<Data, WalletSDKError>, callback: URL) {
