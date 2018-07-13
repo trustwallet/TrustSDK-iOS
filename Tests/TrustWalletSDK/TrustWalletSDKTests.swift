@@ -44,7 +44,7 @@ class TrustWalletSDKTests: XCTestCase {
         XCTAssertTrue(handled)
         XCTAssertEqual(delegate.providedTransaction?.gasPrice, 0)
         XCTAssertEqual(delegate.providedTransaction?.gasLimit, 10)
-        XCTAssertEqual(delegate.providedTransaction?.to, Address(string: "0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed"))
+        XCTAssertEqual(delegate.providedTransaction?.to, EthereumAddress(string: "0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed"))
         XCTAssertEqual(delegate.providedTransaction?.amount, 100)
         XCTAssertEqual(delegate.providedTransaction?.nonce, 123)
         XCTAssertEqual(delegate.providedTransaction?.payload, Data(hexString: "0x8f834227000000000000000000000000000000005224"))

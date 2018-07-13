@@ -45,7 +45,7 @@ public final class TrustWalletSDK {
         guard let message = components.queryParameterValue(for: "message").flatMap({ Data(base64Encoded: $0) }) else {
             return false
         }
-        let address = components.queryParameterValue(for: "address").flatMap({ Address(eip55: $0) })
+        let address = components.queryParameterValue(for: "address").flatMap({ EthereumAddress(string: $0) })
         let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
         delegate.signMessage(message, address: address) { result in
             if let callback = callback {
@@ -80,7 +80,7 @@ public final class TrustWalletSDK {
         guard let gasLimit = components.queryParameterValue(for: "gasLimit").flatMap({ UInt64($0) }) else {
             return false
         }
-        guard let to = components.queryParameterValue(for: "to").flatMap({ Address(eip55: $0) }) else {
+        guard let to = components.queryParameterValue(for: "to").flatMap({ EthereumAddress(string: $0) }) else {
             return false
         }
         guard let amount = components.queryParameterValue(for: "amount").flatMap({ BigInt($0) }) else {

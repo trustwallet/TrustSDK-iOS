@@ -24,7 +24,7 @@ public extension TrustSDK {
 
     @objc
     public func signTransaction(_ gasPrice: String, _ gasLimit: UInt64, _ address: String, amount: String, success: @escaping (Data) -> Void, failure: @escaping (NSError) -> Void) {
-        var transaction = Transaction(gasPrice: BigInt(gasPrice)!, gasLimit: gasLimit, to: Address(string: address)!)
+        var transaction = Transaction(gasPrice: BigInt(gasPrice)!, gasLimit: gasLimit, to: EthereumAddress(string: address)!)
         transaction.amount = BigInt(amount)!
 
         signTransaction(transaction) { result in
@@ -39,7 +39,7 @@ public extension TrustSDK {
 
     @objc
     public func signPersonalMessage(_ message: Data, address: String? = nil, success: @escaping (Data) -> Void, failure: @escaping (NSError) -> Void) {
-        signPersonalMessage(message, address: address.flatMap({ Address(string: $0) })) { result in
+        signPersonalMessage(message, address: address.flatMap({ EthereumAddress(string: $0) })) { result in
             switch result {
             case .success(let signedMesssage):
                 success(signedMesssage)
