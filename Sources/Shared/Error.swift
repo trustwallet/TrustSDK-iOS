@@ -6,7 +6,7 @@
 
 import Foundation
 
-public enum WalletError: Int {
+public enum WalletSDKError: Int {
     /// Unknown Error
     case unknown = -1
 
@@ -23,7 +23,7 @@ public enum WalletError: Int {
     case watchOnly = 3
 }
 
-extension WalletError: LocalizedError {
+extension WalletSDKError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unknown:

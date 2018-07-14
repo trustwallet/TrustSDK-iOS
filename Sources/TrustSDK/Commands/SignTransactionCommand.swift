@@ -15,7 +15,7 @@ public final class SignTransactionCommand: Command {
     public var transaction: Transaction
 
     /// Completion closure
-    public var completion: (Result<Data, WalletError>) -> Void
+    public var completion: (Result<Data, WalletSDKError>) -> Void
 
     /// Callback scheme
     public var callbackScheme: String
@@ -27,7 +27,7 @@ public final class SignTransactionCommand: Command {
         return components.url!
     }
 
-    public init(transaction: Transaction, callbackScheme: String, completion: @escaping (Result<Data, WalletError>) -> Void) {
+    public init(transaction: Transaction, callbackScheme: String, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         self.transaction = transaction
         self.completion = completion
         self.callbackScheme = callbackScheme
@@ -58,7 +58,7 @@ public final class SignTransactionCommand: Command {
 
         if let value = components.queryItems?.first(where: { $0.name == "error" })?.value,
             let errorCode = Int(value),
-            let error = WalletError(rawValue: errorCode) {
+            let error = WalletSDKError(rawValue: errorCode) {
             completion(.failure(error))
             return true
         }
@@ -75,7 +75,7 @@ public final class SignTransactionCommand: Command {
 }
 
 public extension TrustSDK {
-    public func signTransaction(_ transaction: Transaction, completion: @escaping (Result<Data, WalletError>) -> Void) {
+    public func signTransaction(_ transaction: Transaction, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         guard WalletAppManager.hasWalletApp else {
             return fallbackToInstall()
         }

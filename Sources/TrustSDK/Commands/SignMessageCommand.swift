@@ -20,7 +20,7 @@ public class SignMessageCommand: Command {
     public var callbackScheme: String
 
     /// Completion closure
-    public var completion: (Result<Data, WalletError>) -> Void
+    public var completion: (Result<Data, WalletSDKError>) -> Void
 
     public var callback: URL {
         var components = URLComponents()
@@ -29,7 +29,7 @@ public class SignMessageCommand: Command {
         return components.url!
     }
 
-    public init(message: Data, address: Address? = nil, callbackScheme: String, completion: @escaping (Result<Data, WalletError>) -> Void) {
+    public init(message: Data, address: Address? = nil, callbackScheme: String, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         self.message = message
         self.address = address
         self.callbackScheme = callbackScheme
@@ -56,7 +56,7 @@ public class SignMessageCommand: Command {
         }
         if let value = components.queryItems?.first(where: { $0.name == "error" })?.value,
             let errorCode = Int(value),
-            let error = WalletError(rawValue: errorCode) {
+            let error = WalletSDKError(rawValue: errorCode) {
             completion(.failure(error))
             return true
         }
@@ -73,7 +73,7 @@ public class SignMessageCommand: Command {
 }
 
 public extension TrustSDK {
-    public func signMessage(_ message: Data, address: Address? = nil, completion: @escaping (Result<Data, WalletError>) -> Void) {
+    public func signMessage(_ message: Data, address: Address? = nil, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         guard WalletAppManager.hasWalletApp else {
             return fallbackToInstall()
         }

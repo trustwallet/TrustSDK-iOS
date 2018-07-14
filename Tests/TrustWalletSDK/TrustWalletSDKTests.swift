@@ -65,7 +65,7 @@ class MockWalletDelegate: WalletDelegate {
     var providedTransaction: Transaction?
     var shouldFail = false
 
-    func signMessage(_ message: Data, address: Address?, completion: @escaping (Result<Data, WalletError>) -> Void) {
+    func signMessage(_ message: Data, address: Address?, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         if shouldFail {
             completion(.failure(.cancelled))
             return
@@ -74,7 +74,7 @@ class MockWalletDelegate: WalletDelegate {
         completion(.success(message))
     }
 
-    func signPersonalMessage(_ message: Data, address: Address?, completion: @escaping (Result<Data, WalletError>) -> Void) {
+    func signPersonalMessage(_ message: Data, address: Address?, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         if shouldFail {
             completion(.failure(.cancelled))
             return
@@ -83,7 +83,7 @@ class MockWalletDelegate: WalletDelegate {
         completion(.success(message))
     }
 
-    func signTransaction(_ transaction: Transaction, completion: @escaping (Result<Data, WalletError>) -> Void) {
+    func signTransaction(_ transaction: Transaction, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         if shouldFail {
             completion(.failure(.cancelled))
             return

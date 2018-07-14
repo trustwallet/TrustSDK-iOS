@@ -18,7 +18,7 @@ public final class SignPersonalMessageCommand: SignMessageCommand {
 }
 
 public extension TrustSDK {
-    public func signPersonalMessage(_ message: Data, address: Address? = nil, completion: @escaping (Result<Data, WalletError>) -> Void) {
+    public func signPersonalMessage(_ message: Data, address: Address? = nil, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         guard WalletAppManager.hasWalletApp else {
             return fallbackToInstall()
         }

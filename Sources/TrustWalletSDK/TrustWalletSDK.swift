@@ -56,7 +56,7 @@ public final class TrustWalletSDK {
         return true
     }
 
-    private func handleSignMessageResult(_ result: Result<Data, WalletError>, callback: URL) {
+    private func handleSignMessageResult(_ result: Result<Data, WalletSDKError>, callback: URL) {
         switch result {
         case .success(let signedMessage):
             if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
@@ -106,7 +106,7 @@ public final class TrustWalletSDK {
         return true
     }
 
-    private func handleSignTransactionResult(_ result: Result<Data, WalletError>, callback: URL) {
+    private func handleSignTransactionResult(_ result: Result<Data, WalletSDKError>, callback: URL) {
         switch result {
         case .success(let signedTransaction):
             if var callbackComponents = URLComponents(url: callback, resolvingAgainstBaseURL: false) {
@@ -118,7 +118,7 @@ public final class TrustWalletSDK {
         }
     }
 
-    private func callbackWithFailure(url: URL, error: WalletError) {
+    private func callbackWithFailure(url: URL, error: WalletSDKError) {
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         components.append(queryItem: URLQueryItem(name: "error", value: "\(error.rawValue)"))
         UIApplication.shared.open(components.url!, options: [:], completionHandler: nil)

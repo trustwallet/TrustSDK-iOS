@@ -10,7 +10,7 @@ import TrustCore
 import XCTest
 
 class SignTransactionCommandTests: XCTestCase {
-    let address = Address(string: "5aaeb6053f3e94c9b9a09f33669435e7ef1beaed")!
+    let address = EthereumAddress(string: "0x5aaeb6053f3e94c9b9a09f33669435e7ef1beaed")!
 
     func testRequestURL() {
         var transaction = Transaction(gasPrice: BigInt(), gasLimit: 10, to: address)
