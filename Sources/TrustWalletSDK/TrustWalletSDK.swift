@@ -27,8 +27,10 @@ public final class TrustWalletSDK {
         }
 
         switch url.host {
-        case "sign-message"?, "sign-personal-message"?:
+        case "sign-message"?:
             return handleSignMessage(components)
+        case "sign-personal-message"?:
+            return handlePersonalSignMessage(components)
         case "sign-transaction"?:
             return handleSignTransaction(components)
         default:
@@ -48,6 +50,26 @@ public final class TrustWalletSDK {
         let address = components.queryParameterValue(for: "address").flatMap({ EthereumAddress(string: $0) })
         let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
         delegate.signMessage(message, address: address) { result in
+            if let callback = callback {
+                self.handleSignMessageResult(result, callback: callback)
+            }
+        }
+
+        return true
+    }
+
+    private func handlePersonalSignMessage(_ components: URLComponents) -> Bool {
+        guard let delegate = delegate else {
+            // Missing delegate, ignore
+            return false
+        }
+
+        guard let message = components.queryParameterValue(for: "message").flatMap({ Data(base64Encoded: $0) }) else {
+            return false
+        }
+        let address = components.queryParameterValue(for: "address").flatMap({ EthereumAddress(string: $0) })
+        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
+        delegate.signPersonalMessage(message, address: address) { result in
             if let callback = callback {
                 self.handleSignMessageResult(result, callback: callback)
             }
