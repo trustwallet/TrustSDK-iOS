@@ -88,7 +88,7 @@ Trust SDK includes an example project with the above code. To run the example pr
 
 ## Authors
 
-* Viktor Radchenko, yazexel@gmail.com
+* Viktor Radchenko
 * Alejandro Isaza
 
 ## License
