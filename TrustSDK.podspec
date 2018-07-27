@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = '0.0.1'
   s.summary      = 'Trust Consumer SDK.'
   s.homepage     = 'https://github.com/TrustWallet/TrustSDK-iOS'
-  s.authors      = { 'Alejandro Isaza' => 'al@isaza.ca', 'Viktor Radchenko' => 'yazexel@gmail.com' }
+  s.authors      = { 'Alejandro Isaza' => 'al@isaza.ca', 'Viktor Radchenko' => 'vikmeup' }
 
   s.ios.deployment_target = '10.0'
   s.swift_version = '4.0'
