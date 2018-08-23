@@ -30,5 +30,5 @@ public protocol WalletDelegate: class {
     /// - Parameters:
     ///   - transaction: transaction to sign
     ///   - completion: completing closure to call with the signed message or `nil` on failure
-    func signTransaction(_ transaction: Transaction, completion: @escaping (Result<Data, WalletSDKError>) -> Void)
+    func signTransaction(_ transaction: EthereumTransaction, completion: @escaping (Result<Data, WalletSDKError>) -> Void)
 }

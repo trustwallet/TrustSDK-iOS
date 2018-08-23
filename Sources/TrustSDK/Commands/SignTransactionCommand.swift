@@ -12,7 +12,7 @@ public final class SignTransactionCommand: Command {
     public let name = "sign-transaction"
 
     /// Transaction to sign
-    public var transaction: Transaction
+    public var transaction: EthereumTransaction
 
     /// Completion closure
     public var completion: (Result<Data, WalletSDKError>) -> Void
@@ -27,7 +27,7 @@ public final class SignTransactionCommand: Command {
         return components.url!
     }
 
-    public init(transaction: Transaction, callbackScheme: String, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
+    public init(transaction: EthereumTransaction, callbackScheme: String, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         self.transaction = transaction
         self.completion = completion
         self.callbackScheme = callbackScheme
@@ -40,7 +40,7 @@ public final class SignTransactionCommand: Command {
         var queryItems = [URLQueryItem]()
         queryItems.append(URLQueryItem(name: "gasPrice", value: transaction.gasPrice.description))
         queryItems.append(URLQueryItem(name: "gasLimit", value: transaction.gasLimit.description))
-        queryItems.append(URLQueryItem(name: "to", value: transaction.to.description))
+        queryItems.append(URLQueryItem(name: "to", value: transaction.to?.description))
         queryItems.append(URLQueryItem(name: "amount", value: transaction.amount.description))
         if let payload = transaction.payload {
             queryItems.append(URLQueryItem(name: "data", value: payload.hexString))
@@ -75,7 +75,7 @@ public final class SignTransactionCommand: Command {
 }
 
 public extension TrustSDK {
-    public func signTransaction(_ transaction: Transaction, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
+    public func signTransaction(_ transaction: EthereumTransaction, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         guard WalletAppManager.hasWalletApp else {
             return fallbackToInstall()
         }

@@ -13,8 +13,14 @@ class SignTransactionCommandTests: XCTestCase {
     let address = EthereumAddress(string: "0x5aaeb6053f3e94c9b9a09f33669435e7ef1beaed")!
 
     func testRequestURL() {
-        var transaction = Transaction(gasPrice: BigInt(), gasLimit: 10, to: address)
-        transaction.amount = BigInt("100")
+        let transaction = EthereumTransaction(
+            nonce: 0,
+            gasPrice: BigInt(),
+            gasLimit: 10,
+            to: address,
+            amount: BigInt("100")!,
+            payload: .none
+        )
 
         let command = SignTransactionCommand(transaction: transaction, callbackScheme: "app") { _ in
             // Ignore
@@ -25,8 +31,14 @@ class SignTransactionCommandTests: XCTestCase {
     }
 
     func testHandleCallback() {
-        var transaction = Transaction(gasPrice: BigInt(), gasLimit: 10, to: address)
-        transaction.amount = BigInt("100")
+        let transaction = EthereumTransaction(
+            nonce: 0,
+            gasPrice: BigInt(),
+            gasLimit: 10,
+            to: address,
+            amount: BigInt("100")!,
+            payload: .none
+        )
 
         let commandCompletedExpectation = expectation(description: "Command completed")
         let command = SignTransactionCommand(transaction: transaction, callbackScheme: "app") { _ in

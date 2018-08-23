@@ -62,7 +62,7 @@ class TrustWalletSDKTests: XCTestCase {
 
 class MockWalletDelegate: WalletDelegate {
     var providedMessage: Data?
-    var providedTransaction: Transaction?
+    var providedTransaction: EthereumTransaction?
     var shouldFail = false
 
     func signMessage(_ message: Data, address: Address?, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
@@ -83,7 +83,7 @@ class MockWalletDelegate: WalletDelegate {
         completion(.success(message))
     }
 
-    func signTransaction(_ transaction: Transaction, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
+    func signTransaction(_ transaction: EthereumTransaction, completion: @escaping (Result<Data, WalletSDKError>) -> Void) {
         if shouldFail {
             completion(.failure(.cancelled))
             return

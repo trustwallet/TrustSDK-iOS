@@ -24,8 +24,14 @@ public extension TrustSDK {
 
     @objc
     public func signTransaction(_ gasPrice: String, _ gasLimit: UInt64, _ address: String, amount: String, success: @escaping (Data) -> Void, failure: @escaping (NSError) -> Void) {
-        var transaction = Transaction(gasPrice: BigInt(gasPrice)!, gasLimit: gasLimit, to: EthereumAddress(string: address)!)
-        transaction.amount = BigInt(amount)!
+        let transaction = EthereumTransaction(
+            nonce: 0,
+            gasPrice: BigInt(gasPrice)!,
+            gasLimit: BigInt(gasLimit),
+            to: EthereumAddress(string: address)!,
+            amount: BigInt(amount)!,
+            payload: .none
+        )
 
         signTransaction(transaction) { result in
             switch result {
