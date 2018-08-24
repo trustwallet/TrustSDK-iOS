@@ -108,10 +108,11 @@ public final class TrustWalletSDK {
         guard let amount = components.queryParameterValue(for: "amount").flatMap({ BigInt($0) }) else {
             return false
         }
+        let nonce = components.queryParameterValue(for: "nonce").flatMap({ BigInt($0) }) ?? 0
         let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
 
         var transaction = EthereumTransaction(
-            nonce: 0,
+            nonce: nonce,
             gasPrice: gasPrice,
             gasLimit: BigInt(gasLimit),
             to: to,
@@ -122,8 +123,6 @@ public final class TrustWalletSDK {
         if let dataHex = components.queryParameterValue(for: "data").flatMap({ String($0) }) {
            transaction.payload = Data(hexString: dataHex)
         }
-
-        transaction.nonce = BigInt(components.queryParameterValue(for: "nonce").flatMap({ UInt64($0) }) ?? 0)
 
         delegate.signTransaction(transaction) { result in
             if let callback = callback {
