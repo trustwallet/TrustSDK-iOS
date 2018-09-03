@@ -29,7 +29,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   TrustCore:
-    :commit: 00e7094b29c939df172a407c0d3bfbb551ed82e5
+    :commit: 4485ee9b1d691621eb700e89d918037cf23693fb
     :git: https://github.com/TrustWallet/trust-core
 
 SPEC CHECKSUMS:
