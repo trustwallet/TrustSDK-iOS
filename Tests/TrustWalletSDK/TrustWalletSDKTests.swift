@@ -34,7 +34,7 @@ class TrustWalletSDKTests: XCTestCase {
         let result = sdk.handleSignMessage(component)
 
         XCTAssertTrue(result.handled)
-        XCTAssertEqual(result.error, WalletError.invalidRequest)
+        XCTAssertEqual(result.error, WalletSDKError.invalidRequest)
     }
 
     func testHandleSignPersonalMessage() {
@@ -53,7 +53,7 @@ class TrustWalletSDKTests: XCTestCase {
         let result = sdk.handleSignMessage(component)
 
         XCTAssertTrue(result.handled)
-        XCTAssertEqual(result.error, WalletError.invalidRequest)
+        XCTAssertEqual(result.error, WalletSDKError.invalidRequest)
     }
 
     func testHandleSignTransaction() {
