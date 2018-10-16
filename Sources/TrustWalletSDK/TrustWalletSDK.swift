@@ -101,7 +101,6 @@ public final class TrustWalletSDK {
             return (false, WalletError.none)
         }
 
-
         let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
         guard let gasPrice = components.queryParameterValue(for: "gasPrice").flatMap({ BigInt($0) }),
         let gasLimit = components.queryParameterValue(for: "gasLimit").flatMap({ UInt64($0) }),
