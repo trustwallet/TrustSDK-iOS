@@ -9,6 +9,8 @@ import Result
 import TrustCore
 import UIKit
 
+typealias HandleResult = (handled: Bool, error: WalletSDKError)
+
 public final class TrustWalletSDK {
     /// Delegate providing wallet functionality
     weak var delegate: WalletDelegate?
@@ -28,54 +30,60 @@ public final class TrustWalletSDK {
 
         switch url.host {
         case "sign-message"?:
-            return handleSignMessage(components)
+            return handleSignMessage(components).handled
         case "sign-personal-message"?:
-            return handlePersonalSignMessage(components)
+            return handlePersonalSignMessage(components).handled
         case "sign-transaction"?:
-            return handleSignTransaction(components)
+            return handleSignTransaction(components).handled
         default:
             return false
         }
     }
 
-    private func handleSignMessage(_ components: URLComponents) -> Bool {
+    internal func handleSignMessage(_ components: URLComponents) -> HandleResult {
         guard let delegate = delegate else {
             // Missing delegate, ignore
-            return false
+            return (false, WalletSDKError.none)
         }
 
+        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
         guard let message = components.queryParameterValue(for: "message").flatMap({ Data(base64Encoded: $0) }) else {
-            return false
+            if let callback = callback {
+                self.callbackWithFailure(url: callback, error: WalletSDKError.invalidRequest)
+            }
+            return (true, WalletSDKError.invalidRequest)
         }
         let address = components.queryParameterValue(for: "address").flatMap({ EthereumAddress(string: $0) })
-        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
         delegate.signMessage(message, address: address) { result in
             if let callback = callback {
                 self.handleSignMessageResult(result, callback: callback)
             }
         }
 
-        return true
+        return (true, WalletSDKError.none)
     }
 
-    private func handlePersonalSignMessage(_ components: URLComponents) -> Bool {
+    private func handlePersonalSignMessage(_ components: URLComponents) -> HandleResult {
         guard let delegate = delegate else {
             // Missing delegate, ignore
-            return false
+            return (false, WalletSDKError.none)
         }
 
+        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
         guard let message = components.queryParameterValue(for: "message").flatMap({ Data(base64Encoded: $0) }) else {
-            return false
+            if let callback = callback {
+                self.callbackWithFailure(url: callback, error: WalletSDKError.invalidRequest)
+            }
+            return (true, WalletSDKError.invalidRequest)
         }
         let address = components.queryParameterValue(for: "address").flatMap({ EthereumAddress(string: $0) })
-        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
         delegate.signPersonalMessage(message, address: address) { result in
             if let callback = callback {
                 self.handleSignMessageResult(result, callback: callback)
             }
         }
 
-        return true
+        return (true, WalletSDKError.none)
     }
 
     private func handleSignMessageResult(_ result: Result<Data, WalletSDKError>, callback: URL) {
@@ -90,27 +98,23 @@ public final class TrustWalletSDK {
         }
     }
 
-    private func handleSignTransaction(_ components: URLComponents) -> Bool {
+    internal func handleSignTransaction(_ components: URLComponents) -> HandleResult {
         guard let delegate = delegate else {
             // Missing delegate, ignore
-            return false
+            return (false, WalletSDKError.none)
         }
 
-        guard let gasPrice = components.queryParameterValue(for: "gasPrice").flatMap({ BigInt($0) }) else {
-            return false
-        }
-        guard let gasLimit = components.queryParameterValue(for: "gasLimit").flatMap({ UInt64($0) }) else {
-            return false
-        }
-        guard let to = components.queryParameterValue(for: "to").flatMap({ EthereumAddress(string: $0) }) else {
-            return false
-        }
-        guard let amount = components.queryParameterValue(for: "amount").flatMap({ BigInt($0) }) else {
-            return false
+        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
+        guard let gasPrice = components.queryParameterValue(for: "gasPrice").flatMap({ BigInt($0) }),
+        let gasLimit = components.queryParameterValue(for: "gasLimit").flatMap({ UInt64($0) }),
+        let to = components.queryParameterValue(for: "to").flatMap({ EthereumAddress(string: $0) }),
+        let amount = components.queryParameterValue(for: "amount").flatMap({ BigInt($0) }) else {
+            if let callback = callback {
+                self.callbackWithFailure(url: callback, error: WalletSDKError.invalidRequest)
+            }
+            return (true, WalletSDKError.invalidRequest)
         }
         let nonce = components.queryParameterValue(for: "nonce").flatMap({ BigInt($0) }) ?? 0
-        let callback = components.queryParameterValue(for: "callback").flatMap({ URL(string: $0) })
-
         var transaction = EthereumTransaction(
             nonce: nonce,
             gasPrice: gasPrice,
@@ -130,7 +134,7 @@ public final class TrustWalletSDK {
             }
         }
 
-        return true
+        return (true, WalletSDKError.none)
     }
 
     private func handleSignTransactionResult(_ result: Result<Data, WalletSDKError>, callback: URL) {
