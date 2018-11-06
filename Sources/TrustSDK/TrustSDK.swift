@@ -40,7 +40,7 @@ public final class TrustSDK: NSObject {
         pendingCommand = command
         let url = command.requestURL(scheme: app.scheme)
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url)
         } else {
             UIApplication.shared.openURL(url)
         }
@@ -52,7 +52,7 @@ public final class TrustSDK: NSObject {
         }
 
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(app.installURL, options: [:], completionHandler: nil)
+            UIApplication.shared.open(app.installURL)
         } else {
             UIApplication.shared.openURL(app.installURL)
         }
