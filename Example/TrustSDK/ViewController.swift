@@ -36,7 +36,13 @@ class ViewController: UIViewController {
         TrustSDK.signers.ethereum.sign(input: input) { result in
             switch result {
             case .success(let output):
-                print("Signed transaction: \(try! output.jsonString())")
+                let alert = UIAlertController(
+                    title: "Transaction",
+                    message: try? output.jsonString(),
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true)
             case .failure(let error):
                 print("Failed to sign: \(error)")
             }
@@ -47,7 +53,13 @@ class ViewController: UIViewController {
         TrustSDK.getAddress(for: [.ethereum, .bitcoin]) { result in
             switch result {
             case .success(let addresses):
-                print("Addresses: \n\(addresses)")
+                let alert = UIAlertController(
+                    title: "Address",
+                    message: addresses.joined(separator: ", "),
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true)
             case .failure(let error):
                 print("Failed to get addresses: \(error)")
             }
