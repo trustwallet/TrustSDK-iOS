@@ -10,7 +10,7 @@ import TrustWalletCore
 
 public class TrustSDK {
     enum QueryItems: String {
-        case command
+        case id
     }
     
     public static let signers = Signers()
@@ -36,16 +36,16 @@ public class TrustSDK {
             return false
         }
         
-        guard let command = components.queryItem(for: QueryItems.command.rawValue)?.value else {
+        guard let id = components.queryItem(for: QueryItems.id.rawValue)?.value else {
             return false
         }
         
-        commandManager.resolve(command: command, with: components)                                
+        commandManager.resolve(command: id, with: components)
         return true
     }
 }
 
-extension TrustSDK {
+public extension TrustSDK {
     static func getAddress(for coins:[CoinType], callback: @escaping GetAddressCallback) {
         do {
             let command = GetAddressCommand(for: coins, callback: callback)

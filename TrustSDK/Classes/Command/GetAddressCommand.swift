@@ -17,7 +17,7 @@ public struct GetAddressCommand: Command {
         case error, message, addresses
     }
     
-    let name = "address"
+    let name = "get_address"
     private let callback: GetAddressCallback
     private let coins: [CoinType]
     

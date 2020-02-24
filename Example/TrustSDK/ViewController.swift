@@ -44,7 +44,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func getAddress(_ sender: UIButton) {
-        
+        TrustSDK.getAddress(for: [.ethereum, .bitcoin]) { result in
+            switch result {
+            case .success(let addresses):
+                print("Addresses: \n\(addresses)")
+            case .failure(let error):
+                print("Failed to get addresses: \(error)")
+            }
+        }
     }
 }
 
