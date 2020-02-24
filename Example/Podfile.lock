@@ -1,39 +1,31 @@
 PODS:
-  - BigInt (3.0.1):
-    - SipHash (~> 1.2)
-  - Result (4.0.0)
-  - SipHash (1.2.0)
-  - TrezorCrypto (0.0.9)
-  - TrustCore (0.0.7):
+  - BigInt (5.0.0)
+  - SwiftProtobuf (1.8.0)
+  - TrustSDK (0.1.0):
     - BigInt
-    - TrezorCrypto
-  - TrustSDK (0.0.1):
-    - Result
-    - TrustCore
+    - TrustWalletCore/Types
+  - TrustWalletCore/Types (1.0.4):
+    - SwiftProtobuf
 
 DEPENDENCIES:
   - TrustSDK (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - BigInt
-    - Result
-    - SipHash
-    - TrezorCrypto
-    - TrustCore
+    - SwiftProtobuf
+    - TrustWalletCore
 
 EXTERNAL SOURCES:
   TrustSDK:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BigInt: 8e8a52161c745cd3ab78e3dc346a9fbee51e6cf6
-  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
-  SipHash: c6e9e43e9c531b5bc6602545130c26194a6d31ce
-  TrezorCrypto: bfeea47a052dca2c77d4a39e1e183865e52de14d
-  TrustCore: 688df9a241008cf9cfa3842ec8ef28777a8b7534
-  TrustSDK: 91aed26316993fd3741d64b38f914804e2c413ae
+  BigInt: 74b4d88367b0e819d9f77393549226d36faeb0d8
+  SwiftProtobuf: 2cbd9409689b7df170d82a92a33443c8e3e14a70
+  TrustSDK: 43e374f31ac07503af564520d5e0f094baa5b7ee
+  TrustWalletCore: 58c4860ab715159dd2027ad1c1add7016d16a744
 
-PODFILE CHECKSUM: 93fb70f9af698c621b1e6165138f070b0eafc5ce
+PODFILE CHECKSUM: 81699dccc45c47e168885d79efa7e2352c9b6810
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4
