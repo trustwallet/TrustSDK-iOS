@@ -92,7 +92,7 @@ TrustSDK.signers.ethereum.sign(input: input) { result in
 
 To get users addresses, you just need to call `getAddress(for:)` directly from `TrustSDK` and pass an array of `CoinType`:
 
-```
+```swift
 TrustSDK.getAddress(for: [.ethereum, .bitcoin]) { result in
     switch result {
     case .success(let addresses):
