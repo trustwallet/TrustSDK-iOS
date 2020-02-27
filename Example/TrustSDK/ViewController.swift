@@ -1,10 +1,8 @@
+//  Copyright © 2018 Trust.
 //
-//  ViewController.swift
-//  TrustSDK
-//
-//  Created by Leone Parise on 02/18/2020.
-//  Copyright (c) 2020 Leone Parise. All rights reserved.
-//
+//  This file is part of TrustSDK. The full TrustSDK copyright notice, including
+//  terms governing use, modification, and redistribution, is contained in the
+//  file LICENSE at the root of the source code distribution tree.
 
 import UIKit
 import TrustSDK
@@ -50,7 +48,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func getAddress(_ sender: UIButton) {
-        TrustSDK.getAddress(for: [.ethereum, .bitcoin]) { result in
+        TrustSDK.getAccounts(for: [.ethereum, .bitcoin]) { result in
             switch result {
             case .success(let addresses):
                 let alert = UIAlertController(

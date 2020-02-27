@@ -7,8 +7,17 @@ Pod::Spec.new do |s|
   s.authors          = { 'Leone Parise' => 'leoneparise', 'Viktor Radchenko' => 'vikmeup' }
   s.source           = { :git => 'https://github.com/TrustWallet/TrustSDK-iOS.git', :tag => s.version.to_s }
   s.ios.deployment_target = '11.0'
+  s.default_subspec = 'Client'
 
-  s.source_files = 'TrustSDK/Classes/**/*'
-  s.dependency 'TrustWalletCore/Types'
-  s.dependency 'BigInt'
+  s.subspec 'Client' do |cs|
+    cs.source_files = 'TrustSDK/Classes/Client/**/*'
+    cs.dependency 'TrustWalletCore/Types'
+    cs.dependency 'BigInt'
+  end
+
+  s.subspec 'Wallet' do |cs|
+    cs.source_files = 'TrustSDK/Classes/Wallet/**/*'
+    cs.dependency 'TrustSDK/Client'
+    cs.dependency 'TrustWalletCore'
+  end
 end
