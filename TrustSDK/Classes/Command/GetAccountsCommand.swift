@@ -10,14 +10,14 @@ import TrustWalletCore
 
 public typealias GetAddressCallback = ((Result<[String], Error>) -> Void)
 
-public struct GetAddressCommand: Command {
+public struct GetAccountsCommand: Command {
     let separator = ":"
     
     enum QueryItems: String {
         case error, message, addresses
     }
     
-    let name = "get_address"
+    let name: CommandName = .getAccounts
     private let callback: GetAddressCallback
     private let coins: [CoinType]
     

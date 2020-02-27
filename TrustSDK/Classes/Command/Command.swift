@@ -7,8 +7,13 @@
 
 import Foundation
 
+enum CommandName: String {
+    case sign
+    case getAccounts = "get_accounts"
+}
+
 internal protocol Command {
-    var name: String { get }
+    var name: CommandName { get }
     var data: [String: String] { get }
     func resolve(with components: URLComponents)
 }

@@ -48,7 +48,7 @@ public class TrustSDK {
 public extension TrustSDK {
     static func getAddress(for coins:[CoinType], callback: @escaping GetAddressCallback) {
         do {
-            let command = GetAddressCommand(for: coins, callback: callback)
+            let command = GetAccountsCommand(for: coins, callback: callback)
             try TrustWalletApp.send(command: command)
         } catch {
             callback(Result.failure(error))

@@ -23,7 +23,7 @@ struct TrustWalletApp {
         
         let id = TrustSDK.commandManager.register(command: command)
         open(
-            command: command.name,
+            command: command.name.rawValue,
             data: command.data,
             app: config.scheme,
             callback: config.callbackPath,

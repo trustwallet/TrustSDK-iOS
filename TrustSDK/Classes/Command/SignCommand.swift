@@ -19,7 +19,7 @@ public struct SignCommand<Output: SigningOutput>: Command {
     private let callback: SignCallback<Output>
     private let input: SigningInput
     
-    let name: String = "sign"
+    let name: CommandName = .sign
     private(set) var data: [String: String] = [:]
     
     init(coin: CoinType, input: SigningInput, callback: @escaping SignCallback<Output>) throws {
