@@ -15,7 +15,7 @@ public class TrustSDK {
     
     public static let signers = Signers()
     internal static var configuration: TrustConfiguration?
-    internal static let commandManager = CommandManager()
+    internal static let requestRegistry = RequestRegistry()
     
     public static func initialize(with configuration: TrustConfiguration) {
         self.configuration = configuration
@@ -24,7 +24,7 @@ public class TrustSDK {
     public static func application(
         _ app: UIApplication,
         open url: URL,
-        options: [UIApplicationOpenURLOptionsKey: Any] = [:]
+        options: [UIApplication.OpenURLOptionsKey: Any] = [:]
     ) -> Bool {
         guard
             let config = configuration,
@@ -40,19 +40,20 @@ public class TrustSDK {
             return false
         }
         
-        commandManager.resolve(command: id, with: components)
+        requestRegistry.resolve(request: id, with: components)
         return true
     }
     
-    static func send(command: Command) throws {
+    static func send(request: Request) throws {
         guard let config = configuration else {
             throw TrustSDKError.notInitialized
         }
         
-        let id = commandManager.register(command: command)
+        let id = requestRegistry.register(request: request)
+        let command = request.command
         config.walletApp.open(
             command: command.name,
-            data: command.data,
+            params: command.params,
             app: config.scheme,
             callback: config.callbackPath,
             id: id
@@ -61,10 +62,10 @@ public class TrustSDK {
 }
 
 public extension TrustSDK {
-    static func getAccounts(for coins:[CoinType], callback: @escaping GetAccountsCallback) {
+    static func getAccounts(for coins:[CoinType], callback: @escaping ((Result<[String], Error>) -> Void)) {
         do {
-            let command = GetAccountsCommand(for: coins, callback: callback)
-            try send(command: command)
+            let command: TrustSDKCommand = .getAccounts(coins: coins)
+            try send(request: GetAccountsRequest(command: command, callback: callback))
         } catch {
             callback(Result.failure(error))
         }

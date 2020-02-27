@@ -15,10 +15,10 @@ public typealias SigningOutput = SwiftProtobuf.Message
 public struct Signer<Output: SigningOutput> {
     let coin: CoinType
     
-    public func sign(input: SigningInput, callback: @escaping SignCallback<Output>) {
+    public func sign(input: SigningInput, callback: @escaping ((Result<Output, Error>) -> Void)) {
         do {
-            let command = try SignCommand(coin: coin, input: input, callback: callback)
-            try TrustSDK.send(command: command)
+            let command: TrustSDKCommand = .sign(coin: coin, input: input)
+            try TrustSDK.send(request: SignRequest(command: command, callback: callback))
         } catch {
             callback(Result.failure(error))
         }

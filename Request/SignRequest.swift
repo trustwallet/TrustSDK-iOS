@@ -8,31 +8,21 @@
 import Foundation
 import TrustWalletCore
 
-public typealias SignCallback<Output : SigningOutput> = ((Result<Output, Error>) -> Void)
-
-public struct SignCommand<Output: SigningOutput>: Command {
+struct SignRequest<Output: SigningOutput>: CallbackRequest {
     enum QueryItems: String {
         case error, message, coin, data
     }
     
-    private let coin: CoinType
-    private let callback: SignCallback<Output>
-    private let input: SigningInput
+    typealias Response = Output
     
-    let name: CommandName = .sign
-    private(set) var data: [String: String] = [:]
+    let command: TrustSDKCommand
+    let callback: Callback
     
-    init(coin: CoinType, input: SigningInput, callback: @escaping SignCallback<Output>) throws {
-        self.coin = coin
+    init(command: TrustSDKCommand, callback: @escaping Callback) {
+        self.command = command
         self.callback = callback
-        self.input = input
-        
-        data = [
-            "coin": coin.rawValue.description,
-            "data": try input.serializedData().base64UrlEncodedString()
-        ]
     }
-        
+    
     func resolve(with components: URLComponents) {
         if let error = components.queryItem(for: QueryItems.error.rawValue)?.value {
             let message = components.queryItem(for: QueryItems.message.rawValue)?.value

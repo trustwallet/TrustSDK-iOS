@@ -7,20 +7,20 @@
 
 import Foundation
 
-class CommandManager {
+class RequestRegistry {
     private static var index: UInt64 = 0
-    private var commands: [String: Command] = [:]
+    private var requests: [String: Request] = [:]
     
-    func register(command: Command) -> String {
+    func register(request: Request) -> String {
         let id = Self.nextId()
-        commands[id] = command
+        requests[id] = request
         return id
     }
     
-    func resolve(command id: String, with components: URLComponents) {
-        guard let command = commands[id] else { return }
-        command.resolve(with: components)
-        commands.removeValue(forKey: id)
+    func resolve(request id: String, with components: URLComponents) {
+        guard let request = requests[id] else { return }
+        request.resolve(with: components)
+        requests.removeValue(forKey: id)
     }
     
     private static func nextId() -> String {

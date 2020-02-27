@@ -6,27 +6,19 @@
 	
 
 import Foundation
-import TrustWalletCore
 
-public typealias GetAccountsCallback = ((Result<[String], Error>) -> Void)
-
-public struct GetAccountsCommand: Command {
-    let separator = ":"
-    
+struct GetAccountsRequest: CallbackRequest {
     enum QueryItems: String {
         case error, message, addresses
     }
     
-    let name: CommandName = .getAccounts
-    private let callback: GetAccountsCallback
-    private let coins: [CoinType]
+    typealias Response = [String]
     
-    var data: [String : String] {
-        return [ "coins": coins.map{ "\($0.rawValue)" }.joined(separator: separator) ]
-    }
+    let command: TrustSDKCommand
+    let callback: Callback
     
-    init(for coins: [CoinType], callback: @escaping GetAccountsCallback) {
-        self.coins = coins
+    init(command: TrustSDKCommand, callback: @escaping Callback) {
+        self.command = command
         self.callback = callback
     }
     
@@ -42,6 +34,6 @@ public struct GetAccountsCommand: Command {
             return
         }
         
-        callback(Result.success(addresses.components(separatedBy: separator)))
+        callback(Result.success(addresses.components(separatedBy: ":")))
     }
 }

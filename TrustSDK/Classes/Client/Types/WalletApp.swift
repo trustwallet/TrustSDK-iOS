@@ -23,9 +23,9 @@ public struct WalletApp {
 }
 
 extension WalletApp {
-    func open(command: CommandName, data: [String: String], app: String, callback: String, id: String) {
+    func open(command: String, params: [String: String], app: String, callback: String, id: String) {
         guard
-            let url = URL(string: "\(scheme)://\(command.rawValue)"),
+            let url = URL(string: "\(scheme)://\(command)"),
             var components = URLComponents(url: url, resolvingAgainstBaseURL: true),
             let commandUrl = components.url, UIApplication.shared.canOpenURL(commandUrl) else {
             UIApplication.shared.open(installURL)
@@ -33,12 +33,12 @@ extension WalletApp {
         }
 
         // Add callback data
-        var params = data
-        params[ParamKeys.app.rawValue] = app
-        params[ParamKeys.callback.rawValue] = callback
-        params[ParamKeys.id.rawValue] = id
+        var _params = params
+        _params[ParamKeys.app.rawValue] = app
+        _params[ParamKeys.callback.rawValue] = callback
+        _params[ParamKeys.id.rawValue] = id
 
-        components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
+        components.queryItems = _params.map { URLQueryItem(name: $0, value: $1) }
         
         if let url = components.url {
             UIApplication.shared.open(url)
