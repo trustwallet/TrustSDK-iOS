@@ -31,7 +31,7 @@ TrustWallet SDK
   s.ios.deployment_target = '11.0'
 
   s.source_files = 'TrustSDK/Classes/**/*'
-  s.dependency 'TrustWalletCore/Types'
+  s.dependency 'TrustWalletCore'
   s.dependency 'BigInt'
 
   # s.resource_bundles = {

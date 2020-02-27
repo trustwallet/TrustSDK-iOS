@@ -29,7 +29,7 @@ public struct SignCommand<Output: SigningOutput>: Command {
         
         data = [
             "coin": coin.rawValue.description,
-            "data": try input.encode().base64UrlEncodedString()
+            "data": try input.serializedData().base64UrlEncodedString()
         ]
     }
         
@@ -48,8 +48,11 @@ public struct SignCommand<Output: SigningOutput>: Command {
         }
         
         do {
-            let output = try SigningOutputDecoder.decode(data: data, for: coin) as! Output
-            callback(Result.success(output))
+            if let output = try SigningOutputDecoder.decode(data: data, for: coin) as? Output {
+                callback(Result.success(output))
+            } else {
+                callback(Result.failure(TrustSDKError.invalidResult))
+            }
         } catch {
             callback(Result.failure(error))
         }

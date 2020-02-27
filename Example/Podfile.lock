@@ -3,8 +3,12 @@ PODS:
   - SwiftProtobuf (1.8.0)
   - TrustSDK (0.1.0):
     - BigInt
+    - TrustWalletCore
+  - TrustWalletCore (2.0.2):
+    - TrustWalletCore/Core (= 2.0.2)
+  - TrustWalletCore/Core (2.0.2):
     - TrustWalletCore/Types
-  - TrustWalletCore/Types (1.0.4):
+  - TrustWalletCore/Types (2.0.2):
     - SwiftProtobuf
 
 DEPENDENCIES:
@@ -23,8 +27,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   BigInt: 74b4d88367b0e819d9f77393549226d36faeb0d8
   SwiftProtobuf: 2cbd9409689b7df170d82a92a33443c8e3e14a70
-  TrustSDK: 43e374f31ac07503af564520d5e0f094baa5b7ee
-  TrustWalletCore: 58c4860ab715159dd2027ad1c1add7016d16a744
+  TrustSDK: 2ae10cdb70be30886e0b34c2478387bf5d4e8aeb
+  TrustWalletCore: 698c0c7926d2efee6c53574eb994b64a91efc736
 
 PODFILE CHECKSUM: 81699dccc45c47e168885d79efa7e2352c9b6810
 

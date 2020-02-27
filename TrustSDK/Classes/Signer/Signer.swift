@@ -7,6 +7,9 @@
 
 import Foundation
 import TrustWalletCore
+import SwiftProtobuf
+
+public typealias SigningOutput = SwiftProtobuf.Message
 
 public struct Signer<Output: SigningOutput> {
     let coin: CoinType
