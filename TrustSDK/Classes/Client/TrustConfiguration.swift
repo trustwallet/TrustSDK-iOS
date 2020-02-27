@@ -1,0 +1,29 @@
+//  Copyright © 2018 Trust.
+//
+//	This file is part of TrustSDK. The full TrustSDK copyright notice, including
+//	terms governing use, modification, and redistribution, is contained in the
+//	file LICENSE at the root of the source code distribution tree.
+	
+
+import Foundation
+
+public struct TrustConfiguration {
+    public static let trustWalletApp = WalletApp(
+        scheme: "trust",
+        installURL: URL(string: "https://apps.apple.com/app/trust-crypto-bitcoin-wallet/id1288339409")!
+    )
+    
+    let scheme: String
+    let callbackPath: String
+    let walletApp: WalletApp
+    
+    public init(
+        scheme: String,
+        callback: String = "trust_sign_result",
+        walletApp: WalletApp = Self.trustWalletApp
+    ) {
+        self.scheme = scheme
+        self.callbackPath = callback
+        self.walletApp = walletApp
+    }
+}

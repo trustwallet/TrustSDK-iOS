@@ -1,0 +1,19 @@
+//  Copyright © 2018 Trust.
+//
+//	This file is part of TrustSDK. The full TrustSDK copyright notice, including
+//	terms governing use, modification, and redistribution, is contained in the
+//	file LICENSE at the root of the source code distribution tree.
+	
+
+import Foundation
+
+enum CommandName: String {
+    case sign
+    case getAccounts = "get_accounts"
+}
+
+internal protocol Command {
+    var name: CommandName { get }
+    var data: [String: String] { get }
+    func resolve(with components: URLComponents)
+}
