@@ -55,9 +55,3 @@ public extension TrustSDK {
         }
     }
 }
-
-public struct Signers {
-    public var ethereum: Signer<EthereumSigningOutput> {
-        return Signer(coin: .ethereum)
-    }
-}
