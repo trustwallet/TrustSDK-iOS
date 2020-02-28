@@ -1,17 +1,16 @@
 PODS:
   - BigInt (5.0.0)
   - SwiftProtobuf (1.8.0)
+  - TrustSDK (0.1.0):
+    - TrustSDK/Client (= 0.1.0)
   - TrustSDK/Client (0.1.0):
     - BigInt
-    - TrustWalletCore/Types
-  - TrustSDK/Wallet (0.1.0):
-    - TrustSDK/Client
     - TrustWalletCore/Types
   - TrustWalletCore/Types (2.0.2):
     - SwiftProtobuf
 
 DEPENDENCIES:
-  - TrustSDK/Wallet (from `../`)
+  - TrustSDK (from `../`)
 
 SPEC REPOS:
   trunk:
@@ -29,6 +28,6 @@ SPEC CHECKSUMS:
   TrustSDK: 8f8e8e54cc075ac4ae34853090285cc09f56d068
   TrustWalletCore: 698c0c7926d2efee6c53574eb994b64a91efc736
 
-PODFILE CHECKSUM: 36c95f4d67357f5915ad4da4887be80ccdf3b562
+PODFILE CHECKSUM: 81699dccc45c47e168885d79efa7e2352c9b6810
 
 COCOAPODS: 1.9.0
