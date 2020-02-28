@@ -11,9 +11,10 @@ public enum TrustSDKError: Swift.Error {
     case notInitialized
     case coinNotSupported
     case invalidResponse
-    case rejected
+    case rejectedByUSer
     case signError(message: String)
     case unknown
+    case invalidWallet
     
     init?(from name: String, value: String? = nil) {
         switch name {
@@ -23,12 +24,14 @@ public enum TrustSDKError: Swift.Error {
             self = .coinNotSupported
         case "invalidResponse":
             self = .invalidResponse
-        case "rejected":
-            self = . rejected
+        case "rejectedByUSer":
+            self = .rejectedByUSer
         case "signError":
             self = .signError(message: value ?? "")
         case "unknown":
             self = .unknown
+        case "invalidWallet":
+            self = .invalidWallet
         default:
             return nil
         }
@@ -47,12 +50,14 @@ public enum TrustSDKError: Swift.Error {
             return "coinNotSupported"
         case .invalidResponse:
             return "invalidResponse"
-        case .rejected:
-            return "rejected"
+        case .rejectedByUSer:
+            return "rejectedByUSer"
         case .signError:
             return "signError"
         case .unknown:
             return "unknown"
+        case .invalidWallet:
+            return "invalidWallet"
         }
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 
 public extension WalletSDK {
-    struct Request {
+    struct Request: Equatable {
         enum Keys: String {
             case app, callback, id
         }

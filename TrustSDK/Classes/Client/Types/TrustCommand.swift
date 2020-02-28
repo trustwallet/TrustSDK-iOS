@@ -13,7 +13,7 @@ public extension TrustSDK {
         case sign(coin: CoinType, input: Data)
         case getAccounts(coins: [CoinType])
         
-        var name: String {
+        public var name: String {
             switch self {
             case .getAccounts:
                 return "get_accounts"
@@ -22,7 +22,7 @@ public extension TrustSDK {
             }
         }
         
-        var params: [String: String] {
+        public var params: [String: String] {
             switch self {
             case .getAccounts(let coins):
                 return [
@@ -36,7 +36,7 @@ public extension TrustSDK {
             }
         }
         
-        init?(name: String, params: [String: String]) {
+        public init?(name: String, params: [String: String]) {
             switch name {
             case "get_accounts":
                 guard let coinsParam = params["coins"] else {
@@ -59,9 +59,11 @@ public extension TrustSDK {
             }
         }
         
-        init?(components: URLComponents) {
+        public init?(components: URLComponents) {
             guard let name = components.host else { return nil }
             self.init(name: name, params: components.queryItemsDictionary())
         }
     }
 }
+
+extension TrustSDK.Command: Equatable {}

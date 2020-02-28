@@ -11,7 +11,7 @@ import TrustWalletCore
 public extension WalletSDK {
     enum Response {
         case sign(coin: CoinType, output: Data)
-        case getAccounts([String])
+        case accounts([String])
         case failure(error: TrustSDKError)
         
         var params: [String: String] {
@@ -21,7 +21,7 @@ public extension WalletSDK {
                     "coin": "\(coin.rawValue)",
                     "data": output.base64UrlEncodedString()
                 ]
-            case .getAccounts(let accounts):
+            case .accounts(let accounts):
                 return [
                     "accounts": accounts.joined(separator: ",")
                 ]

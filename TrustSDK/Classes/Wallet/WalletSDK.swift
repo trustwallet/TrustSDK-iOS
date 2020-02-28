@@ -35,5 +35,5 @@ public struct WalletSDK {
 }
 
 public protocol WalletSDKRequestHandler {
-    func handle(request: WalletSDK.Request, callback: ((WalletSDK.Response) -> Void))
+    func handle(request: WalletSDK.Request, callback: @escaping ((WalletSDK.Response) -> Void))
 }
