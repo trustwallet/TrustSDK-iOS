@@ -9,11 +9,11 @@ import Foundation
 import TrustWalletCore
 
 extension String {
-    init(coins: [CoinType]) {
-        self = coins.map{ "\($0.rawValue)" }.joined(separator: ":")
+    init(coins: [CoinType], separator: String = ",") {
+        self = coins.map{ "\($0.rawValue)" }.joined(separator: separator)
     }
     
-    func toCoinArray(separator: String = ":") -> [CoinType] {
+    func toCoinArray(separator: String = ",") -> [CoinType] {
         return self.components(separatedBy: separator)
             .map { $0.toCoin() }
             .compactMap{ $0 }

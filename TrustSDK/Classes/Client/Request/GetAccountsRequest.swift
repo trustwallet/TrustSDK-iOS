@@ -9,7 +9,7 @@ import Foundation
 
 struct GetAccountsRequest: CallbackRequest {
     enum QueryItems: String {
-        case error, message, addresses
+        case error, message, accounts
     }
     
     typealias Response = [String]
@@ -29,11 +29,11 @@ struct GetAccountsRequest: CallbackRequest {
             return
         }
         
-        guard let addresses = components.queryItem(for: QueryItems.addresses.rawValue)?.value else {
+        guard let accounts = components.queryItem(for: QueryItems.accounts.rawValue)?.value else {
             callback(Result.failure(TrustSDKError.invalidResponse))
             return
         }
         
-        callback(Result.success(addresses.components(separatedBy: ":")))
+        callback(Result.success(accounts.components(separatedBy: ",")))
     }
 }
