@@ -14,10 +14,10 @@ struct GetAccountsRequest: CallbackRequest {
     
     typealias Response = [String]
     
-    let command: TrustSDKCommand
+    let command: TrustSDK.Command
     let callback: Callback
     
-    init(command: TrustSDKCommand, callback: @escaping Callback) {
+    init(command: TrustSDK.Command, callback: @escaping Callback) {
         self.command = command
         self.callback = callback
     }
@@ -30,7 +30,7 @@ struct GetAccountsRequest: CallbackRequest {
         }
         
         guard let addresses = components.queryItem(for: QueryItems.addresses.rawValue)?.value else {
-            callback(Result.failure(TrustSDKError.invalidResult))
+            callback(Result.failure(TrustSDKError.invalidResponse))
             return
         }
         

@@ -7,14 +7,11 @@
 
 import Foundation
 
-protocol Request {
-    var command: TrustSDKCommand { get }
-    func resolve(with components: URLComponents)
-}
-
-protocol CallbackRequest: Request {
-    associatedtype Response
-    
-    typealias Callback = ((Result<Response, Error>) -> Void)
-    var callback: Callback { get }
+public extension WalletSDK {
+    struct Request {
+        public let command: TrustSDK.Command
+        public let app: String
+        public let callback: String
+        public let id: String                
+    }
 }

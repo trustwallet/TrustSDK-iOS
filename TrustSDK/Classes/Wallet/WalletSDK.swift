@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol TrustSDKCommandDelegate {
+public struct WalletSDK {
     
 }

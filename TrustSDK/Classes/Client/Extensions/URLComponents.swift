@@ -16,4 +16,8 @@ extension URLComponents {
         guard let items = queryItems else { return false }
         return items.contains(where: { $0.name == key })
     }
+    
+    func queryItemsDictionary() -> [String: String] {
+        return Dictionary(queryItems ?? []) { [ $0.name : $0.value ?? ""] }
+    }
 }

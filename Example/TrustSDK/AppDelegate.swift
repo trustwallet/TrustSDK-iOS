@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        TrustSDK.initialize(with: TrustConfiguration(scheme: "trustsdk"))
+        TrustSDK.initialize(with: TrustSDK.Configuration(scheme: "trustsdk"))
         return true
     }
 

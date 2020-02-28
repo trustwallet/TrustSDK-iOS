@@ -8,9 +8,6 @@ import Foundation
 
 /// Describes a wallet app supporting the trust deeplink spec
 public struct WalletApp {
-    enum ParamKeys: String {
-        case app, callback, id
-    }
     /// TrustWallet scheme
     public let scheme: String
     /// TrustWallet install URL
@@ -23,6 +20,10 @@ public struct WalletApp {
 }
 
 extension WalletApp {
+    enum ParamKeys: String {
+        case app, callback, id
+    }
+    
     func open(command: String, params: [String: String], app: String, callback: String, id: String) {
         guard
             let url = URL(string: "\(scheme)://\(command)"),

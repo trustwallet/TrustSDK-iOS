@@ -12,15 +12,17 @@ import SwiftProtobuf
 public typealias SigningInput = SwiftProtobuf.Message
 public typealias SigningOutput = SwiftProtobuf.Message
 
-public struct Signer<Output: SigningOutput> {
-    let coin: CoinType
-    
-    public func sign(input: SigningInput, callback: @escaping ((Result<Output, Error>) -> Void)) {
-        do {
-            let command: TrustSDKCommand = .sign(coin: coin, input: input)
-            try TrustSDK.send(request: SignRequest(command: command, callback: callback))
-        } catch {
-            callback(Result.failure(error))
+public extension TrustSDK {
+    struct Signer<Output: SigningOutput> {
+        let coin: CoinType
+        
+        public func sign(input: SigningInput, callback: @escaping ((Result<Output, Error>) -> Void)) {
+            do {
+                let command: TrustSDK.Command = .sign(coin: coin, input: try input.serializedData())
+                try TrustSDK.send(request: SignRequest(command: command, callback: callback))
+            } catch {
+                callback(Result.failure(error))
+            }
         }
     }
 }

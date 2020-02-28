@@ -14,10 +14,10 @@ public class TrustSDK {
     }
     
     public static let signers = Signers()
-    internal static var configuration: TrustConfiguration?
+    internal static var configuration: TrustSDK.Configuration?
     internal static let requestRegistry = RequestRegistry()
     
-    public static func initialize(with configuration: TrustConfiguration) {
+    public static func initialize(with configuration: TrustSDK.Configuration) {
         self.configuration = configuration
     }
         
@@ -31,7 +31,7 @@ public class TrustSDK {
             let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
             let scheme = components.scheme,
             let host = components.host,
-            scheme == config.scheme && host == config.callbackPath
+            scheme == config.scheme && host == config.callback
         else {
             return false
         }
@@ -43,7 +43,9 @@ public class TrustSDK {
         requestRegistry.resolve(request: id, with: components)
         return true
     }
-    
+}
+
+extension TrustSDK {
     static func send(request: Request) throws {
         guard let config = configuration else {
             throw TrustSDKError.notInitialized
@@ -55,7 +57,7 @@ public class TrustSDK {
             command: command.name,
             params: command.params,
             app: config.scheme,
-            callback: config.callbackPath,
+            callback: config.callback,
             id: id
         )
     }
@@ -64,7 +66,7 @@ public class TrustSDK {
 public extension TrustSDK {
     static func getAccounts(for coins:[CoinType], callback: @escaping ((Result<[String], Error>) -> Void)) {
         do {
-            let command: TrustSDKCommand = .getAccounts(coins: coins)
+            let command: TrustSDK.Command = .getAccounts(coins: coins)
             try send(request: GetAccountsRequest(command: command, callback: callback))
         } catch {
             callback(Result.failure(error))

@@ -15,10 +15,10 @@ struct SignRequest<Output: SigningOutput>: CallbackRequest {
     
     typealias Response = Output
     
-    let command: TrustSDKCommand
+    let command: TrustSDK.Command
     let callback: Callback
     
-    init(command: TrustSDKCommand, callback: @escaping Callback) {
+    init(command: TrustSDK.Command, callback: @escaping Callback) {
         self.command = command
         self.callback = callback
     }
@@ -33,7 +33,7 @@ struct SignRequest<Output: SigningOutput>: CallbackRequest {
         guard let coin = components.queryItem(for: QueryItems.coin.rawValue)?.coinValue,
               let data = components.queryItem(for: QueryItems.data.rawValue)?.dataValue
             else {
-            callback(Result.failure(TrustSDKError.invalidResult))
+                callback(Result.failure(TrustSDKError.invalidResponse))
             return
         }
         
@@ -41,7 +41,7 @@ struct SignRequest<Output: SigningOutput>: CallbackRequest {
             if let output = try SigningOutputDecoder.decode(data: data, for: coin) as? Output {
                 callback(Result.success(output))
             } else {
-                callback(Result.failure(TrustSDKError.invalidResult))
+                callback(Result.failure(TrustSDKError.invalidResponse))
             }
         } catch {
             callback(Result.failure(error))

@@ -8,235 +8,239 @@
 import Foundation
 import TrustWalletCore
 
-public struct Signers {
-    public var aeternity: Signer<AeternitySigningOutput> {
-        return Signer(coin: .aeternity)
+extension TrustSDK {
+    public struct Signers { }
+}
+
+public extension TrustSDK.Signers {
+    var aeternity: TrustSDK.Signer<AeternitySigningOutput> {
+        return TrustSDK.Signer(coin: .aeternity)
     }
     
-    public var aion: Signer<AionSigningOutput> {
-        return Signer(coin: .aion)
+    var aion: TrustSDK.Signer<AionSigningOutput> {
+        return TrustSDK.Signer(coin: .aion)
     }
     
-    public var algorand: Signer<AlgorandSigningOutput> {
-        return Signer(coin: .algorand)
+    var algorand: TrustSDK.Signer<AlgorandSigningOutput> {
+        return TrustSDK.Signer(coin: .algorand)
     }
     
-    public var eos: Signer<EOSSigningOutput> {
-        return Signer(coin: .eos)
+    var eos: TrustSDK.Signer<EOSSigningOutput> {
+        return TrustSDK.Signer(coin: .eos)
     }
     
-    public var filecoin: Signer<FilecoinSigningOutput> {
-        return Signer(coin: .filecoin)
+    var filecoin: TrustSDK.Signer<FilecoinSigningOutput> {
+        return TrustSDK.Signer(coin: .filecoin)
     }
     
-    public var fio: Signer<FIOSigningOutput> {
-        return Signer(coin: .fio)
+    var fio: TrustSDK.Signer<FIOSigningOutput> {
+        return TrustSDK.Signer(coin: .fio)
     }
     
-    public var harmony: Signer<HarmonySigningOutput> {
-        return Signer(coin: .harmony)
+    var harmony: TrustSDK.Signer<HarmonySigningOutput> {
+        return TrustSDK.Signer(coin: .harmony)
     }
     
-    public var icon: Signer<IconSigningOutput> {
-        return Signer(coin: .icon)
+    var icon: TrustSDK.Signer<IconSigningOutput> {
+        return TrustSDK.Signer(coin: .icon)
     }
     
-    public var ioTeX: Signer<IoTeXSigningOutput> {
-        return Signer(coin: .ioTeX)
+    var ioTeX: TrustSDK.Signer<IoTeXSigningOutput> {
+        return TrustSDK.Signer(coin: .ioTeX)
     }
     
-    public var near: Signer<NEARSigningOutput> {
-        return Signer(coin: .near)
+    var near: TrustSDK.Signer<NEARSigningOutput> {
+        return TrustSDK.Signer(coin: .near)
     }
     
-    public var neo: Signer<NEOSigningOutput> {
-        return Signer(coin: .neo)
+    var neo: TrustSDK.Signer<NEOSigningOutput> {
+        return TrustSDK.Signer(coin: .neo)
     }
         
-    public var nuls: Signer<NULSSigningOutput> {
-        return Signer(coin: .nuls)
+    var nuls: TrustSDK.Signer<NULSSigningOutput> {
+        return TrustSDK.Signer(coin: .nuls)
     }
     
-    public var nano: Signer<NanoSigningOutput> {
-        return Signer(coin: .nano)
+    var nano: TrustSDK.Signer<NanoSigningOutput> {
+        return TrustSDK.Signer(coin: .nano)
     }
     
-    public var nebulas: Signer<NebulasSigningOutput> {
-        return Signer(coin: .nebulas)
+    var nebulas: TrustSDK.Signer<NebulasSigningOutput> {
+        return TrustSDK.Signer(coin: .nebulas)
     }
     
-    public var nimiq: Signer<NimiqSigningOutput> {
-        return Signer(coin: .nimiq)
+    var nimiq: TrustSDK.Signer<NimiqSigningOutput> {
+        return TrustSDK.Signer(coin: .nimiq)
     }
     
-    public var ontology: Signer<OntologySigningOutput> {
-        return Signer(coin: .ontology)
+    var ontology: TrustSDK.Signer<OntologySigningOutput> {
+        return TrustSDK.Signer(coin: .ontology)
     }
     
-    public var xrp: Signer<RippleSigningOutput> {
-        return Signer(coin: .xrp)
+    var xrp: TrustSDK.Signer<RippleSigningOutput> {
+        return TrustSDK.Signer(coin: .xrp)
     }
     
-    public var solana: Signer<SolanaSigningOutput> {
-        return Signer(coin: .solana)
+    var solana: TrustSDK.Signer<SolanaSigningOutput> {
+        return TrustSDK.Signer(coin: .solana)
     }
     
-    public var theta: Signer<ThetaSigningOutput> {
-        return Signer(coin: .theta)
+    var theta: TrustSDK.Signer<ThetaSigningOutput> {
+        return TrustSDK.Signer(coin: .theta)
     }
     
-    public var tezos: Signer<TezosSigningOutput> {
-        return Signer(coin: .tezos)
+    var tezos: TrustSDK.Signer<TezosSigningOutput> {
+        return TrustSDK.Signer(coin: .tezos)
     }
     
-    public var tron: Signer<TronSigningOutput> {
-        return Signer(coin: .tron)
+    var tron: TrustSDK.Signer<TronSigningOutput> {
+        return TrustSDK.Signer(coin: .tron)
     }
     
-    public var veChain: Signer<VeChainSigningOutput> {
-        return Signer(coin: .veChain)
+    var veChain: TrustSDK.Signer<VeChainSigningOutput> {
+        return TrustSDK.Signer(coin: .veChain)
     }
     
-    public var waves: Signer<WavesSigningOutput> {
-        return Signer(coin: .waves)
+    var waves: TrustSDK.Signer<WavesSigningOutput> {
+        return TrustSDK.Signer(coin: .waves)
     }
     
-    public var zilliqa: Signer<ZilliqaSigningOutput> {
-        return Signer(coin: .zilliqa)
+    var zilliqa: TrustSDK.Signer<ZilliqaSigningOutput> {
+        return TrustSDK.Signer(coin: .zilliqa)
     }
 }
 
 // Bitcoin based chains
-public extension Signers {
-    var bitcoin: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .bitcoin)
+public extension TrustSDK.Signers {
+    var bitcoin: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .bitcoin)
     }
     
-    var bitcoinCash: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .bitcoinCash)
+    var bitcoinCash: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .bitcoinCash)
     }
     
-    var dash: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .dash)
+    var dash: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .dash)
     }
     
-    var decred: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .decred)
+    var decred: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .decred)
     }
     
-    var digiByte: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .digiByte)
+    var digiByte: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .digiByte)
     }
     
-    var dogecoin: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .dogecoin)
+    var dogecoin: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .dogecoin)
     }
     
-    var groestlcoin: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .groestlcoin)
+    var groestlcoin: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .groestlcoin)
     }
     
-    var litecoin: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .litecoin)
+    var litecoin: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .litecoin)
     }
     
-    var monacoin: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .monacoin)
+    var monacoin: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .monacoin)
     }
     
-    var qtum: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .qtum)
+    var qtum: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .qtum)
     }
     
-    var ravencoin: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .ravencoin)
+    var ravencoin: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .ravencoin)
     }
     
-    var viacoin: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .viacoin)
+    var viacoin: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .viacoin)
     }
     
-    var zcoin: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .zcoin)
+    var zcoin: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .zcoin)
     }
     
-    var zcash: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .zcash)
+    var zcash: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .zcash)
     }
     
-    var zelcash: Signer<BitcoinSigningOutput> {
-        return Signer(coin: .zelcash)
+    var zelcash: TrustSDK.Signer<BitcoinSigningOutput> {
+        return TrustSDK.Signer(coin: .zelcash)
     }
 }
 
 // Ethereum based chains
-public extension Signers {
-    var ethereum: Signer<EthereumSigningOutput> {
-        return Signer(coin: .ethereum)
+public extension TrustSDK.Signers {
+    var ethereum: TrustSDK.Signer<EthereumSigningOutput> {
+        return TrustSDK.Signer(coin: .ethereum)
     }
     
-    var ethereumClassic: Signer<EthereumSigningOutput> {
-        return Signer(coin: .ethereumClassic)
+    var ethereumClassic: TrustSDK.Signer<EthereumSigningOutput> {
+        return TrustSDK.Signer(coin: .ethereumClassic)
     }
     
-    var callisto: Signer<EthereumSigningOutput> {
-        return Signer(coin: .callisto)
+    var callisto: TrustSDK.Signer<EthereumSigningOutput> {
+        return TrustSDK.Signer(coin: .callisto)
     }
     
-    var goChain: Signer<EthereumSigningOutput> {
-        return Signer(coin: .goChain)
+    var goChain: TrustSDK.Signer<EthereumSigningOutput> {
+        return TrustSDK.Signer(coin: .goChain)
     }
     
-    var poanetwork: Signer<EthereumSigningOutput> {
-        return Signer(coin: .poanetwork)
+    var poanetwork: TrustSDK.Signer<EthereumSigningOutput> {
+        return TrustSDK.Signer(coin: .poanetwork)
     }
     
-    var tomoChain: Signer<EthereumSigningOutput> {
-        return Signer(coin: .tomoChain)
+    var tomoChain: TrustSDK.Signer<EthereumSigningOutput> {
+        return TrustSDK.Signer(coin: .tomoChain)
     }
     
-    var thunderToken: Signer<EthereumSigningOutput> {
-        return Signer(coin: .thunderToken)
+    var thunderToken: TrustSDK.Signer<EthereumSigningOutput> {
+        return TrustSDK.Signer(coin: .thunderToken)
     }
     
-    var wanchain: Signer<EthereumSigningOutput> {
-        return Signer(coin: .wanchain)
+    var wanchain: TrustSDK.Signer<EthereumSigningOutput> {
+        return TrustSDK.Signer(coin: .wanchain)
     }
 }
 
 // Cosmos based chains
-public extension Signers {
-    var cosmos: Signer<CosmosSigningOutput> {
-        return Signer(coin: .cosmos)
+public extension TrustSDK.Signers {
+    var cosmos: TrustSDK.Signer<CosmosSigningOutput> {
+        return TrustSDK.Signer(coin: .cosmos)
     }
     
-    var kava: Signer<CosmosSigningOutput> {
-        return Signer(coin: .kava)
+    var kava: TrustSDK.Signer<CosmosSigningOutput> {
+        return TrustSDK.Signer(coin: .kava)
     }
     
-    var terra: Signer<CosmosSigningOutput> {
-        return Signer(coin: .terra)
+    var terra: TrustSDK.Signer<CosmosSigningOutput> {
+        return TrustSDK.Signer(coin: .terra)
     }
 }
 
 // Polkador based chains
-public extension Signers {
-    var polkadot: Signer<PolkadotSigningOutput> {
-        return Signer(coin: .polkadot)
+public extension TrustSDK.Signers {
+    var polkadot: TrustSDK.Signer<PolkadotSigningOutput> {
+        return TrustSDK.Signer(coin: .polkadot)
     }
     
-    var kusama: Signer<PolkadotSigningOutput> {
-        return Signer(coin: .kusama)
+    var kusama: TrustSDK.Signer<PolkadotSigningOutput> {
+        return TrustSDK.Signer(coin: .kusama)
     }
 }
 
 // Stellar based chains
-public extension Signers {
-    var stellar: Signer<StellarSigningOutput> {
-        return Signer(coin: .stellar)
+public extension TrustSDK.Signers {
+    var stellar: TrustSDK.Signer<StellarSigningOutput> {
+        return TrustSDK.Signer(coin: .stellar)
     }
     
-    var kin: Signer<StellarSigningOutput> {
-        return Signer(coin: .kin)
+    var kin: TrustSDK.Signer<StellarSigningOutput> {
+        return TrustSDK.Signer(coin: .kin)
     }
 }
