@@ -18,6 +18,6 @@ Pod::Spec.new do |s|
   s.subspec 'Wallet' do |cs|
     cs.source_files = 'TrustSDK/Classes/Wallet/**/*'
     cs.dependency 'TrustSDK/Client'
-    cs.dependency 'TrustWalletCore'
+    cs.dependency 'TrustWalletCore/Types'
   end
 end
