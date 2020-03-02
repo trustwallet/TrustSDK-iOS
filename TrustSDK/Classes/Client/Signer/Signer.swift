@@ -18,6 +18,11 @@ public extension TrustSDK {
         
         public func sign(input: SigningInput, callback: @escaping ((Result<Output, Error>) -> Void)) {
             do {
+                if (!TrustSDK.isSupported(coin: coin)) {
+                    callback(Result.failure(TrustSDKError.coinNotSupported))
+                    return
+                }
+                
                 let command: TrustSDK.Command = .sign(coin: coin, input: try input.serializedData())
                 try TrustSDK.send(request: SignRequest(command: command, callback: callback))
             } catch {

@@ -41,7 +41,7 @@ public extension WalletSDK {
         func callbackUrl(response: Response) -> URL? {
             guard
             let baseUrl = URL(string: "\(app)://\(callback)"),
-            var components = URLComponents(url: baseUrl, resolvingAgainstBaseURL: true)
+            var components = URLComponents(url: baseUrl, resolvingAgainstBaseURL: false)
             else { return nil }
             
             var params = response.params

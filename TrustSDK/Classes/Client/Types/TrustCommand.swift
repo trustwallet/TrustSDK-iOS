@@ -8,18 +8,27 @@
 import Foundation
 import TrustWalletCore
 
+enum CommandName: String {
+    case getAccounts = "get_accounts"
+    case sign
+}
+
 public extension TrustSDK {
     enum Command {
         case sign(coin: CoinType, input: Data)
         case getAccounts(coins: [CoinType])
         
         public var name: String {
-            switch self {
-            case .getAccounts:
-                return "get_accounts"
-            case .sign:
-                return "sign"
-            }
+            let name = { () -> CommandName in
+                switch self {
+                case .getAccounts:
+                    return .getAccounts
+                case .sign:
+                    return .sign
+                }
+            }()
+            
+            return name.rawValue
         }
         
         public var params: [String: String] {
@@ -37,14 +46,14 @@ public extension TrustSDK {
         }
         
         public init?(name: String, params: [String: String]) {
-            switch name {
-            case "get_accounts":
+            switch CommandName(rawValue: name) {
+            case .getAccounts:
                 guard let coinsParam = params["coins"] else {
                     return nil
                 }
                 
                 self = .getAccounts(coins: coinsParam.toCoinArray())
-            case "sign":
+            case .sign:
                 guard
                     let coinParam = params["coin"],
                     let dataParam = params["data"],

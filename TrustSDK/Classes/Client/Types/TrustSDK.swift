@@ -66,10 +66,83 @@ extension TrustSDK {
 public extension TrustSDK {
     static func getAccounts(for coins:[CoinType], callback: @escaping ((Result<[String], Error>) -> Void)) {
         do {
+            for coin in coins {
+                if !isSupported(coin: coin) {
+                    callback(Result.failure(TrustSDKError.coinNotSupported))
+                    return
+                }
+            }
+            
             let command: TrustSDK.Command = .getAccounts(coins: coins)
             try send(request: GetAccountsRequest(command: command, callback: callback))
         } catch {
             callback(Result.failure(error))
+        }
+    }
+}
+
+public extension TrustSDK {
+    static func isSupported(coin: CoinType) -> Bool {
+        switch coin {
+        case .aeternity,
+             .aion,
+             .algorand,
+             .binance,
+             .cosmos,
+             .kava,
+             .terra,
+             .ethereum,
+             .ethereumClassic,
+             .callisto,
+             .goChain,
+             .poanetwork,
+             .tomoChain,
+             .thunderToken,
+             .wanchain,
+             .eos,
+             .filecoin,
+             .fio,
+             .harmony,
+             .icon,
+             .ioTeX,
+             .near,
+             .neo,
+             .nuls,
+             .nano,
+             .nebulas,
+             .nimiq,
+             .polkadot,
+             .kusama,
+             .xrp,
+             .solana,
+             .stellar,
+             .kin,
+             .theta,
+             .tezos,
+             .tron,
+             .veChain,
+             .waves,
+             .zilliqa:
+            return true
+        case .cardano,
+             .ton,
+             .ontology,
+             .bitcoin,
+             .bitcoinCash,
+             .dash,
+             .digiByte,
+             .dogecoin,
+             .decred,
+             .groestlcoin,
+             .litecoin,
+             .monacoin,
+             .qtum,
+             .ravencoin,
+             .viacoin,
+             .zcash,
+             .zcoin,
+             .zelcash:
+            return false
         }
     }
 }

@@ -17,16 +17,16 @@ public extension TrustSDK.Signers {
         return TrustSDK.Signer(coin: .aeternity)
     }
     
-    var binance: TrustSDK.Signer<BinanceSigningOutput> {
-        return TrustSDK.Signer(coin: .binance)
-    }
-    
     var aion: TrustSDK.Signer<AionSigningOutput> {
         return TrustSDK.Signer(coin: .aion)
     }
     
     var algorand: TrustSDK.Signer<AlgorandSigningOutput> {
         return TrustSDK.Signer(coin: .algorand)
+    }
+    
+    var binance: TrustSDK.Signer<BinanceSigningOutput> {
+        return TrustSDK.Signer(coin: .binance)
     }
     
     var eos: TrustSDK.Signer<EOSSigningOutput> {
@@ -75,10 +75,6 @@ public extension TrustSDK.Signers {
     
     var nimiq: TrustSDK.Signer<NimiqSigningOutput> {
         return TrustSDK.Signer(coin: .nimiq)
-    }
-    
-    var ontology: TrustSDK.Signer<OntologySigningOutput> {
-        return TrustSDK.Signer(coin: .ontology)
     }
     
     var xrp: TrustSDK.Signer<RippleSigningOutput> {

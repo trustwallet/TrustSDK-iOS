@@ -7,31 +7,37 @@
 
 import Foundation
 
+enum TrustSDKErrorName: String {
+    case notInitialized = "not_initialized"
+    case coinNotSupported = "coin_not_supported"
+    case invalidResponse = "invalid_response"
+    case rejectedByUser = "rejected_by_user"
+    case signError = "sign_error"
+    case unknown
+}
+
 public enum TrustSDKError: Swift.Error {
     case notInitialized
     case coinNotSupported
     case invalidResponse
-    case rejectedByUSer
+    case rejectedByUser
     case signError(message: String)
     case unknown
-    case invalidWallet
     
     init?(from name: String, value: String? = nil) {
-        switch name {
-        case "notInitialized":
+        switch TrustSDKErrorName(rawValue: name) {
+        case .notInitialized:
             self = .notInitialized
-        case "coinNotSupported":
+        case .coinNotSupported:
             self = .coinNotSupported
-        case "invalidResponse":
+        case .invalidResponse:
             self = .invalidResponse
-        case "rejectedByUSer":
-            self = .rejectedByUSer
-        case "signError":
+        case .rejectedByUser:
+            self = .rejectedByUser
+        case .signError:
             self = .signError(message: value ?? "")
-        case "unknown":
+        case .unknown:
             self = .unknown
-        case "invalidWallet":
-            self = .invalidWallet
         default:
             return nil
         }
@@ -43,22 +49,24 @@ public enum TrustSDKError: Swift.Error {
     }
         
     public var name: String {
-        switch self {
-        case .notInitialized:
-            return "notInitialized"
-        case .coinNotSupported:
-            return "coinNotSupported"
-        case .invalidResponse:
-            return "invalidResponse"
-        case .rejectedByUSer:
-            return "rejectedByUSer"
-        case .signError:
-            return "signError"
-        case .unknown:
-            return "unknown"
-        case .invalidWallet:
-            return "invalidWallet"
-        }
+        let name = { () -> TrustSDKErrorName in
+            switch self {
+            case .notInitialized:
+                return .notInitialized
+            case .coinNotSupported:
+                return .coinNotSupported
+            case .invalidResponse:
+                return .invalidResponse
+            case .rejectedByUser:
+                return .rejectedByUser
+            case .signError:
+                return .signError
+            case .unknown:
+                return .unknown
+            }
+        }()
+
+        return name.rawValue
     }
     
     public var params: [String: String] {

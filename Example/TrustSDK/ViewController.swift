@@ -48,7 +48,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func getAddress(_ sender: UIButton) {
-        TrustSDK.getAccounts(for: [.ethereum, .bitcoin]) { result in
+        TrustSDK.getAccounts(for: [.ethereum, .binance]) { result in
             switch result {
             case .success(let addresses):
                 let alert = UIAlertController(
