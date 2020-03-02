@@ -1,16 +1,16 @@
-//  Copyright © 2018 Trust.
+// Copyright DApps Platform Inc. All rights reserved.
 //
-//	This file is part of TrustSDK. The full TrustSDK copyright notice, including
-//	terms governing use, modification, and redistribution, is contained in the
-//	file LICENSE at the root of the source code distribution tree.
+// This file is part of TrustSDK. The full TrustSDK copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
 
 import Foundation
 
 /// Describes a wallet app supporting the trust deeplink spec
 public struct WalletApp {
-    /// TrustWallet scheme
+    /// Wallet scheme
     public let scheme: String
-    /// TrustWallet install URL
+    /// Wallet install URL
     let installURL: URL
     
     public init(scheme: String, installURL: URL) {

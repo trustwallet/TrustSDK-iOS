@@ -1,4 +1,8 @@
-//Copyright DApps Platform Inc. All rights reserved.
+// Copyright DApps Platform Inc. All rights reserved.
+//
+// This file is part of TrustSDK. The full TrustSDK copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
 
 import Foundation
 import TrustWalletCore
@@ -23,24 +27,6 @@ public struct SigningInputEncoder {
         case .binance:
             var input = try BinanceSigningInput(serializedData: data)
             input.privateKey = privateKey
-            return input
-        case .bitcoin,
-             .bitcoinCash,
-             .dash,
-             .digiByte,
-             .dogecoin,
-             .decred,
-             .groestlcoin,
-             .litecoin,
-             .monacoin,
-             .qtum,
-             .ravencoin,
-             .viacoin,
-             .zcash,
-             .zcoin,
-             .zelcash:
-            var input = try BitcoinSigningInput(serializedData: data)
-            input.privateKey = [ privateKey ]
             return input
         case .cosmos,
              .kava,
@@ -107,10 +93,6 @@ public struct SigningInputEncoder {
             var input = try NimiqSigningInput(serializedData: data)
             input.privateKey = privateKey
             return input
-        case .ontology:
-            var input = try OntologySigningInput(serializedData: data)
-            input.ownerPrivateKey = privateKey
-            return input
         case .polkadot,
              .kusama:
             var input = try PolkadotSigningInput(serializedData: data)
@@ -153,7 +135,24 @@ public struct SigningInputEncoder {
             var input = try ZilliqaSigningInput(serializedData: data)
             input.privateKey = privateKey
             return input
-        case .cardano, .ton:
+        case .cardano,
+             .ton,
+             .ontology,
+             .bitcoin,
+             .bitcoinCash,
+             .dash,
+             .digiByte,
+             .dogecoin,
+             .decred,
+             .groestlcoin,
+             .litecoin,
+             .monacoin,
+             .qtum,
+             .ravencoin,
+             .viacoin,
+             .zcash,
+             .zcoin,
+             .zelcash:
             throw TrustSDKError.coinNotSupported
         }
     }

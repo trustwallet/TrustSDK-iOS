@@ -1,8 +1,8 @@
-//  Copyright © 2018 Trust.
+// Copyright DApps Platform Inc. All rights reserved.
 //
-//	This file is part of TrustSDK. The full TrustSDK copyright notice, including
-//	terms governing use, modification, and redistribution, is contained in the
-//	file LICENSE at the root of the source code distribution tree.
+// This file is part of TrustSDK. The full TrustSDK copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
 	
 
 import Foundation
@@ -15,6 +15,10 @@ extension TrustSDK {
 public extension TrustSDK.Signers {
     var aeternity: TrustSDK.Signer<AeternitySigningOutput> {
         return TrustSDK.Signer(coin: .aeternity)
+    }
+    
+    var binance: TrustSDK.Signer<BinanceSigningOutput> {
+        return TrustSDK.Signer(coin: .binance)
     }
     
     var aion: TrustSDK.Signer<AionSigningOutput> {
@@ -107,69 +111,6 @@ public extension TrustSDK.Signers {
     
     var zilliqa: TrustSDK.Signer<ZilliqaSigningOutput> {
         return TrustSDK.Signer(coin: .zilliqa)
-    }
-}
-
-// Bitcoin based chains
-public extension TrustSDK.Signers {
-    var bitcoin: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .bitcoin)
-    }
-    
-    var bitcoinCash: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .bitcoinCash)
-    }
-    
-    var dash: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .dash)
-    }
-    
-    var decred: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .decred)
-    }
-    
-    var digiByte: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .digiByte)
-    }
-    
-    var dogecoin: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .dogecoin)
-    }
-    
-    var groestlcoin: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .groestlcoin)
-    }
-    
-    var litecoin: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .litecoin)
-    }
-    
-    var monacoin: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .monacoin)
-    }
-    
-    var qtum: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .qtum)
-    }
-    
-    var ravencoin: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .ravencoin)
-    }
-    
-    var viacoin: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .viacoin)
-    }
-    
-    var zcoin: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .zcoin)
-    }
-    
-    var zcash: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .zcash)
-    }
-    
-    var zelcash: TrustSDK.Signer<BitcoinSigningOutput> {
-        return TrustSDK.Signer(coin: .zelcash)
     }
 }
 

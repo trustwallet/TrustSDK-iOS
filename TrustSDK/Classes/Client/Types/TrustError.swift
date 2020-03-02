@@ -1,8 +1,8 @@
-//  Copyright © 2018 Trust.
+// Copyright DApps Platform Inc. All rights reserved.
 //
-//	This file is part of TrustSDK. The full TrustSDK copyright notice, including
-//	terms governing use, modification, and redistribution, is contained in the
-//	file LICENSE at the root of the source code distribution tree.
+// This file is part of TrustSDK. The full TrustSDK copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
 	
 
 import Foundation
@@ -42,7 +42,7 @@ public enum TrustSDKError: Swift.Error {
         self.init(from: name, value: components.queryItem(for: "message")?.value)
     }
         
-    public var description: String {
+    public var name: String {
         switch self {
         case .notInitialized:
             return "notInitialized"
@@ -63,7 +63,7 @@ public enum TrustSDKError: Swift.Error {
     
     public var params: [String: String] {
         var params = [
-            "error": self.description
+            "error": self.name
         ]
         
         switch self {
