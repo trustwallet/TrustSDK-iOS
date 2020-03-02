@@ -9,7 +9,7 @@ import TrustWalletCore
 
 public struct SigningInputEncoder {
     private init() { }
-    
+
     public static func encode(data: Data, privateKey: Data, for coin: CoinType) throws -> SigningInput {
         switch coin {
         case .aeternity:

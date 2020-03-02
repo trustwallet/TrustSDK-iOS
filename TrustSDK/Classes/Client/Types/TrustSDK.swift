@@ -4,7 +4,6 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-
 import Foundation
 import TrustWalletCore
 
@@ -12,15 +11,15 @@ public class TrustSDK {
     enum QueryItems: String {
         case id
     }
-    
+
     public static let signers = Signers()
     internal static var configuration: TrustSDK.Configuration?
     internal static let requestRegistry = RequestRegistry()
-    
+
     public static func initialize(with configuration: TrustSDK.Configuration) {
         self.configuration = configuration
     }
-        
+
     public static func application(
         _ app: UIApplication,
         open url: URL,
@@ -35,11 +34,11 @@ public class TrustSDK {
         else {
             return false
         }
-        
+
         guard let id = components.queryItem(for: QueryItems.id.rawValue)?.value else {
             return false
         }
-        
+
         requestRegistry.resolve(request: id, with: components)
         return true
     }
@@ -50,7 +49,7 @@ extension TrustSDK {
         guard let config = configuration else {
             throw TrustSDKError.notInitialized
         }
-        
+
         let id = requestRegistry.register(request: request)
         let command = request.command
         config.walletApp.open(
@@ -64,7 +63,7 @@ extension TrustSDK {
 }
 
 public extension TrustSDK {
-    static func getAccounts(for coins:[CoinType], callback: @escaping ((Result<[String], Error>) -> Void)) {
+    static func getAccounts(for coins: [CoinType], callback: @escaping ((Result<[String], Error>) -> Void)) {
         do {
             for coin in coins {
                 if !isSupported(coin: coin) {
@@ -72,7 +71,7 @@ public extension TrustSDK {
                     return
                 }
             }
-            
+
             let command: TrustSDK.Command = .getAccounts(coins: coins)
             try send(request: GetAccountsRequest(command: command, callback: callback))
         } catch {

@@ -3,7 +3,6 @@
 // This file is part of TrustSDK. The full TrustSDK copyright notice, including
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
-	
 
 import XCTest
 import TrustWalletCore
@@ -16,11 +15,11 @@ class CommandTests: XCTestCase {
 
         XCTAssertEqual("sign", signCommand.name)
         XCTAssertEqual("get_accounts", getAccountsCommand.name)
-        
+
         XCTAssertEqual(["coin": "60", "data": ""], signCommand.params)
         XCTAssertEqual(["coins": "60,0"], getAccountsCommand.params)
     }
-    
+
     func testSignCommandInit() {
         let command = TrustSDK.Command.init(name: "sign", params: ["coin": "60", "data": ""])
         switch command {
@@ -31,7 +30,7 @@ class CommandTests: XCTestCase {
             XCTFail()
         }
     }
-    
+
     func testGetAccountsCommandInit() {
         let command = TrustSDK.Command.init(name: "get_accounts", params: ["coins": "60,0"])
         switch command {

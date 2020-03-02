@@ -3,19 +3,18 @@
 // This file is part of TrustSDK. The full TrustSDK copyright notice, including
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
-	
 
 import Foundation
 import BigInt
 
-public extension BigInt {    
+public extension BigInt {
     /// Serializes the `BigInt` with the specified bit width.
     ///
     /// - Returns: the serialized data or `nil` if the number doesn't fit in the specified bit width.
-    func serialize(bitWidth: Int = 160) -> Data? {        
+    func serialize(bitWidth: Int = 160) -> Data? {
         precondition(bitWidth % 8 == 0)
         let byteCount = bitWidth / 8
-        
+
         let valueData = twosComplement()
         if valueData.count > byteCount {
             return nil
@@ -28,8 +27,7 @@ public extension BigInt {
             data.append(Data(repeating: 255, count: byteCount - valueData.count))
         }
         data.append(valueData)
-        
-        
+
         return data
     }
 

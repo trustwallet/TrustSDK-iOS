@@ -3,7 +3,6 @@
 // This file is part of TrustSDK. The full TrustSDK copyright notice, including
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
-	
 
 import Foundation
 
@@ -13,11 +12,11 @@ public extension TrustSDK {
             scheme: "trust",
             installURL: URL(string: "https://apps.apple.com/app/trust-crypto-bitcoin-wallet/id1288339409")!
         )
-        
+
         let scheme: String
         let callback: String
         let walletApp: WalletApp
-        
+
         public init(
             scheme: String,
             callback: String = "trust_sign_result",
@@ -29,4 +28,3 @@ public extension TrustSDK {
         }
     }
 }
-

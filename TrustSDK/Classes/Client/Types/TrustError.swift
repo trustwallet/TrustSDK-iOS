@@ -3,7 +3,6 @@
 // This file is part of TrustSDK. The full TrustSDK copyright notice, including
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
-	
 
 import Foundation
 
@@ -23,7 +22,7 @@ public enum TrustSDKError: Swift.Error {
     case rejectedByUser
     case signError(message: String)
     case unknown
-    
+
     init?(from name: String, value: String? = nil) {
         switch TrustSDKErrorName(rawValue: name) {
         case .notInitialized:
@@ -42,12 +41,12 @@ public enum TrustSDKError: Swift.Error {
             return nil
         }
     }
-    
+
     init?(components: URLComponents) {
         guard let name = components.queryItem(for: "error")?.value else { return nil }
         self.init(from: name, value: components.queryItem(for: "message")?.value)
     }
-        
+
     public var name: String {
         let name = { () -> TrustSDKErrorName in
             switch self {
@@ -68,19 +67,19 @@ public enum TrustSDKError: Swift.Error {
 
         return name.rawValue
     }
-    
+
     public var params: [String: String] {
         var params = [
-            "error": self.name
+            "error": self.name,
         ]
-        
+
         switch self {
         case .signError(let message):
             params["message"] = message
         default:
             break
         }
-        
+
         return params
     }
 }

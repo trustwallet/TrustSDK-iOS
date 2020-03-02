@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func signEthereum(_ sender: UIButton) {
         let input = EthereumSigningInput.with {
             $0.toAddress = "0x3D60643Bf82b928602bce34EE426a7d392157b69"
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
             $0.gasLimit = BigInt("21000").serialize()!
             $0.amount = BigInt("1000000000000000").serialize()!
         }
-        
+
         TrustSDK.signers.ethereum.sign(input: input) { result in
             switch result {
             case .success(let output):
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+
     @IBAction func getAddress(_ sender: UIButton) {
         TrustSDK.getAccounts(for: [.ethereum, .binance]) { result in
             switch result {
@@ -64,4 +64,3 @@ class ViewController: UIViewController {
         }
     }
 }
-

@@ -12,7 +12,7 @@ public struct WalletApp {
     public let scheme: String
     /// Wallet install URL
     let installURL: URL
-    
+
     public init(scheme: String, installURL: URL) {
         self.scheme = scheme
         self.installURL = installURL
@@ -23,7 +23,7 @@ extension WalletApp {
     enum ParamKeys: String {
         case app, callback, id
     }
-    
+
     func open(command: String, params: [String: String], app: String, callback: String, id: String) {
         guard
             let url = URL(string: "\(scheme)://\(command)"),
@@ -40,7 +40,7 @@ extension WalletApp {
         _params[ParamKeys.id.rawValue] = id
 
         components.queryItems = _params.map { URLQueryItem(name: $0, value: $1) }
-        
+
         if let url = components.url {
             UIApplication.shared.open(url)
         }
