@@ -1,0 +1,49 @@
+pool:
+    name: Hosted macOS
+    demands: xcode
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - README.md
+
+pr:
+  branches:
+    include:
+    - master
+
+steps:
+  - task: Xcode@5
+    displayName: 'xcodebuild -showsdks'
+    inputs:
+      actions: '-showsdks'
+      scheme: 'Trust'
+      configuration: Release
+      sdk: iphonesimulator13.2
+      xcodeVersion: specifyPath
+      xcodeDeveloperDir: '/Applications/Xcode_11.3.1.app/Contents/Developer'
+  
+  - script: |
+     sudo gem install cocoapods fastlane bundler simctl
+    displayName: 'Install gems'
+  
+  - task: Cache@2
+    inputs:
+      key: 'pod|Darwin|Podfile.lock'
+      path: 'Pods'
+      cacheHitVar: 'CacheRestored'
+  
+  - script: 'pod install --repo-update'
+    displayName: 'Pod install'
+    enabled: true
+    condition: ne(variables['CacheRestored'], 'true')
+  
+  - script: |
+     bundle update --bundler
+     fastlane ios tests
+    workingDirectory: "$(Build.SourcesDirectory)/Example"
+    displayName: 'fastlane ios tests'
