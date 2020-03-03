@@ -29,6 +29,7 @@ steps:
   
   - script: |
      sudo gem install cocoapods fastlane bundler simctl
+    workingDirectory: "$(Build.SourcesDirectory)/Example"
     displayName: 'Install gems'
   
   - task: Cache@2
