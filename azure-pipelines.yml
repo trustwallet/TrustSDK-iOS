@@ -34,10 +34,9 @@ steps:
     displayName: 'Install gems'
   
   - task: Cache@2
-    workingDirectory: "$(Build.SourcesDirectory)/Example"
     inputs:
       key: 'pod|Darwin|Podfile.lock'
-      path: 'Pods'
+      path: 'Example/Pods'
       cacheHitVar: 'CacheRestored'
   
   - script: 'bundle exec pod install --repo-update'
@@ -46,7 +45,6 @@ steps:
     enabled: true
     condition: ne(variables['CacheRestored'], 'true')
   
-  - script: |
-     bundle exec fastlane ios tests
+  - script: 'bundle exec fastlane ios tests'
     workingDirectory: "$(Build.SourcesDirectory)/Example"
     displayName: 'bundle exec fastlane ios tests'
