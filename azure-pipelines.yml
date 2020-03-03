@@ -26,25 +26,17 @@ steps:
       sdk: iphonesimulator13.2
       xcodeVersion: specifyPath
       xcodeDeveloperDir: '/Applications/Xcode_11.3.1.app/Contents/Developer'
-  
+
   - script: |
      sudo gem install bundler simctl
      sudo bundle install
     workingDirectory: "$(Build.SourcesDirectory)/Example"
     displayName: 'Install gems'
-  
-  - task: Cache@2
-    inputs:
-      key: 'pod|Darwin|Podfile.lock'
-      path: 'Example/Pods'
-      cacheHitVar: 'CacheRestored'
-  
+
   - script: 'bundle exec pod install --repo-update'
     workingDirectory: "$(Build.SourcesDirectory)/Example"
     displayName: 'Pod install'
-    enabled: true
-    condition: ne(variables['CacheRestored'], 'true')
-  
+
   - script: 'bundle exec fastlane ios tests'
     workingDirectory: "$(Build.SourcesDirectory)/Example"
     displayName: 'bundle exec fastlane ios tests'
