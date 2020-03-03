@@ -19,7 +19,7 @@ public extension TrustSDK {
 
         public init(
             scheme: String,
-            callback: String = "trust_sign_result",
+            callback: String = "sdk_sign_result",
             walletApp: WalletApp = Self.trustWalletApp
         ) {
             self.scheme = scheme

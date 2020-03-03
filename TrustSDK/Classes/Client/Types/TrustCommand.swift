@@ -8,8 +8,8 @@ import Foundation
 import TrustWalletCore
 
 enum CommandName: String {
-    case getAccounts = "get_accounts"
-    case sign
+    case getAccounts = "sdk_get_accounts"
+    case sign = "sdk_sign"
 }
 
 public extension TrustSDK {
