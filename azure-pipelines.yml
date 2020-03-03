@@ -38,6 +38,7 @@ steps:
       cacheHitVar: 'CacheRestored'
   
   - script: 'pod install --repo-update'
+    workingDirectory: "$(Build.SourcesDirectory)/Example"
     displayName: 'Pod install'
     enabled: true
     condition: ne(variables['CacheRestored'], 'true')
