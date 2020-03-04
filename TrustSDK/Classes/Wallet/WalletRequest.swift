@@ -46,7 +46,7 @@ public extension WalletSDK {
             var params = response.params
             params[Keys.id.rawValue] = id
 
-            components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
+            components.queryItems = params.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0, value: $1) }
 
             return components.url
         }

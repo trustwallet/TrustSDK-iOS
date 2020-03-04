@@ -29,7 +29,7 @@ steps:
 
   - script: |
      sudo gem install bundler simctl
-     sudo bundle install
+     bundle install
     workingDirectory: "$(Build.SourcesDirectory)/Example"
     displayName: 'Install gems'
 
