@@ -39,4 +39,4 @@ steps:
 
   - script: 'bundle exec fastlane ios tests'
     workingDirectory: "$(Build.SourcesDirectory)/Example"
-    displayName: 'bundle exec fastlane ios tests'
+    displayName: 'iOS Tests'
