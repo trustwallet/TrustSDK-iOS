@@ -24,7 +24,7 @@ public extension TrustSDK {
         init?(value: String) {
             let params = value
                 .components(separatedBy: "|")
-                .map { $0.components(separatedBy: ":") }
+                .map { $0.components(separatedBy: "~") }
                 .compactMap { values -> (key: String, value: String)? in
                     switch values.count {
                     case 1: return (key: values[0], value: "")
@@ -68,9 +68,10 @@ public extension TrustSDK {
             }()
 
             params["metaname"] = self.name
-            return params.reduce("") { (acc, param) -> String in
-                return "\(acc)|\(param.key):\(param.value)"
-            }
+            return params
+                .sorted { $0.key < $1.key }
+                .map { "\($0.key)~\($0.value)" }
+                .joined(separator: "|")
         }
     }
 
