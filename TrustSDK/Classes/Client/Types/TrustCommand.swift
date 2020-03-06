@@ -10,11 +10,73 @@ import TrustWalletCore
 enum CommandName: String {
     case getAccounts = "sdk_get_accounts"
     case sign = "sdk_sign"
+    case signAndSend = "sdk_sign_and_send"
+}
+
+enum SignMetadataName: String {
+    case dApp = "dapp"
 }
 
 public extension TrustSDK {
+    enum SignMetadata {
+        case dApp(name: String, url: URL?)
+
+        init?(value: String) {
+            let params = value
+                .components(separatedBy: "|")
+                .map { $0.components(separatedBy: ":") }
+                .compactMap { values -> (key: String, value: String)? in
+                    switch values.count {
+                    case 1: return (key: values[0], value: "")
+                    case 2: return (key: values[0], value: values[1])
+                    default: return nil
+                    }
+                }
+                .toDictionary { [$0.key: $0.value] }
+
+            guard
+                let metaname = params["metaname"],
+                let name = SignMetadataName(rawValue: metaname)
+            else { return nil }
+
+            switch name {
+            case .dApp:
+                self = .dApp(name: params["name"] ?? "", url: URL(string: params["url"] ?? ""))
+            }
+        }
+
+        var name: String {
+            let name = { () -> SignMetadataName in
+                switch self {
+                case .dApp:
+                    return .dApp
+                }
+            }()
+
+            return name.rawValue
+        }
+
+        var value: String {
+            var params = { () -> [String: String] in
+                switch self {
+                case .dApp(let name, let url):
+                    return [
+                        "name": name,
+                        "url": url?.absoluteString ?? "",
+                    ]
+                }
+            }()
+
+            params["metaname"] = self.name
+            return params.reduce("") { (acc, param) -> String in
+                return "\(acc)|\(param.key):\(param.value)"
+            }
+        }
+    }
+
     enum Command {
-        case sign(coin: CoinType, input: Data)
+        case sign(coin: CoinType, input: Data, metadata: SignMetadata?)
+        case signAndSend(coin: CoinType, input: Data, metadata: SignMetadata?)
         case getAccounts(coins: [CoinType])
 
         public var name: String {
@@ -24,6 +86,8 @@ public extension TrustSDK {
                     return .getAccounts
                 case .sign:
                     return .sign
+                case .signAndSend:
+                    return .signAndSend
                 }
             }()
 
@@ -36,10 +100,12 @@ public extension TrustSDK {
                 return [
                     "coins": String(coins: coins),
                 ]
-            case .sign(let coin, let input):
+            case .sign(let coin, let input, let meta),
+                 .signAndSend(let coin, let input, let meta):
                 return [
                     "coin": coin.rawValue.description,
                     "data": input.base64UrlEncodedString(),
+                    "meta": meta?.value ?? "",
                 ]
             }
         }
@@ -61,8 +127,19 @@ public extension TrustSDK {
                 else {
                     return nil
                 }
-
-                self = .sign(coin: coin, input: data)
+                let meta = SignMetadata(value: params["meta"] ?? "")
+                self = .sign(coin: coin, input: data, metadata: meta)
+            case .signAndSend:
+                guard
+                    let coinParam = params["coin"],
+                    let dataParam = params["data"],
+                    let coin = coinParam.toCoin(),
+                    let data = dataParam.toBase64Data()
+                else {
+                    return nil
+                }
+                let meta = SignMetadata(value: params["meta"] ?? "")
+                self = .signAndSend(coin: coin, input: data, metadata: meta)
             default: return nil
             }
         }
@@ -74,4 +151,5 @@ public extension TrustSDK {
     }
 }
 
+extension TrustSDK.SignMetadata: Equatable {}
 extension TrustSDK.Command: Equatable {}

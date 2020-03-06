@@ -15,15 +15,29 @@ public extension TrustSDK {
     struct Signer<Output: SigningOutput> {
         let coin: CoinType
 
-        public func sign(input: SigningInput, callback: @escaping ((Result<Output, Error>) -> Void)) {
-            do {
-                if !TrustSDK.isSupported(coin: coin) {
-                    callback(Result.failure(TrustSDKError.coinNotSupported))
-                    return
-                }
+        public func sign(input: SigningInput, metadata: SignMetadata? = nil, callback: @escaping ((Result<Output, Error>) -> Void)) {
+            if !TrustSDK.isSupported(coin: coin) {
+                callback(Result.failure(TrustSDKError.coinNotSupported))
+                return
+            }
 
-                let command: TrustSDK.Command = .sign(coin: coin, input: try input.serializedData())
+            do {
+                let command: TrustSDK.Command = .sign(coin: coin, input: try input.serializedData(), metadata: metadata)
                 try TrustSDK.send(request: SignRequest(command: command, callback: callback))
+            } catch {
+                callback(Result.failure(error))
+            }
+        }
+
+        public func signAndSend(input: SigningInput, metadata: SignMetadata? = nil, callback: @escaping ((Result<String, Error>) -> Void)) {
+            if !TrustSDK.isSupported(coin: coin) {
+                callback(Result.failure(TrustSDKError.coinNotSupported))
+                return
+            }
+
+            do {
+                let command: TrustSDK.Command = .signAndSend(coin: coin, input: try input.serializedData(), metadata: metadata)
+                try TrustSDK.send(request: SignAndSendRequest(command: command, callback: callback))
             } catch {
                 callback(Result.failure(error))
             }
