@@ -29,15 +29,15 @@ public extension TrustSDK {
             }
         }
 
-        public func signAndSend(input: SigningInput, metadata: SignMetadata? = nil, callback: @escaping ((Result<String, Error>) -> Void)) {
+        public func signThenSend(input: SigningInput, metadata: SignMetadata? = nil, callback: @escaping ((Result<String, Error>) -> Void)) {
             if !TrustSDK.isSupported(coin: coin) {
                 callback(Result.failure(TrustSDKError.coinNotSupported))
                 return
             }
 
             do {
-                let command: TrustSDK.Command = .signAndSend(coin: coin, input: try input.serializedData(), metadata: metadata)
-                try TrustSDK.send(request: SignAndSendRequest(command: command, callback: callback))
+                let command: TrustSDK.Command = .signThenSend(coin: coin, input: try input.serializedData(), metadata: metadata)
+                try TrustSDK.send(request: SignThenSendRequest(command: command, callback: callback))
             } catch {
                 callback(Result.failure(error))
             }

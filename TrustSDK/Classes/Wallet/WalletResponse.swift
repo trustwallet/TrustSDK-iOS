@@ -10,6 +10,7 @@ import TrustWalletCore
 public extension WalletSDK {
     enum Response {
         case sign(coin: CoinType, output: Data)
+        case signThenSend(txHash: String)
         case accounts([String])
         case failure(error: TrustSDKError)
 
@@ -23,6 +24,10 @@ public extension WalletSDK {
             case .accounts(let accounts):
                 return [
                     "accounts": accounts.joined(separator: ","),
+                ]
+            case .signThenSend(let txHash):
+                return [
+                    "tx_hash": txHash,
                 ]
             case .failure(let error):
                 return error.params

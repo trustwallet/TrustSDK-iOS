@@ -10,7 +10,7 @@ import TrustWalletCore
 enum CommandName: String {
     case getAccounts = "sdk_get_accounts"
     case sign = "sdk_sign"
-    case signAndSend = "sdk_sign_and_send"
+    case signThenSend = "sdk_sign_then_send"
 }
 
 enum SignMetadataName: String {
@@ -76,7 +76,7 @@ public extension TrustSDK {
 
     enum Command {
         case sign(coin: CoinType, input: Data, metadata: SignMetadata?)
-        case signAndSend(coin: CoinType, input: Data, metadata: SignMetadata?)
+        case signThenSend(coin: CoinType, input: Data, metadata: SignMetadata?)
         case getAccounts(coins: [CoinType])
 
         public var name: String {
@@ -86,8 +86,8 @@ public extension TrustSDK {
                     return .getAccounts
                 case .sign:
                     return .sign
-                case .signAndSend:
-                    return .signAndSend
+                case .signThenSend:
+                    return .signThenSend
                 }
             }()
 
@@ -101,7 +101,7 @@ public extension TrustSDK {
                     "coins": String(coins: coins),
                 ]
             case .sign(let coin, let input, let meta),
-                 .signAndSend(let coin, let input, let meta):
+                 .signThenSend(let coin, let input, let meta):
                 return [
                     "coin": coin.rawValue.description,
                     "data": input.base64UrlEncodedString(),
@@ -129,7 +129,7 @@ public extension TrustSDK {
                 }
                 let meta = SignMetadata(value: params["meta"] ?? "")
                 self = .sign(coin: coin, input: data, metadata: meta)
-            case .signAndSend:
+            case .signThenSend:
                 guard
                     let coinParam = params["coin"],
                     let dataParam = params["data"],
@@ -139,8 +139,9 @@ public extension TrustSDK {
                     return nil
                 }
                 let meta = SignMetadata(value: params["meta"] ?? "")
-                self = .signAndSend(coin: coin, input: data, metadata: meta)
-            default: return nil
+                self = .signThenSend(coin: coin, input: data, metadata: meta)
+            default:
+                return nil
             }
         }
 

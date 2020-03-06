@@ -6,9 +6,9 @@
 
 import Foundation
 
-struct SignAndSendRequest: CallbackRequest {
+struct SignThenSendRequest: CallbackRequest {
     enum QueryItems: String {
-        case error, message, txHash
+        case error, message, txHash = "tx_hash"
     }
 
     typealias Response = String
