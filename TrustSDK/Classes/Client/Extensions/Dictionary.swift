@@ -16,3 +16,59 @@ extension Dictionary {
         }
     }
 }
+
+extension Dictionary where Dictionary.Key == String, Dictionary.Value == Any {
+    func queryItems() -> [URLQueryItem] {
+        return queryItems(parentKey: nil)
+    }
+
+    private func queryItems(parentKey: String?) -> [URLQueryItem] {
+        var items: [URLQueryItem] = []
+
+        for (_key, _value) in self {
+            let key = { () -> String in
+                if let parent = parentKey {
+                    return "\(parent).\(_key)"
+                } else {
+                    return _key
+                }
+            }()
+
+            if let value = _value as? [String: Any] {
+                items.append(contentsOf: value.queryItems(parentKey: key))
+            }
+            if let value = _value as? [String] {
+                items.append(
+                    contentsOf: value
+                        .enumerated()
+                        .map { URLQueryItem(name: "\(key).\($0.offset)", value: $0.element) })
+            }
+            if let value = _value as? String {
+                items.append(URLQueryItem(name: key, value: value))
+            }
+        }
+
+        return items.sorted { $0.name < $1.name }
+    }
+}
+
+extension Dictionary where Dictionary.Key == String, Dictionary.Value == Any {
+    init(queryItems items: [URLQueryItem]) {
+        self.init()
+        for item in items {
+            Dictionary.fill(&self, key: item.name, value: item.value ?? "")
+        }
+    }
+
+    private static func fill(_ dict: inout [String: Any], key: String, value: String) {
+        if key.contains(".") {
+            let comps = key.components(separatedBy: ".")
+            let head = comps.first!
+            var subdict: [String: Any] = dict[head] as? [String: Any] ?? [:]
+            fill(&subdict, key: comps.dropFirst().joined(separator: "."), value: value)
+            dict[head] = subdict
+        } else {
+            dict[key] = value
+        }
+    }
+}
