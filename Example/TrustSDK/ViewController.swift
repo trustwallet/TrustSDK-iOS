@@ -30,8 +30,10 @@ class ViewController: UIViewController {
             $0.gasLimit = BigInt("21000").serialize()!
             $0.amount = BigInt("100000000000000").serialize()!
         }
-
-        TrustSDK.signers.ethereum.sign(input: input) { result in
+        
+        let meta = TrustSDK.SignMetadata.dApp(name: "Test", url: URL(string: "https://dapptest.com"))
+        
+        TrustSDK.signers.ethereum.sign(input: input, metadata: meta) { result in
             switch result {
             case .success(let output):
                 let alert = UIAlertController(
