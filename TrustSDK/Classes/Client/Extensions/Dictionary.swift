@@ -17,7 +17,7 @@ extension Dictionary {
     }
 }
 
-extension Dictionary where Dictionary.Key == String, Dictionary.Value == Any {
+extension Dictionary where Key == String, Value: Any {
     func queryItems() -> [URLQueryItem] {
         return queryItems(parentKey: nil)
     }
@@ -51,19 +51,21 @@ extension Dictionary where Dictionary.Key == String, Dictionary.Value == Any {
     }
 }
 
-extension Dictionary where Dictionary.Key == String, Dictionary.Value == Any {
+extension Dictionary where Key == String, Value: Any {
     init(queryItems items: [URLQueryItem]) {
-        self.init()
+        var dict: [String: Any] = [:]
         for item in items {
-            Dictionary.fill(&self, key: item.name, value: item.value ?? "")
+            Dictionary.fill(&dict, key: item.name, value: item.value ?? "")
         }
+
+        self = (dict as? [String: Value]) ?? [:]
     }
 
-    private static func fill(_ dict: inout [String: Any], key: String, value: String) {
+    private static func fill(_ dict: inout [String: Any], key: String, value: Any) {
         if key.contains(".") {
             let comps = key.components(separatedBy: ".")
             let head = comps.first!
-            var subdict: [String: Any] = dict[head] as? [String: Any] ?? [:]
+            var subdict = (dict[head] as? [String: Any]) ?? [:]
             fill(&subdict, key: comps.dropFirst().joined(separator: "."), value: value)
             dict[head] = subdict
         } else {
@@ -73,15 +75,14 @@ extension Dictionary where Dictionary.Key == String, Dictionary.Value == Any {
 }
 
 extension Dictionary {
-    func mapKeys<T>(transform: (_ key: Dictionary.Key) -> T?) -> [T: Dictionary.Value] {
-        return Dictionary<T, Dictionary.Value>(uniqueKeysWithValues:
-            self.compactMap { entry -> (key: T, value: Dictionary.Value)? in
-                guard let key = transform(entry.key) else {
-                    return nil
-                }
-
-                return (key: key, value: entry.value)
+    func mapKeys<T>(transform: (_ key: Key) -> T?) -> [T: Value] {
+        let entries = self.compactMap { entry -> (key: T, value: Value)? in
+            guard let key = transform(entry.key) else {
+                return nil
             }
-        )
+
+            return (key, entry.value)
+        }
+        return Dictionary<T, Value>(uniqueKeysWithValues: entries)
     }
 }

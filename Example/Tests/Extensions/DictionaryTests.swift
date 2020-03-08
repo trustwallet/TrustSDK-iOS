@@ -37,7 +37,7 @@ class DictionaryTests: XCTestCase {
             URLQueryItem(name: "key2.key2.1", value: "value4"),
         ]
         
-        let dict = Dictionary(queryItems: items)
+        let dict: [String: Any] = Dictionary(queryItems: items)
         let subdict = dict["key2"] as! [String: Any]
         let subsubdict = subdict["key2"] as! [String: Any]
         
