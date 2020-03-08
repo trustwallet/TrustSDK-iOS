@@ -82,7 +82,7 @@ public extension TrustSDK {
             switch self {
             case .getAccounts(let coins):
                 return [
-                    "coins": String(coins: coins),
+                    "coins": coins.map { $0.rawValue },
                 ]
             case .sign(let coin, let input, let send, let meta):
                 return [
@@ -97,11 +97,16 @@ public extension TrustSDK {
         public init?(name: String, params: [String: Any]) {
             switch CommandName(rawValue: name) {
             case .getAccounts:
-                guard let coinsParam = params["coins"] as? String else {
+                guard let coinsParam = params["coins"] as? [String: String] else {
                     return nil
                 }
 
-                self = .getAccounts(coins: coinsParam.toCoinArray())
+                self = .getAccounts(
+                    coins: coinsParam
+                        .mapKeys { UInt32($0) }
+                        .sorted { $0.key < $1.key }
+                        .compactMap { $0.value.toCoin() }
+                )
             case .sign:
                 guard
                     let coinParam = params["coin"] as? String,

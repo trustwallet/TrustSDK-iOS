@@ -71,3 +71,17 @@ extension Dictionary where Dictionary.Key == String, Dictionary.Value == Any {
         }
     }
 }
+
+extension Dictionary {
+    func mapKeys<T>(transform: (_ key: Dictionary.Key) -> T?) -> [T: Dictionary.Value] {
+        return Dictionary<T, Dictionary.Value>(uniqueKeysWithValues:
+            self.compactMap { entry -> (key: T, value: Dictionary.Value)? in
+                guard let key = transform(entry.key) else {
+                    return nil
+                }
+
+                return (key: key, value: entry.value)
+            }
+        )
+    }
+}
