@@ -36,15 +36,14 @@ extension Dictionary where Dictionary.Key == String, Dictionary.Value == Any {
 
             if let value = _value as? [String: Any] {
                 items.append(contentsOf: value.queryItems(parentKey: key))
-            }
-            if let value = _value as? [String] {
+            } else if let value = _value as? [CustomStringConvertible] {
                 items.append(
                     contentsOf: value
                         .enumerated()
-                        .map { URLQueryItem(name: "\(key).\($0.offset)", value: $0.element) })
-            }
-            if let value = _value as? String {
-                items.append(URLQueryItem(name: key, value: value))
+                        .map { URLQueryItem(name: "\(key).\($0.offset)", value: $0.element.description) }
+                )
+            } else if let value = _value as? CustomStringConvertible {
+                items.append(URLQueryItem(name: key, value: value.description))
             }
         }
 

@@ -10,23 +10,47 @@ import TrustWalletCore
 
 class CommandTests: XCTestCase {
     func testSignCommandAttributes() {
-        let signCommand = TrustSDK.Command.sign(coin: .ethereum, input: Data(), metadata: .dApp(name: "Test", url: URL(string: "https://dapptest.com")))
+        let signCommand = TrustSDK.Command.sign(coin: .ethereum, input: Data(), send: true, metadata: .dApp(name: "Test", url: URL(string: "https://dapptest.com")))
+        let signParams = signCommand.params
+        
         let getAccountsCommand = TrustSDK.Command.getAccounts(coins: [.ethereum, .bitcoin])
-
-        XCTAssertEqual("sdk_sign", signCommand.name)
+        let getAccountsParams = getAccountsCommand.params
+                
         XCTAssertEqual("sdk_get_accounts", getAccountsCommand.name)
-
-        XCTAssertEqual(["meta": "metaname~dapp|name~Test|url~https://dapptest.com", "coin": "60", "data": ""], signCommand.params)
-        XCTAssertEqual(["coins": "60,0"], getAccountsCommand.params)
+        XCTAssertEqual("60,0", getAccountsParams["coins"] as? String)
+        
+        XCTAssertEqual("sdk_sign", signCommand.name)
+        XCTAssertEqual("60", signParams["coin"] as? String)
+        XCTAssertEqual("", signParams["data"] as? String)
+        XCTAssertTrue(signParams["send"] as! Bool)
+        
+        let metaParams = signParams["meta"] as! [String: Any]
+        XCTAssertEqual("dapp", metaParams["__name"] as? String)
+        XCTAssertEqual("Test", metaParams["name"] as? String)
+        XCTAssertEqual("https://dapptest.com", metaParams["url"] as? String)
     }
 
     func testSignCommandInit() {
-        let command = TrustSDK.Command.init(name: "sdk_sign", params: ["coin": "60", "data": "", "meta": "metaname~dapp|name~TestDApp|url~https://dapptest.com"])
+        let command = TrustSDK.Command.init(
+            name: "sdk_sign",
+            params: [
+                "coin": "60",
+                "data": "",
+                "send": "true",
+                "meta": [
+                    "__name": "dapp",
+                    "name": "Test",
+                    "url": "https://dapptest.com"
+                ]
+            ]
+        )
+        
         switch command {
-        case let .sign(coin, data, meta):
+        case let .sign(coin, data, send, meta):
             XCTAssertEqual(CoinType.ethereum, coin)
             XCTAssertEqual(Data(), data)
-            XCTAssertEqual(TrustSDK.SignMetadata.dApp(name: "TestDApp", url: URL(string: "https://dapptest.com")), meta)
+            XCTAssertTrue(send)
+            XCTAssertEqual(TrustSDK.SignMetadata.dApp(name: "Test", url: URL(string: "https://dapptest.com")), meta)
         default:
             XCTFail()
         }

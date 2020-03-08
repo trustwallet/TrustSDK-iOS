@@ -10,7 +10,6 @@ import TrustWalletCore
 enum CommandName: String {
     case getAccounts = "sdk_get_accounts"
     case sign = "sdk_sign"
-    case signThenSend = "sdk_sign_then_send"
 }
 
 enum SignMetadataName: String {
@@ -21,27 +20,17 @@ public extension TrustSDK {
     enum SignMetadata {
         case dApp(name: String, url: URL?)
 
-        init?(value: String) {
-            let params = value
-                .components(separatedBy: "|")
-                .map { $0.components(separatedBy: "~") }
-                .compactMap { values -> (key: String, value: String)? in
-                    switch values.count {
-                    case 1: return (key: values[0], value: "")
-                    case 2: return (key: values[0], value: values[1])
-                    default: return nil
-                    }
-                }
-                .toDictionary { [$0.key: $0.value] }
-
+        init?(params: [String: Any]) {
             guard
-                let metaname = params["metaname"],
-                let name = SignMetadataName(rawValue: metaname)
+                let nameParam = params["__name"] as? String,
+                let name = SignMetadataName(rawValue: nameParam)
             else { return nil }
 
             switch name {
             case .dApp:
-                self = .dApp(name: params["name"] ?? "", url: URL(string: params["url"] ?? ""))
+                let name = params["name"] as? String
+                let url = params["url"] as? String
+                self = .dApp(name: name ?? "", url: URL(string: url ?? ""))
             }
         }
 
@@ -56,8 +45,8 @@ public extension TrustSDK {
             return name.rawValue
         }
 
-        var value: String {
-            var params = { () -> [String: String] in
+        var params: [String: Any] {
+            var params = { () -> [String: Any] in
                 switch self {
                 case .dApp(let name, let url):
                     return [
@@ -67,17 +56,13 @@ public extension TrustSDK {
                 }
             }()
 
-            params["metaname"] = self.name
+            params["__name"] = self.name
             return params
-                .sorted { $0.key < $1.key }
-                .map { "\($0.key)~\($0.value)" }
-                .joined(separator: "|")
         }
     }
 
     enum Command {
-        case sign(coin: CoinType, input: Data, metadata: SignMetadata?)
-        case signThenSend(coin: CoinType, input: Data, metadata: SignMetadata?)
+        case sign(coin: CoinType, input: Data, send: Bool, metadata: SignMetadata?)
         case getAccounts(coins: [CoinType])
 
         public var name: String {
@@ -87,60 +72,53 @@ public extension TrustSDK {
                     return .getAccounts
                 case .sign:
                     return .sign
-                case .signThenSend:
-                    return .signThenSend
                 }
             }()
 
             return name.rawValue
         }
 
-        public var params: [String: String] {
+        public var params: [String: Any] {
             switch self {
             case .getAccounts(let coins):
                 return [
                     "coins": String(coins: coins),
                 ]
-            case .sign(let coin, let input, let meta),
-                 .signThenSend(let coin, let input, let meta):
+            case .sign(let coin, let input, let send, let meta):
                 return [
                     "coin": coin.rawValue.description,
                     "data": input.base64UrlEncodedString(),
-                    "meta": meta?.value ?? "",
+                    "send": send,
+                    "meta": meta?.params ?? [:],
                 ]
             }
         }
 
-        public init?(name: String, params: [String: String]) {
+        public init?(name: String, params: [String: Any]) {
             switch CommandName(rawValue: name) {
             case .getAccounts:
-                guard let coinsParam = params["coins"] else {
+                guard let coinsParam = params["coins"] as? String else {
                     return nil
                 }
 
                 self = .getAccounts(coins: coinsParam.toCoinArray())
             case .sign:
                 guard
-                    let coinParam = params["coin"],
-                    let dataParam = params["data"],
+                    let coinParam = params["coin"] as? String,
+                    let dataParam = params["data"] as? String,
                     let coin = coinParam.toCoin(),
                     let data = dataParam.toBase64Data()
                 else {
                     return nil
                 }
-                let meta = SignMetadata(value: params["meta"] ?? "")
-                self = .sign(coin: coin, input: data, metadata: meta)
-            case .signThenSend:
-                guard
-                    let coinParam = params["coin"],
-                    let dataParam = params["data"],
-                    let coin = coinParam.toCoin(),
-                    let data = dataParam.toBase64Data()
-                else {
-                    return nil
-                }
-                let meta = SignMetadata(value: params["meta"] ?? "")
-                self = .signThenSend(coin: coin, input: data, metadata: meta)
+                let metaParam = params["meta"] as? [String: Any]
+                let sendParam = params["send"] as? String
+                self = .sign(
+                    coin: coin,
+                    input: data,
+                    send: sendParam?.toBool() ?? false,
+                    metadata: SignMetadata(params: metaParam ?? [:])
+                )
             default:
                 return nil
             }
@@ -148,7 +126,7 @@ public extension TrustSDK {
 
         public init?(components: URLComponents) {
             guard let name = components.host else { return nil }
-            self.init(name: name, params: components.queryItemsDictionary())
+            self.init(name: name, params: Dictionary(queryItems: components.queryItems ?? []))
         }
     }
 }

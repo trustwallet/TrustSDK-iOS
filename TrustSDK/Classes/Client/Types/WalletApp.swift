@@ -24,7 +24,7 @@ extension WalletApp {
         case app, callback, id
     }
 
-    func open(command: String, params: [String: String], app: String, callback: String, id: String) {
+    func open(command: String, params: [URLQueryItem], app: String, callback: String, id: String) {
         guard
             let url = URL(string: "\(scheme)://\(command)"),
             var components = URLComponents(url: url, resolvingAgainstBaseURL: true),
@@ -33,13 +33,12 @@ extension WalletApp {
             return
         }
 
-        // Add callback data
-        var _params = params
-        _params[ParamKeys.app.rawValue] = app
-        _params[ParamKeys.callback.rawValue] = callback
-        _params[ParamKeys.id.rawValue] = id
-
-        components.queryItems = _params.map { URLQueryItem(name: $0, value: $1) }
+        components.queryItems = params
+        components.queryItems?.append(contentsOf: [
+            URLQueryItem(name: ParamKeys.app.rawValue, value: app),
+            URLQueryItem(name: ParamKeys.callback.rawValue, value: callback),
+            URLQueryItem(name: ParamKeys.id.rawValue, value: id),
+        ])
 
         if let url = components.url {
             UIApplication.shared.open(url)

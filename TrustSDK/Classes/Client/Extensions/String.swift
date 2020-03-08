@@ -28,4 +28,8 @@ extension String {
     func toBase64Data() -> Data? {
         return Data(base64UrlEncoded: self)
     }
+
+    func toBool() -> Bool {
+        return Bool(self) ?? false
+    }
 }

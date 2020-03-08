@@ -11,9 +11,9 @@ import XCTest
 class DictionaryTests: XCTestCase {
     func testToQueryItems() {
         let dict: [String: Any] = [
-            "key1": "value1",
+            "key1": 0,
             "key2": [
-                "key1": "value2",
+                "key1": false,
                 "key2": [
                     "value3",
                     "value4",
@@ -22,8 +22,8 @@ class DictionaryTests: XCTestCase {
         ]
         
         XCTAssertEqual([
-            URLQueryItem(name: "key1", value: "value1"),
-            URLQueryItem(name: "key2.key1", value: "value2"),
+            URLQueryItem(name: "key1", value: "0"),
+            URLQueryItem(name: "key2.key1", value: "false"),
             URLQueryItem(name: "key2.key2.0", value: "value3"),
             URLQueryItem(name: "key2.key2.1", value: "value4"),
         ], dict.queryItems())
