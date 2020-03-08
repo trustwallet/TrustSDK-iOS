@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TrustSDK'
-  s.version          = '0.1.0'
+  s.version          = '1.0.0'
   s.summary          = 'Trust Wallet SDK'
   s.homepage         = 'https://github.com/TrustWallet/TrustSDK-iOS'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
