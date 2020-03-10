@@ -18,7 +18,7 @@ extension Dictionary {
 }
 
 extension Dictionary where Key == String, Value: Any {
-    func queryItems() -> [URLQueryItem] {
+    public func queryItems() -> [URLQueryItem] {
         return queryItems(parentKey: nil)
     }
 
@@ -52,7 +52,7 @@ extension Dictionary where Key == String, Value: Any {
 }
 
 extension Dictionary where Key == String, Value: Any {
-    init(queryItems items: [URLQueryItem]) {
+    public init(queryItems items: [URLQueryItem]) {
         var dict: [String: Any] = [:]
         for item in items {
             Dictionary.fill(&dict, key: item.name, value: item.value ?? "")
