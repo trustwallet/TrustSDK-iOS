@@ -48,6 +48,31 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func signThenSendEthereum(_ sender: UIButton) {
+        let input = EthereumSigningInput.with {
+            $0.toAddress = "0x728B02377230b5df73Aa4E3192E89b6090DD7312"
+            $0.chainID = BigInt("1").serialize()!
+            $0.amount = BigInt("100000000000000").serialize()!
+        }
+        
+        let meta = TrustSDK.SignMetadata.dApp(name: "Test", url: URL(string: "https://dapptest.com"))
+        
+        TrustSDK.signers.ethereum.signThenSend(input: input, metadata: meta) { result in
+            switch result {
+            case .success(let output):
+                let alert = UIAlertController(
+                    title: "Transaction Hash",
+                    message: output,
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            case .failure(let error):
+                print("Failed to sign: \(error)")
+            }
+        }
+    }
 
     @IBAction func getAddress(_ sender: UIButton) {
         TrustSDK.getAccounts(for: [.ethereum, .binance]) { result in

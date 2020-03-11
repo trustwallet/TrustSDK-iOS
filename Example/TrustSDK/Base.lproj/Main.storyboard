@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dki-rz-1JK">
-                                <rect key="frame" x="16" y="288.5" width="343" height="90"/>
+                                <rect key="frame" x="16" y="263.5" width="343" height="140"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBa-rx-udO">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
@@ -32,8 +32,18 @@
                                             <action selector="signEthereum:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="34i-nK-VO5"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0Q-XG-P2U">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNZ-Tw-waq">
                                         <rect key="frame" x="0.0" y="50" width="343" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="pjM-mw-3MG"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign and Send Ethereum"/>
+                                        <connections>
+                                            <action selector="signThenSendEthereum:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lYt-Tw-aEN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0Q-XG-P2U">
+                                        <rect key="frame" x="0.0" y="100" width="343" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Prt-SF-Pwk"/>
                                         </constraints>
