@@ -10,7 +10,7 @@ import TrustWalletCore
 
 class WalletRequestTests: XCTestCase {
     func testResponseUrl() {
-        let request = WalletSDK.Request(command: "sdk_get_accounts", params: ["coins": "60", "app": "trust", "callback": "callback", "id": "1"])!
+        let request = WalletSDK.Request(command: "sdk_get_accounts", params: ["coins": ["0": "60"], "app": "trust", "callback": "callback", "id": "1"])!
         let response = WalletSDK.Response.accounts(["test"])
 
         XCTAssertEqual(URL(string: "trust://callback?accounts=test&id=1")!, request.callbackUrl(response: response)!)

@@ -17,6 +17,7 @@
 		7507FFDF240D73BD00DE2741 /* CommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507FFDD240D738100DE2741 /* CommandTests.swift */; };
 		7507FFE1240D75AE00DE2741 /* WalletResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507FFE0240D75AE00DE2741 /* WalletResponseTests.swift */; };
 		7507FFE3240D774300DE2741 /* WalletRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507FFE2240D774300DE2741 /* WalletRequestTests.swift */; };
+		7598AD192414175000421EFA /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7598AD182414175000421EFA /* DictionaryTests.swift */; };
 		E8DB726FF22EEC6A5335EBC5 /* Pods_TrustSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C2425F002FA3A136D32310 /* Pods_TrustSDK_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		7507FFDD240D738100DE2741 /* CommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTests.swift; sourceTree = "<group>"; };
 		7507FFE0240D75AE00DE2741 /* WalletResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletResponseTests.swift; sourceTree = "<group>"; };
 		7507FFE2240D774300DE2741 /* WalletRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRequestTests.swift; sourceTree = "<group>"; };
+		7598AD182414175000421EFA /* DictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTests.swift; sourceTree = "<group>"; };
 		89C2425F002FA3A136D32310 /* Pods_TrustSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E3A0941E4AF3948909E87BE /* Pods-TrustSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-TrustSDK_Tests/Pods-TrustSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		973C7B142BAB8746D0C53AF2 /* TrustSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TrustSDK.podspec; path = ../TrustSDK.podspec; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				7598AD172414171700421EFA /* Extensions */,
 				7507FFE2240D774300DE2741 /* WalletRequestTests.swift */,
 				7507FFE0240D75AE00DE2741 /* WalletResponseTests.swift */,
 				7507FFDD240D738100DE2741 /* CommandTests.swift */,
@@ -157,6 +160,14 @@
 				9CE43E415D1BA0F22441C393 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		7598AD172414171700421EFA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7598AD182414175000421EFA /* DictionaryTests.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		FFAAFD7E26EBF7785801851C /* Frameworks */ = {
@@ -374,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7507FFE3240D774300DE2741 /* WalletRequestTests.swift in Sources */,
+				7598AD192414175000421EFA /* DictionaryTests.swift in Sources */,
 				7507FFE1240D75AE00DE2741 /* WalletResponseTests.swift in Sources */,
 				7507FFDF240D73BD00DE2741 /* CommandTests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* RequestRegistryTests.swift in Sources */,

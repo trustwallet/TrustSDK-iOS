@@ -23,15 +23,17 @@ class ViewController: UIViewController {
 
     @IBAction func signEthereum(_ sender: UIButton) {
         let input = EthereumSigningInput.with {
-            $0.toAddress = "0x3D60643Bf82b928602bce34EE426a7d392157b69"
+            $0.toAddress = "0x728B02377230b5df73Aa4E3192E89b6090DD7312"
             $0.chainID = BigInt("1").serialize()!
-            $0.nonce = BigInt("464").serialize()!
-            $0.gasPrice = BigInt("11500000000").serialize()!
+            $0.nonce = BigInt("477").serialize()!
+            $0.gasPrice = BigInt("2112000000").serialize()!
             $0.gasLimit = BigInt("21000").serialize()!
-            $0.amount = BigInt("1000000000000000").serialize()!
+            $0.amount = BigInt("100000000000000").serialize()!
         }
-
-        TrustSDK.signers.ethereum.sign(input: input) { result in
+        
+        let meta = TrustSDK.SignMetadata.dApp(name: "Test", url: URL(string: "https://dapptest.com"))
+        
+        TrustSDK.signers.ethereum.sign(input: input, metadata: meta) { result in
             switch result {
             case .success(let output):
                 let alert = UIAlertController(

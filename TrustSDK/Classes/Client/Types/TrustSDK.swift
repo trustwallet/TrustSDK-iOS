@@ -54,7 +54,7 @@ extension TrustSDK {
         let command = request.command
         config.walletApp.open(
             command: command.name,
-            params: command.params,
+            params: command.params.queryItems(),
             app: config.scheme,
             callback: config.callback,
             id: id

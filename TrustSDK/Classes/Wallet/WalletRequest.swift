@@ -17,12 +17,12 @@ public extension WalletSDK {
         public let callback: String
         public let id: String
 
-        public init?(command name: String, params: [String: String]) {
+        public init?(command name: String, params: [String: Any]) {
             guard
                 let command = TrustSDK.Command(name: name, params: params),
-                let app = params[Keys.app.rawValue],
-                let callback = params[Keys.callback.rawValue],
-                let id = params[Keys.id.rawValue] else {
+                let app = params[Keys.app.rawValue] as? String,
+                let callback = params[Keys.callback.rawValue] as? String,
+                let id = params[Keys.id.rawValue] as? String else {
                     return nil
             }
 
@@ -34,7 +34,7 @@ public extension WalletSDK {
 
         public init?(components: URLComponents) {
             guard let name = components.host else { return nil }
-            self.init(command: name, params: components.queryItemsDictionary())
+            self.init(command: name, params: Dictionary(queryItems: components.queryItems ?? []))
         }
 
         func callbackUrl(response: Response) -> URL? {
