@@ -7,7 +7,7 @@
 import Foundation
 
 public struct WalletSDK {
-    public static var handler: WalletSDKRequestHandler?
+    public static var delegate: WalletSDKDelegate?
 
     public static func application(
         _ app: UIApplication,
@@ -26,13 +26,13 @@ public struct WalletSDK {
     }
 
     public static func dispatch(request: Request) {
-        handler?.handle(request: request, callback: { response in
+        delegate?.didReceive(request: request, callback: { response in
             guard let url = request.callbackUrl(response: response) else { return }
             UIApplication.shared.open(url)
         })
     }
 }
 
-public protocol WalletSDKRequestHandler {
-    func handle(request: WalletSDK.Request, callback: @escaping ((WalletSDK.Response) -> Void))
+public protocol WalletSDKDelegate {
+    func didReceive(request: WalletSDK.Request, callback: @escaping ((WalletSDK.Response) -> Void))
 }
