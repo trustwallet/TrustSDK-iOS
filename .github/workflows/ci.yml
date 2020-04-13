@@ -1,4 +1,4 @@
-name: Trust iOS CI
+name: TrustSDK CI
 
 on:
   push:
