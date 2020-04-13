@@ -1,0 +1,31 @@
+name: TrustSDK CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install gems
+      run: sudo gem install bundler --no-document
+    - name: Bundle update
+      run: bundle update --bundler
+      working-directory: ./Example
+    - name: Cache
+      id: pod_cache
+      uses: actions/cache@v1.1.2
+      with:
+        path: Pods
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+    - name : Pod install
+      run: bundle exec pod install --repo-update
+      if: steps.pod_cache.outputs.cache-hit != 'true'
+      working-directory: ./Example
+    - name: Run Tests
+      run: bundle exec fastlane ios tests
+      working-directory: ./Example
