@@ -140,7 +140,8 @@ public extension TrustSDK {
              .viacoin,
              .zcash,
              .zcoin,
-             .zelcash:
+             .zelcash,
+             .elrond:
             return false
         }
     }
