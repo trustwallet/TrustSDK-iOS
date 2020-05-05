@@ -2,10 +2,10 @@ PODS:
   - BigInt (5.0.0)
   - SwiftLint (0.39.1)
   - SwiftProtobuf (1.8.0)
-  - TrustSDK/Client (1.2.2):
+  - TrustSDK/Client (1.2.3):
     - BigInt
     - TrustWalletCore/Types
-  - TrustSDK/Wallet (1.2.2):
+  - TrustSDK/Wallet (1.2.3):
     - TrustSDK/Client
   - TrustWalletCore/Types (2.0.10):
     - SwiftProtobuf
@@ -29,7 +29,7 @@ SPEC CHECKSUMS:
   BigInt: 74b4d88367b0e819d9f77393549226d36faeb0d8
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   SwiftProtobuf: 2cbd9409689b7df170d82a92a33443c8e3e14a70
-  TrustSDK: ae2bb2844c674c5592230f32ed218ba5224e44f2
+  TrustSDK: 77da198b139d90f7639594a28856fb0941c41f0b
   TrustWalletCore: bab25728671e43a5b9356a13adae7b12bfa48f73
 
 PODFILE CHECKSUM: 8aa041a02c290ebee7b7e42493802af7035a6dc2
