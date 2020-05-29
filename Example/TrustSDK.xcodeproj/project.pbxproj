@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		518FCCAE5BF03FFA426BDBAA /* Pods_TrustSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F1E94DAC15E0F1AB5A8AB3A /* Pods_TrustSDK_Tests.framework */; };
+		2FD67F7E4A7463DFF28E3DB7 /* Pods_TrustSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D6535858A45225CBB70BA8 /* Pods_TrustSDK_Example.framework */; };
+		33758FFB3D21DDEAA9C93AA9 /* Pods_TrustSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D9043738C8AAF9420A137C /* Pods_TrustSDK_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -18,7 +19,6 @@
 		7507FFE1240D75AE00DE2741 /* WalletResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507FFE0240D75AE00DE2741 /* WalletResponseTests.swift */; };
 		7507FFE3240D774300DE2741 /* WalletRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507FFE2240D774300DE2741 /* WalletRequestTests.swift */; };
 		7598AD192414175000421EFA /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7598AD182414175000421EFA /* DictionaryTests.swift */; };
-		E8DB726FF22EEC6A5335EBC5 /* Pods_TrustSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C2425F002FA3A136D32310 /* Pods_TrustSDK_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,8 +33,8 @@
 
 /* Begin PBXFileReference section */
 		050ED1A351EBC5A95A79BEF0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		1F1E94DAC15E0F1AB5A8AB3A /* Pods_TrustSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A447C41E9C2F17EC207F57 /* Pods-TrustSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK_Example.release.xcconfig"; path = "Target Support Files/Pods-TrustSDK_Example/Pods-TrustSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
+		42D6535858A45225CBB70BA8 /* Pods_TrustSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* TrustSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,11 +49,11 @@
 		7507FFE0240D75AE00DE2741 /* WalletResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletResponseTests.swift; sourceTree = "<group>"; };
 		7507FFE2240D774300DE2741 /* WalletRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRequestTests.swift; sourceTree = "<group>"; };
 		7598AD182414175000421EFA /* DictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTests.swift; sourceTree = "<group>"; };
-		89C2425F002FA3A136D32310 /* Pods_TrustSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E3A0941E4AF3948909E87BE /* Pods-TrustSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-TrustSDK_Tests/Pods-TrustSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		973C7B142BAB8746D0C53AF2 /* TrustSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TrustSDK.podspec; path = ../TrustSDK.podspec; sourceTree = "<group>"; };
 		9CE43E415D1BA0F22441C393 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A5726054D0480EABD61CA7E8 /* Pods-TrustSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK_Tests.debug.xcconfig"; path = "Target Support Files/Pods-TrustSDK_Tests/Pods-TrustSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		C5D9043738C8AAF9420A137C /* Pods_TrustSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B18CC4B138BEA7D295FC63 /* Pods-TrustSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK_Example.debug.xcconfig"; path = "Target Support Files/Pods-TrustSDK_Example/Pods-TrustSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8DB726FF22EEC6A5335EBC5 /* Pods_TrustSDK_Example.framework in Frameworks */,
+				2FD67F7E4A7463DFF28E3DB7 /* Pods_TrustSDK_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				518FCCAE5BF03FFA426BDBAA /* Pods_TrustSDK_Tests.framework in Frameworks */,
+				33758FFB3D21DDEAA9C93AA9 /* Pods_TrustSDK_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,8 +173,8 @@
 		FFAAFD7E26EBF7785801851C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				89C2425F002FA3A136D32310 /* Pods_TrustSDK_Example.framework */,
-				1F1E94DAC15E0F1AB5A8AB3A /* Pods_TrustSDK_Tests.framework */,
+				42D6535858A45225CBB70BA8 /* Pods_TrustSDK_Example.framework */,
+				C5D9043738C8AAF9420A137C /* Pods_TrustSDK_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -190,8 +190,8 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				F90EBA8D83803F9C279A5839 /* [CP] Embed Pods Frameworks */,
 				7507FFE5240D845A00DE2741 /* ShellScript */,
+				1CB479F60EAC6F66FDE02F9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -244,10 +244,9 @@
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "TrustSDK" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -283,6 +282,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1CB479F60EAC6F66FDE02F9C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TrustSDK_Example/Pods-TrustSDK_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/TrustSDK/TrustSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/TrustWalletCore/TrustWalletCore.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustWalletCore.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TrustSDK_Example/Pods-TrustSDK_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7507FFE5240D845A00DE2741 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,30 +365,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F90EBA8D83803F9C279A5839 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TrustSDK_Example/Pods-TrustSDK_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/TrustSDK/TrustSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/TrustWalletCore/TrustWalletCore.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustWalletCore.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TrustSDK_Example/Pods-TrustSDK_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

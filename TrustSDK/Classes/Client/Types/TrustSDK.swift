@@ -141,7 +141,8 @@ public extension TrustSDK {
              .zcash,
              .zcoin,
              .zelcash,
-             .elrond:
+             .elrond,
+             .bitcoinGold:
             return false
         }
     }

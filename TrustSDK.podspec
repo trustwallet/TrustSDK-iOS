@@ -1,12 +1,13 @@
 Pod::Spec.new do |s|
   s.name             = 'TrustSDK'
-  s.version          = '1.2.4'
+  s.version          = '1.2.5'
   s.summary          = 'Trust Wallet SDK'
   s.homepage         = 'https://github.com/TrustWallet/TrustSDK-iOS'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.authors          = { 'Leone Parise' => 'leoneparise', 'Viktor Radchenko' => 'vikmeup' }
   s.source           = { :git => 'https://github.com/TrustWallet/TrustSDK-iOS.git', :tag => s.version.to_s }
   s.ios.deployment_target = '11.0'
+  s.swift_version = '5.1'
   s.default_subspec = 'Client'
 
   s.subspec 'Client' do |cs|

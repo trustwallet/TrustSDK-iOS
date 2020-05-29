@@ -75,6 +75,7 @@ extension Dictionary where Key == String, Value: Any {
 }
 
 extension Dictionary {
+    // swiftlint:disable syntactic_sugar
     func mapKeys<T>(transform: (_ key: Key) -> T?) -> [T: Value] {
         let entries = self.compactMap { entry -> (key: T, value: Value)? in
             guard let key = transform(entry.key) else {
