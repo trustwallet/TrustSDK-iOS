@@ -99,7 +99,8 @@ public struct SigningOutputDecoder {
             return try ZilliqaSigningOutput(serializedData: data)
         case .cardano,
              .ton,
-             .elrond:
+             .elrond,
+             .bitcoinGold:
             throw TrustSDKError.coinNotSupported
         }
     }

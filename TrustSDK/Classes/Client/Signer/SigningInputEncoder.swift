@@ -153,7 +153,8 @@ public struct SigningInputEncoder {
              .zcash,
              .zcoin,
              .zelcash,
-             .elrond:
+             .elrond,
+             .bitcoinGold:
             throw TrustSDKError.coinNotSupported
         }
     }
