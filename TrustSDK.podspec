@@ -12,12 +12,12 @@ Pod::Spec.new do |s|
 
   s.subspec 'Client' do |cs|
     cs.source_files = 'TrustSDK/Classes/Client/**/*'
-    cs.dependency 'TrustWalletCore/Types'
+    cs.dependency 'TrustWalletCore/Types', '~> 2.0.14'
     cs.dependency 'BigInt'
   end
 
   s.subspec 'Wallet' do |cs|
     cs.source_files = 'TrustSDK/Classes/Wallet/**/*'
-    cs.dependency 'TrustSDK/Client'    
+    cs.dependency 'TrustSDK/Client'
   end
 end

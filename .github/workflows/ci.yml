@@ -29,3 +29,8 @@ jobs:
     - name: Run Tests
       run: bundle exec fastlane ios tests
       working-directory: ./Example
+    - name: Pod lint lib
+      if: github.ref == 'refs/heads/master'
+      run: |
+        set -eo pipefail
+        bundle exec lib lint --allow-warnings --verbose --platforms=ios
