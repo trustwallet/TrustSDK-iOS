@@ -33,4 +33,4 @@ jobs:
       if: github.ref == 'refs/heads/master'
       run: |
         set -eo pipefail
-        bundle exec lib lint --allow-warnings --verbose --platforms=ios
+        bundle exec pod lib lint --allow-warnings --verbose --platforms=ios
