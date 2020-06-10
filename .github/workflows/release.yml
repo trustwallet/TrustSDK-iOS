@@ -11,8 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: pod trunk push
-      run: |
-        set -eo pipefail
-        pod trunk push --allow-warnings
+      run: tools/pod-release
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
