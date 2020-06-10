@@ -7,8 +7,8 @@ if [ -z "$VERSION" ]; then
     VERSION=`git describe --long --tags | cut -f 1 -d "-"`
 fi
 
-PODSPEC_FILE="/tmp/TrustSDK_$VERSION.podspec"
-echo Pushing version "$PODSPEC_FILE"
+PODSPEC_FILE="/tmp/TrustSDK.podspec"
+echo Pushing "$VERSION" "$PODSPEC_FILE"
 
 cat << EOF > "$PODSPEC_FILE"
 Pod::Spec.new do |s|

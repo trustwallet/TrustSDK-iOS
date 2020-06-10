@@ -20,7 +20,7 @@ jobs:
       id: pod_cache
       uses: actions/cache@v1.1.2
       with:
-        path: Pods
+        path: Example/Pods
         key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
     - name : Pod install
       run: bundle exec pod install --repo-update
