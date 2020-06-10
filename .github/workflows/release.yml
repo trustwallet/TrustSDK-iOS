@@ -1,0 +1,16 @@
+name: TrustSDK release
+
+on:
+  push:
+    tags: 
+      - '*'
+
+jobs:
+  podspec:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: pod trunk push
+      run: tools/pod-release
+      env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
