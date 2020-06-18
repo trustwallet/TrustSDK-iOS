@@ -15,7 +15,7 @@ DEPENDENCIES:
   - TrustSDK/Wallet (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - BigInt
     - SwiftLint
     - SwiftProtobuf
