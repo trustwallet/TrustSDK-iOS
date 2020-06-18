@@ -135,26 +135,7 @@ public struct SigningInputEncoder {
             var input = try ZilliqaSigningInput(serializedData: data)
             input.privateKey = privateKey
             return input
-        case .cardano,
-             .ton,
-             .ontology,
-             .bitcoin,
-             .bitcoinCash,
-             .dash,
-             .digiByte,
-             .dogecoin,
-             .decred,
-             .groestlcoin,
-             .litecoin,
-             .monacoin,
-             .qtum,
-             .ravencoin,
-             .viacoin,
-             .zcash,
-             .zcoin,
-             .zelcash,
-             .elrond,
-             .bitcoinGold:
+        default:
             throw TrustSDKError.coinNotSupported
         }
     }

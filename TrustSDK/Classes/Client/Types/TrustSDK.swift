@@ -123,26 +123,7 @@ public extension TrustSDK {
              .waves,
              .zilliqa:
             return true
-        case .cardano,
-             .ton,
-             .ontology,
-             .bitcoin,
-             .bitcoinCash,
-             .dash,
-             .digiByte,
-             .dogecoin,
-             .decred,
-             .groestlcoin,
-             .litecoin,
-             .monacoin,
-             .qtum,
-             .ravencoin,
-             .viacoin,
-             .zcash,
-             .zcoin,
-             .zelcash,
-             .elrond,
-             .bitcoinGold:
+        default:
             return false
         }
     }
