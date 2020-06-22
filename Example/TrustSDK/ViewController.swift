@@ -5,11 +5,14 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import UIKit
-import TrustSDK
 import BigInt
+import TrustSDK
+import CryptoSwift
 import TrustWalletCore
 
 class ViewController: UIViewController {
+
+    let meta = TrustSDK.SignMetadata.dApp(name: "Test", url: URL(string: "https://dapptest.com"))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +24,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func signEthereum(_ sender: UIButton) {
+    @IBAction func signEthereumTx(_ sender: UIButton) {
         let input = EthereumSigningInput.with {
             $0.toAddress = "0x728B02377230b5df73Aa4E3192E89b6090DD7312"
             $0.chainID = BigInt("1").serialize()!
@@ -30,8 +33,6 @@ class ViewController: UIViewController {
             $0.gasLimit = BigInt("21000").serialize()!
             $0.amount = BigInt("100000000000000").serialize()!
         }
-        
-        let meta = TrustSDK.SignMetadata.dApp(name: "Test", url: URL(string: "https://dapptest.com"))
         
         TrustSDK.signers.ethereum.sign(input: input, metadata: meta) { result in
             switch result {
@@ -48,15 +49,33 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+
+    @IBAction func signEthereumMessage(_ sender: UIButton) {
+        let data = Data("Some message".utf8)
+        let message = Data("\u{19}Ethereum Signed Message:\n\(data.count)".utf8)
+        let hash = message.sha3(.keccak256)
+        TrustSDK.signers.ethereum.sign(message: hash) { result in
+            switch result {
+            case .success(let signature):
+                let alert = UIAlertController(
+                    title: "Signature",
+                    message: signature,
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            case .failure(let error):
+                print("Failed to sign: \(error)")
+            }
+        }
+    }
+
     @IBAction func signThenSendEthereum(_ sender: UIButton) {
         let input = EthereumSigningInput.with {
             $0.toAddress = "0x728B02377230b5df73Aa4E3192E89b6090DD7312"
             $0.chainID = BigInt("1").serialize()!
             $0.amount = BigInt("100000000000000").serialize()!
         }
-        
-        let meta = TrustSDK.SignMetadata.dApp(name: "Test", url: URL(string: "https://dapptest.com"))
         
         TrustSDK.signers.ethereum.signThenSend(input: input, metadata: meta) { result in
             switch result {
