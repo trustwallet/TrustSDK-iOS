@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Client' do |cs|
     cs.resource_bundles = { 
-      'TrustSDK' => ['TrustSDK/Resources/**/*.xcassets']
+      'TrustSDK' => ['TrustSDK/Resources/**/*.xcassets', 'TrustSDK/Resources/**/*.strings']
     }
     cs.source_files = 'TrustSDK/Classes/Client/**/*'
     cs.dependency 'TrustWalletCore/Types'

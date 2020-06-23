@@ -23,7 +23,8 @@ public struct TrustButtonTheme {
     }
 
     public static let white = TrustButtonTheme(
-        .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldLined),
+        .font(.systemFont(ofSize: 18, weight: .regular)),
+        .title(.payWithTrust(icon: .shieldLined)),
         .tintColor(TrustSDK.Colors.blue),
         .backgroundColor(TrustSDK.Colors.white),
         .border(width: 1, color: TrustSDK.Colors.blue),
@@ -31,14 +32,16 @@ public struct TrustButtonTheme {
     )
 
     public static let blue = TrustButtonTheme(
-        .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldLined),
+        .font(.systemFont(ofSize: 18, weight: .regular)),
+        .title(.payWithTrust(icon: .shieldLined)),
         .tintColor(TrustSDK.Colors.white),
         .backgroundColor(TrustSDK.Colors.blue),
         .round(radius: 8.0)
     )
 
     public static let black = TrustButtonTheme(
-        .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldLined),
+        .font(.systemFont(ofSize: 18, weight: .regular)),
+        .title(.payWithTrust(icon: .shieldLined)),
         .tintColor(TrustSDK.Colors.white),
         .backgroundColor(TrustSDK.Colors.black),
         .border(width: 1, color: TrustSDK.Colors.white),
@@ -47,6 +50,8 @@ public struct TrustButtonTheme {
 }
 
 enum TrustButtonStyleName: String {
+    case icon
+    case font
     case title
     case backgroundColor
     case tintColor
@@ -55,16 +60,45 @@ enum TrustButtonStyleName: String {
     case roundFull
 }
 
+public enum TrustButtonTitleStyle {
+    case plain(String)
+    case payWithTrust(icon: TrustSDK.Icon, size: CGSize = CGSize(width: 20, height: 20))
+
+    func title(font: UIFont) -> NSAttributedString {
+        switch self {
+        case .plain(let title):
+            return NSAttributedString(string: title)
+        case let .payWithTrust(icon, iconSize):
+            let titleString = NSMutableAttributedString(string: "Pay with".localized())
+            titleString.append(NSAttributedString(string: " "))
+
+            let iconAttachment = NSTextAttachment()
+            iconAttachment.image = icon.image
+            iconAttachment.bounds = CGRect(origin: CGPoint(x: 0, y: (font.capHeight - iconSize.height) / 2), size: iconSize)
+
+            titleString.append(NSAttributedString(attachment: iconAttachment))
+            titleString.append(NSAttributedString(string: "Wallet".localized()))
+
+            return titleString
+        }
+
+    }
+}
+
 public enum TrustButtonStyle {
     case backgroundColor(UIColor)
     case tintColor(UIColor)
-    case title(font: UIFont, icon: TrustSDK.Icon)
+    case font(UIFont)
+    case icon(TrustSDK.Icon, insets: UIEdgeInsets = UIEdgeInsets(top: 5.0, left: 0, bottom: 5.0, right: 8.0))
+    case title(TrustButtonTitleStyle)
     case border(width: CGFloat, color: UIColor)
     case round(radius: CGFloat)
     case roundFull
 
     var name: TrustButtonStyleName {
         switch self {
+        case .icon: return .icon
+        case .font: return .font
         case .title: return .title
         case .backgroundColor: return .backgroundColor
         case .tintColor: return .tintColor

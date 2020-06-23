@@ -21,15 +21,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         signButton.apply(theme: TrustButtonTheme
             .blue
-            .with(styles: .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .trust))
+            .with(styles: .title(.plain("Connect")), .icon(.trust))
         )
         signButton1.apply(theme: TrustButtonTheme
             .white
-            .with(styles: .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldFilled))
+            .with(styles: .title(.payWithTrust(icon: .shieldFilled)))
         )
         signButton2.apply(theme: TrustButtonTheme
             .black
-            .with(styles: .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldLined))
+            .with(styles: .title(.payWithTrust(icon: .shieldLined)))
         )
     }
 
