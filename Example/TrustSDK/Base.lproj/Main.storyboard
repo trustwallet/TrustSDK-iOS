@@ -22,7 +22,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dki-rz-1JK">
                                 <rect key="frame" x="16" y="238.5" width="343" height="190"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBa-rx-udO">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBa-rx-udO" customClass="TrustButton" customModule="TrustSDK">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ePi-zJ-VrN"/>
@@ -47,9 +47,19 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="pjM-mw-3MG"/>
                                         </constraints>
-                                        <state key="normal" title="Sign and Send Ethereum"/>
+                                        <state key="normal" title="Sign Ethereum"/>
                                         <connections>
-                                            <action selector="signThenSendEthereum:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lYt-Tw-aEN"/>
+                                            <action selector="signEthereum:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FMi-BQ-1jL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0Q-XG-P2U">
+                                        <rect key="frame" x="0.0" y="150" width="343" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="dx4-7l-ZIy"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign Ethereum"/>
+                                        <connections>
+                                            <action selector="signEthereum:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8bC-7N-Nht"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0Q-XG-P2U">
@@ -72,6 +82,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="dki-rz-1JK" secondAttribute="trailing" id="9vL-Bf-RQO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="signButton" destination="QBa-rx-udO" id="3BN-CU-NPf"/>
+                        <outlet property="signButton1" destination="6Li-S6-KAJ" id="lUf-3V-nYE"/>
+                        <outlet property="signButton2" destination="aNh-uM-vOk" id="p2Z-sL-zZa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

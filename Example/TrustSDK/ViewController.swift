@@ -11,12 +11,26 @@ import CryptoSwift
 import TrustWalletCore
 
 class ViewController: UIViewController {
+    @IBOutlet var signButton: TrustButton!
+    @IBOutlet var signButton1: TrustButton!
+    @IBOutlet var signButton2: TrustButton!
 
     let meta = TrustSDK.SignMetadata.dApp(name: "Test", url: URL(string: "https://dapptest.com"))
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        signButton.apply(theme: TrustButtonTheme
+            .blue
+            .with(styles: .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .trust))
+        )
+        signButton1.apply(theme: TrustButtonTheme
+            .white
+            .with(styles: .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldFilled))
+        )
+        signButton2.apply(theme: TrustButtonTheme
+            .black
+            .with(styles: .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldLined))
+        )
     }
 
     override func didReceiveMemoryWarning() {

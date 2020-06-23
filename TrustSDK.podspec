@@ -11,6 +11,9 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Client'
 
   s.subspec 'Client' do |cs|
+    cs.resource_bundles = { 
+      'TrustSDK' => ['TrustSDK/Resources/**/*.xcassets']
+    }
     cs.source_files = 'TrustSDK/Classes/Client/**/*'
     cs.dependency 'TrustWalletCore/Types'
     cs.dependency 'BigInt'

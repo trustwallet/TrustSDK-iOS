@@ -9,7 +9,7 @@ import Foundation
 public struct TrustButtonTheme {
     let styles: [TrustButtonStyle]
 
-    public init(styles: TrustButtonStyle...) {
+    public init(_ styles: TrustButtonStyle...) {
         self.styles = styles
     }
 
@@ -22,25 +22,32 @@ public struct TrustButtonTheme {
         return TrustButtonTheme(styles: current + styles)
     }
 
-    public static let white = TrustButtonTheme(styles:
-        .font(.systemFont(ofSize: 17, weight: .bold)),
-        .tintColor(TrustSDK.Colors.blue, for: .normal),
-        .tintColor(TrustSDK.Colors.blue, for: .highlighted),
+    public static let white = TrustButtonTheme(
+        .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldLined),
+        .tintColor(TrustSDK.Colors.blue),
         .backgroundColor(TrustSDK.Colors.white),
+        .border(width: 1, color: TrustSDK.Colors.blue),
         .round(radius: 8.0)
     )
 
-    public static let blue = TrustButtonTheme(styles:
-        .font(.systemFont(ofSize: 17, weight: .bold)),
-        .tintColor(TrustSDK.Colors.white, for: .normal),
-        .tintColor(TrustSDK.Colors.white, for: .highlighted),
+    public static let blue = TrustButtonTheme(
+        .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldLined),
+        .tintColor(TrustSDK.Colors.white),
         .backgroundColor(TrustSDK.Colors.blue),
+        .round(radius: 8.0)
+    )
+
+    public static let black = TrustButtonTheme(
+        .title(font: .systemFont(ofSize: 18, weight: .regular), icon: .shieldLined),
+        .tintColor(TrustSDK.Colors.white),
+        .backgroundColor(TrustSDK.Colors.black),
+        .border(width: 1, color: TrustSDK.Colors.white),
         .round(radius: 8.0)
     )
 }
 
 enum TrustButtonStyleName: String {
-    case font
+    case title
     case backgroundColor
     case tintColor
     case border
@@ -50,15 +57,15 @@ enum TrustButtonStyleName: String {
 
 public enum TrustButtonStyle {
     case backgroundColor(UIColor)
-    case tintColor(UIColor, for: UIControl.State)
-    case font(UIFont)
+    case tintColor(UIColor)
+    case title(font: UIFont, icon: TrustSDK.Icon)
     case border(width: CGFloat, color: UIColor)
     case round(radius: CGFloat)
     case roundFull
 
     var name: TrustButtonStyleName {
         switch self {
-        case .font: return .font
+        case .title: return .title
         case .backgroundColor: return .backgroundColor
         case .tintColor: return .tintColor
         case .border: return .border
@@ -70,12 +77,7 @@ public enum TrustButtonStyle {
 
 extension TrustButtonStyle: Hashable {
     public static func == (lhs: TrustButtonStyle, rhs: TrustButtonStyle) -> Bool {
-        switch (lhs, rhs) {
-        case let (.tintColor(_, lhsState), .tintColor(_, rhsState)):
-            return lhs.name == rhs.name && lhsState == rhsState
-        default:
-            return lhs.name == rhs.name
-        }
+        return lhs.name == rhs.name
     }
 
     public func hash(into hasher: inout Hasher) {

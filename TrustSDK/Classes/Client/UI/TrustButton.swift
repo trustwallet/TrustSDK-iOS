@@ -20,7 +20,7 @@ public final class TrustButton: UIButton {
     }
 
     private func initialize() {
-        super.setTitle("Pay With Trust", for: .normal)
+        self.apply(theme: .blue)
     }
 
     public func apply(theme: TrustButtonTheme) {
@@ -31,10 +31,11 @@ public final class TrustButton: UIButton {
 
     func apply(style: TrustButtonStyle) {
         switch style {
-        case let .font(font):
+        case let .title(font, icon):
             self.titleLabel?.font = font
-        case let .tintColor(color, state):
-            self.setTitleColor(color, for: state)
+            self.applyTitle(font: font, icon: icon)
+        case let .tintColor(color):
+            self.tintColor = color
         case let .backgroundColor(color):
             self.backgroundColor = color
         case let .border(width, color):
@@ -54,6 +55,25 @@ public final class TrustButton: UIButton {
         if isFullRounded {
             self.layer.cornerRadius = self.bounds.height / 2.0
         }
+    }
+
+    private func applyTitle(font: UIFont, icon: TrustSDK.Icon) {
+        let imageSize = CGSize(width: 20, height: 20)
+        let titleString = NSMutableAttributedString(string: "Pay With ")
+        let iconAttachment = NSTextAttachment()
+        iconAttachment.image = icon.image
+        iconAttachment.bounds = CGRect(origin: CGPoint(x: 0, y: (font.capHeight - imageSize.height) / 2), size: imageSize)
+        let iconString = NSAttributedString(attachment: iconAttachment)
+        let trustString = NSAttributedString(string: "Wallet")
+
+        titleString.append(iconString)
+        titleString.append(trustString)
+
+        super.setAttributedTitle(titleString, for: .normal)
+    }
+
+    public override func setAttributedTitle(_ title: NSAttributedString?, for state: UIControl.State) {
+
     }
 
     public override func setTitle(_ title: String?, for state: UIControl.State) {
