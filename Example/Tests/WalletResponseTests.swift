@@ -10,11 +10,11 @@ import TrustWalletCore
 
 class WalletResponseTests: XCTestCase {
     func testResponseAttributes() {
-        let sign = WalletSDK.Response.sign(coin: .ethereum, output: Data())
+        let sign = WalletSDK.Response.sign(output: Data(hexEncoded: "0x123456")!)
         let accounts = WalletSDK.Response.accounts(["test1", "test2"])
         let failure = WalletSDK.Response.failure(error: TrustSDKError.unknown)
 
-        XCTAssertEqual(["coin": "60", "data": ""], sign.params)
+        XCTAssertEqual(["data": "EjRW"], sign.params)
         XCTAssertEqual(["accounts": "test1,test2"], accounts.params)
         XCTAssertEqual(["error": "unknown"], failure.params)
     }
