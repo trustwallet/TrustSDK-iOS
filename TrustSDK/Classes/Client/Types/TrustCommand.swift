@@ -90,14 +90,14 @@ public extension TrustSDK {
                 ]
             case .sign(let coin, let input, let send, let meta):
                 return [
-                    "coin": coin.rawValue,
+                    "coin": "\(coin.rawValue)",
                     "data": input.base64UrlEncodedString(),
                     "send": send,
                     "meta": meta?.params ?? [:],
                 ]
             case .signMessage(let coin, let data, let meta):
                 return [
-                    "coin": coin.rawValue,
+                    "coin": "\(coin.rawValue)",
                     "data": data.hex,
                     "meta": meta?.params ?? [:],
                 ]
