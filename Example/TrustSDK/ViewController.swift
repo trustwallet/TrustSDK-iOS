@@ -38,7 +38,7 @@ class ViewController: UIViewController {
             case .success(let output):
                 let alert = UIAlertController(
                     title: "Transaction",
-                    message: try? output.jsonString(),
+                    message: output.map({ String(format: "%02x", $0) }).joined(),
                     preferredStyle: .alert
                 )
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
