@@ -9,16 +9,15 @@ import TrustWalletCore
 
 public extension WalletSDK {
     enum Response {
-        case sign(coin: CoinType, output: Data)
+        case sign(output: Data)
         case signThenSend(txHash: String)
         case accounts([String])
         case failure(error: TrustSDKError)
 
         var params: [String: String] {
             switch self {
-            case .sign(let coin, let output):
+            case .sign(let output):
                 return [
-                    "coin": "\(coin.rawValue)",
                     "data": output.base64UrlEncodedString(),
                 ]
             case .accounts(let accounts):
