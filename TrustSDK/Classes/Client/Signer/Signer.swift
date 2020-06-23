@@ -9,13 +9,12 @@ import TrustWalletCore
 import SwiftProtobuf
 
 public typealias SigningInput = SwiftProtobuf.Message
-public typealias SigningOutput = SwiftProtobuf.Message
 
 public extension TrustSDK {
-    struct Signer<Output: SigningOutput> {
+    struct Signer {
         let coin: CoinType
 
-        public func sign(input: SigningInput, metadata: SignMetadata? = nil, callback: @escaping ((Result<Output, Error>) -> Void)) {
+        public func sign(input: SigningInput, metadata: SignMetadata? = nil, callback: @escaping ((Result<Data, Error>) -> Void)) {
             if !TrustSDK.isSupported(coin: coin) {
                 callback(Result.failure(TrustSDKError.coinNotSupported))
                 return

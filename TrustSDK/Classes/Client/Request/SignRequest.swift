@@ -7,12 +7,12 @@
 import Foundation
 import TrustWalletCore
 
-struct SignRequest<Output: SigningOutput>: CallbackRequest {
+struct SignRequest: CallbackRequest {
     enum QueryItems: String {
         case error, message, coin, data
     }
 
-    typealias Response = Output
+    typealias Response = Data
 
     let command: TrustSDK.Command
     let callback: Callback
@@ -29,21 +29,11 @@ struct SignRequest<Output: SigningOutput>: CallbackRequest {
             return
         }
 
-        guard let coin = components.queryItem(for: QueryItems.coin.rawValue)?.coinValue,
-              let data = components.queryItem(for: QueryItems.data.rawValue)?.dataValue
-            else {
-                callback(Result.failure(TrustSDKError.invalidResponse))
+        guard let data = components.queryItem(for: QueryItems.data.rawValue)?.dataValue else {
+            callback(Result.failure(TrustSDKError.invalidResponse))
             return
         }
 
-        do {
-            if let output = try SigningOutputDecoder.decode(data: data, for: coin) as? Output {
-                callback(Result.success(output))
-            } else {
-                callback(Result.failure(TrustSDKError.invalidResponse))
-            }
-        } catch {
-            callback(Result.failure(error))
-        }
+        callback(Result.success(data))
     }
 }
