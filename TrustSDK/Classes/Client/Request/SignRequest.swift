@@ -9,7 +9,7 @@ import TrustWalletCore
 
 struct SignRequest: CallbackRequest {
     enum QueryItems: String {
-        case error, message, coin, data
+        case error, message, data
     }
 
     typealias Response = Data
