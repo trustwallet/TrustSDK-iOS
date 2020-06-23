@@ -7,7 +7,7 @@ PODS:
     - TrustWalletCore/Types
   - TrustSDK/Wallet (1.2.5):
     - TrustSDK/Client
-  - TrustWalletCore/Types (2.0.14):
+  - TrustWalletCore/Types (2.1.1):
     - SwiftProtobuf
 
 DEPENDENCIES:
@@ -30,7 +30,7 @@ SPEC CHECKSUMS:
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftProtobuf: ecbec1be9036d15655f6b3443a1c4ea693c97932
   TrustSDK: 94db9da0d77fa9b8cd09e149639cefcb7b218cea
-  TrustWalletCore: 7cfb2be855c43239706a67d9068deb325fd7ae43
+  TrustWalletCore: cd0373c69fd9bf92700783287544ce6a9aab041b
 
 PODFILE CHECKSUM: 8aa041a02c290ebee7b7e42493802af7035a6dc2
 
