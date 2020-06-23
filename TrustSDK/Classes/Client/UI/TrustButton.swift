@@ -5,8 +5,17 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import UIKit
+import TrustWalletCore
 
 public final class TrustButton: UIButton {
+    enum Action<Output: SigningOutput> {
+        case getAccounts(coins: [CoinType], callback: ((Result<[String], Error>) -> Void))
+        case sign(signer: TrustSDK.Signer<Output>, input: SigningInput, metadata: TrustSDK.SignMetadata? = nil,
+                  callback: ((Result<Output, Error>) -> Void))
+        case signThenSend(signer: TrustSDK.Signer<Output>, input: SigningInput, metadata: TrustSDK.SignMetadata? = nil,
+        callback: ((Result<String, Error>) -> Void))
+    }
+
     private var isFullRounded: Bool = false
 
     public override init(frame: CGRect) {
@@ -21,12 +30,17 @@ public final class TrustButton: UIButton {
 
     private func initialize() {
         self.apply(theme: .blue)
+        self.addTarget(self, action: #selector(didPress), for: .touchUpInside)
     }
 
     public func apply(theme: TrustButtonTheme) {
         for style in theme.styles {
             apply(style: style)
         }
+    }
+
+    @objc func didPress() {
+
     }
 
     func apply(style: TrustButtonStyle) {
