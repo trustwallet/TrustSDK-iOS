@@ -11,6 +11,7 @@ public extension WalletSDK {
     enum Response {
         case sign(output: Data)
         case signThenSend(txHash: String)
+        case signMessage(signature: Data)
         case accounts([String])
         case failure(error: TrustSDKError)
 
@@ -27,6 +28,10 @@ public extension WalletSDK {
             case .signThenSend(let txHash):
                 return [
                     "tx_hash": txHash,
+                ]
+            case .signMessage(let signature):
+                return [
+                    "signature": signature.hex
                 ]
             case .failure(let error):
                 return error.params
