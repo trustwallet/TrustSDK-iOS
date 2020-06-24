@@ -1,4 +1,4 @@
-    // Copyright Trust Wallet. All rights reserved.
+// Copyright Trust Wallet. All rights reserved.
 //
 // This file is part of TrustSDK. The full TrustSDK copyright notice, including
 // terms governing use, modification, and redistribution, is contained in the

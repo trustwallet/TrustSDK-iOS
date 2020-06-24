@@ -31,7 +31,7 @@ public extension WalletSDK {
                 ]
             case .signMessage(let signature):
                 return [
-                    "signature": signature.hex
+                    "signature": signature.hex,
                 ]
             case .failure(let error):
                 return error.params
