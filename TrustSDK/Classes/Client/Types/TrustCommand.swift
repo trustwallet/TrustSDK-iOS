@@ -10,6 +10,7 @@ import TrustWalletCore
 enum CommandName: String {
     case getAccounts = "sdk_get_accounts"
     case sign = "sdk_sign"
+    case signMessage = "sdk_sign_message"
 }
 
 enum SignMetadataName: String {
@@ -63,6 +64,7 @@ public extension TrustSDK {
 
     enum Command {
         case sign(coin: CoinType, input: Data, send: Bool, metadata: SignMetadata?)
+        case signMessage(coin: CoinType, message: Data, metadata: SignMetadata?)
         case getAccounts(coins: [CoinType])
 
         public var name: String {
@@ -72,6 +74,8 @@ public extension TrustSDK {
                     return .getAccounts
                 case .sign:
                     return .sign
+                case .signMessage:
+                    return .signMessage
                 }
             }()
 
@@ -86,9 +90,15 @@ public extension TrustSDK {
                 ]
             case .sign(let coin, let input, let send, let meta):
                 return [
-                    "coin": coin.rawValue.description,
+                    "coin": "\(coin.rawValue)",
                     "data": input.base64UrlEncodedString(),
                     "send": send,
+                    "meta": meta?.params ?? [:],
+                ]
+            case .signMessage(let coin, let data, let meta):
+                return [
+                    "coin": "\(coin.rawValue)",
+                    "data": data.hex,
                     "meta": meta?.params ?? [:],
                 ]
             }
@@ -124,6 +134,14 @@ public extension TrustSDK {
                     send: sendParam?.toBool() ?? false,
                     metadata: SignMetadata(params: metaParam ?? [:])
                 )
+            case .signMessage:
+                guard let coin = (params["coin"] as? String)?.toCoin(),
+                    let dataParam = params["data"] as? String,
+                    let data = Data(hexEncoded: dataParam) else {
+                    return nil
+                }
+                let meta = params["meta"] as? [String: Any] ?? [:]
+                self = .signMessage(coin: coin, message: data, metadata: SignMetadata(params: meta))
             default:
                 return nil
             }

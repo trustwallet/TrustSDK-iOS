@@ -5,7 +5,7 @@ target 'TrustSDK_Example' do
   project 'TrustSDK'
   pod 'TrustSDK/Wallet', :path => '../'
   pod 'SwiftLint'
-  
+  pod 'CryptoSwift'
   target 'TrustSDK_Tests' do
     inherit! :search_paths
   end
