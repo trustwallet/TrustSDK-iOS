@@ -33,3 +33,9 @@ extension String {
         return Bool(self) ?? false
     }
 }
+
+extension String {
+    func localized(comment: String = "") -> String {
+        return NSLocalizedString(self, bundle: TrustSDK.resourceBundle, comment: comment)
+    }
+}
