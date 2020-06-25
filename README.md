@@ -89,6 +89,24 @@ TrustSDK.signers.ethereum.sign(input: input) { result in
 }
 ```
 
+### Sign Messages
+
+To request signing message, you have to encode or hash your message in hex-encoded format first, and then call `sign(message:)` from `TrustSDK.signers`, below is an Ethereum example message:
+
+```swift
+let data = Data("Some message".utf8)
+let message = Data("\u{19}Ethereum Signed Message:\n\(data.count)".utf8)
+let hash = message.sha3(.keccak256)
+TrustSDK.signers.ethereum.sign(message: hash) { result in
+    switch result {
+    case .success(let signature):
+        // Handle the signature
+    case .failure(let error):
+        // Handle failure
+    }
+}
+```
+
 ### Get Addresses
 
 To get users addresses, you just need to call `getAccounts(for:)` directly from `TrustSDK` and pass an array of `CoinType`:
