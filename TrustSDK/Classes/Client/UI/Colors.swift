@@ -9,6 +9,7 @@ import UIKit
 extension TrustSDK {
     public struct Colors {
         static let white = color(light: .white, dark: .white)
+        static let light = color(light: .white, dark: .black)
         static let black = color(light: .black, dark: .black)
         static let blue = color(light: UIColor(hex: 0x2e91db), dark: UIColor(hex: 0x4390E2))
 

@@ -25,7 +25,7 @@ public struct TrustButtonTheme {
     public static let white = TrustButtonTheme(
         .font(.systemFont(ofSize: 18, weight: .regular)),
         .tintColor(TrustSDK.Colors.blue),
-        .backgroundColor(TrustSDK.Colors.white),
+        .backgroundColor(TrustSDK.Colors.light),
         .border(width: 1, color: TrustSDK.Colors.blue),
         .round(radius: 8.0)
     )
