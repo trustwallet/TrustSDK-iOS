@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bKd-Yx-GdX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Hwk-cW-wCM">
+            <objects>
+                <viewController id="bKd-Yx-GdX" customClass="ViewController" customModule="TrustSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BMG-7a-Weg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aUU-ev-Dni">
+                                <rect key="frame" x="10" y="345" width="394" height="206"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIS-AH-w2S" customClass="TrustButton" customModule="TrustSDK">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="sic-Tt-hbJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Pay With Trust Wallet"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1S-1Y-idx" customClass="TrustButton" customModule="TrustSDK">
+                                        <rect key="frame" x="0.0" y="54" width="394" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="tbl-cf-e0c"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign Message"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hN-tm-JCp" customClass="TrustButton" customModule="TrustSDK">
+                                        <rect key="frame" x="0.0" y="108" width="394" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="pnC-S1-Bxv"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign Transaction"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RsQ-QJ-aVh" customClass="TrustButton" customModule="TrustSDK">
+                                        <rect key="frame" x="0.0" y="162" width="394" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="wI1-gL-oJt"/>
+                                        </constraints>
+                                        <state key="normal" title="Get Accounts"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dc4-Ce-UIv" firstAttribute="trailing" secondItem="aUU-ev-Dni" secondAttribute="trailing" constant="10" id="9qM-sM-gob"/>
+                            <constraint firstItem="aUU-ev-Dni" firstAttribute="centerY" secondItem="BMG-7a-Weg" secondAttribute="centerY" id="H4g-MP-103"/>
+                            <constraint firstItem="aUU-ev-Dni" firstAttribute="leading" secondItem="dc4-Ce-UIv" secondAttribute="leading" constant="10" id="PRu-16-XcP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dc4-Ce-UIv"/>
+                    </view>
+                    <connections>
+                        <outlet property="getAccountsButton" destination="RsQ-QJ-aVh" id="qVi-OD-oSh"/>
+                        <outlet property="payWithTrustButton" destination="HIS-AH-w2S" id="GuI-JK-mtU"/>
+                        <outlet property="signMesageButton" destination="p1S-1Y-idx" id="Zqi-tP-CFO"/>
+                        <outlet property="signTransactionButton" destination="2hN-tm-JCp" id="Lrh-I2-up7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="56e-h5-MGR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-341" y="-48"/>
+        </scene>
+    </scenes>
+</document>

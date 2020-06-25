@@ -8,15 +8,34 @@ import UIKit
 import TrustWalletCore
 
 public final class TrustButton: UIButton {
-    enum Action<Output: SigningOutput> {
-        case getAccounts(coins: [CoinType], callback: ((Result<[String], Error>) -> Void))
-        case sign(signer: TrustSDK.Signer<Output>, input: SigningInput, metadata: TrustSDK.SignMetadata? = nil,
-                  callback: ((Result<Output, Error>) -> Void))
-        case signThenSend(signer: TrustSDK.Signer<Output>, input: SigningInput, metadata: TrustSDK.SignMetadata? = nil,
-        callback: ((Result<String, Error>) -> Void))
+    public enum Action {
+        case getAccounts(
+            coins: [CoinType],
+            callback: ((Result<[String], Error>) -> Void)
+        )
+
+        case signMessage(Data,
+            metadata: TrustSDK.SignMetadata? = nil,
+            callback: ((Result<String, Error>) -> Void)
+        )
+
+        case sign(
+            signer: TrustSDK.Signer,
+            input: SigningInput,
+            metadata: TrustSDK.SignMetadata? = nil,
+            callback: ((Result<Data, Error>) -> Void)
+        )
+
+        case signThenSend(
+            signer: TrustSDK.Signer,
+            input: SigningInput,
+            metadata: TrustSDK.SignMetadata? = nil,
+            callback: ((Result<String, Error>) -> Void)
+        )
     }
 
     private var isFullRounded: Bool = false
+    public var action: Action?
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,7 +59,18 @@ public final class TrustButton: UIButton {
     }
 
     @objc func didPress() {
-
+        switch action {
+        case let .getAccounts(coins, callback):
+            TrustSDK.getAccounts(for: coins, callback: callback)
+        case let .sign(signer, input, metadata, callback):
+            signer.sign(input: input, metadata: metadata, callback: callback)
+        case let .signThenSend(signer, input, metadata, callback):
+            signer.signThenSend(input: input, metadata: metadata, callback: callback)
+        case let .signMessage(message, metadata, callback):
+            TrustSDK.signers.ethereum.sign(message: message, metadata: metadata, callback: callback)
+        case .none:
+            break
+        }
     }
 
     func apply(style: TrustButtonStyle) {

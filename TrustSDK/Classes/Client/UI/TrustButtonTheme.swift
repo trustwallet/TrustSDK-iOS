@@ -24,7 +24,6 @@ public struct TrustButtonTheme {
 
     public static let white = TrustButtonTheme(
         .font(.systemFont(ofSize: 18, weight: .regular)),
-        .title(.payWithTrust(icon: .shieldLined)),
         .tintColor(TrustSDK.Colors.blue),
         .backgroundColor(TrustSDK.Colors.white),
         .border(width: 1, color: TrustSDK.Colors.blue),
@@ -33,7 +32,6 @@ public struct TrustButtonTheme {
 
     public static let blue = TrustButtonTheme(
         .font(.systemFont(ofSize: 18, weight: .regular)),
-        .title(.payWithTrust(icon: .shieldLined)),
         .tintColor(TrustSDK.Colors.white),
         .backgroundColor(TrustSDK.Colors.blue),
         .round(radius: 8.0)
@@ -41,7 +39,6 @@ public struct TrustButtonTheme {
 
     public static let black = TrustButtonTheme(
         .font(.systemFont(ofSize: 18, weight: .regular)),
-        .title(.payWithTrust(icon: .shieldLined)),
         .tintColor(TrustSDK.Colors.white),
         .backgroundColor(TrustSDK.Colors.black),
         .border(width: 1, color: TrustSDK.Colors.white),
