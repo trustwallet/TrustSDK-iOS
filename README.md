@@ -95,7 +95,7 @@ To request signing message, you have to encode or hash your message in hex-encod
 
 ```swift
 let data = Data("Some message".utf8)
-let message = Data("\u{19}Ethereum Signed Message:\n\(data.count)".utf8)
+let message = Data("\u{19}Ethereum Signed Message:\n\(data.count)".utf8) + data
 let hash = message.sha3(.keccak256)
 TrustSDK.signers.ethereum.sign(message: hash) { result in
     switch result {
