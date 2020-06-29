@@ -33,7 +33,7 @@ class ViewController: UIViewController {
 
     func setupSignMessageButton() {
         let data = Data("Some message".utf8)
-        let message = Data("\u{19}Ethereum Signed Message:\n\(data.count)".utf8)
+        let message = Data("\u{19}Ethereum Signed Message:\n\(data.count)".utf8) + data
         let hash = message.sha3(.keccak256)
 
         signMesageButton.apply(theme: TrustButtonTheme
