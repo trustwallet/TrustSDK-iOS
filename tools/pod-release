@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Client' do |cs|
     cs.source_files = 'TrustSDK/Classes/Client/**/*'
-    cs.dependency 'TrustWalletCore/Types', '~> 2.0.14'
+    cs.dependency 'TrustWalletCore/Types', '~> 2.3.2'
     cs.dependency 'BigInt'
   end
 
