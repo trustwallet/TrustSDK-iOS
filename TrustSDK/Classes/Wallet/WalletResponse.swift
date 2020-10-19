@@ -5,7 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import Foundation
-import TrustWalletCore
+import WalletCore
 
 public extension WalletSDK {
     enum Response {

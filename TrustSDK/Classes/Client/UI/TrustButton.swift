@@ -5,7 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import UIKit
-import TrustWalletCore
+import WalletCore
 
 public final class TrustButton: UIButton {
     public enum Action {
