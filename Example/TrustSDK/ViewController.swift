@@ -8,7 +8,7 @@ import UIKit
 import BigInt
 import TrustSDK
 import CryptoSwift
-import TrustWalletCore
+import WalletCore
 
 class ViewController: UIViewController {
     @IBOutlet var signMesageButton: TrustButton!

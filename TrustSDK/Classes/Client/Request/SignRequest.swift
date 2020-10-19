@@ -5,7 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import Foundation
-import TrustWalletCore
+import WalletCore
 
 struct SignRequest: CallbackRequest {
     enum QueryItems: String {
