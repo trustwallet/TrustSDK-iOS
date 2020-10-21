@@ -14,6 +14,10 @@ public extension TrustSDK {
     struct Signer {
         let coin: CoinType
 
+        public init(coin: CoinType) {
+            self.coin = coin
+        }
+
         public func sign(message: Data, metadata: SignMetadata? = nil, callback: @escaping ((Result<String, Error>) -> Void)) {
             if !TrustSDK.isSupported(coin: coin) {
                 callback(Result.failure(TrustSDKError.coinNotSupported))

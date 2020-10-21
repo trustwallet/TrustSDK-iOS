@@ -64,6 +64,10 @@ public extension TrustSDK.Signers {
         return TrustSDK.Signer(coin: .nuls)
     }
 
+    var ontology: TrustSDK.Signer {
+        return TrustSDK.Signer(coin: .ontology)
+    }
+
     var nano: TrustSDK.Signer {
         return TrustSDK.Signer(coin: .nano)
     }
@@ -142,6 +146,10 @@ public extension TrustSDK.Signers {
     var wanchain: TrustSDK.Signer {
         return TrustSDK.Signer(coin: .wanchain)
     }
+
+    var smartChain: TrustSDK.Signer {
+        return TrustSDK.Signer(coin: .smartChain)
+    }
 }
 
 // Cosmos based chains
@@ -156,6 +164,10 @@ public extension TrustSDK.Signers {
 
     var terra: TrustSDK.Signer {
         return TrustSDK.Signer(coin: .terra)
+    }
+
+    var band: TrustSDK.Signer {
+        return TrustSDK.Signer(coin: .bandChain)
     }
 }
 
@@ -178,5 +190,11 @@ public extension TrustSDK.Signers {
 
     var kin: TrustSDK.Signer {
         return TrustSDK.Signer(coin: .kin)
+    }
+}
+
+public extension TrustSDK.Signers {
+    var elrond: TrustSDK.Signer {
+        return TrustSDK.Signer(coin: .elrond)
     }
 }
