@@ -25,15 +25,15 @@ struct SignRequest: CallbackRequest {
     func resolve(with components: URLComponents) {
         if let error = components.queryItem(for: QueryItems.error.rawValue)?.value {
             let message = components.queryItem(for: QueryItems.message.rawValue)?.value
-            callback(Result.failure(TrustSDKError(from: error, value: message) ?? TrustSDKError.unknown))
+            callback(.failure(TrustSDKError(from: error, value: message) ?? TrustSDKError.unknown))
             return
         }
 
         guard let data = components.queryItem(for: QueryItems.data.rawValue)?.dataValue else {
-            callback(Result.failure(TrustSDKError.invalidResponse))
+            callback(.failure(TrustSDKError.invalidResponse))
             return
         }
 
-        callback(Result.success(data))
+        callback(.success(data))
     }
 }

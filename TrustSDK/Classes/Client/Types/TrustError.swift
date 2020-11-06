@@ -15,7 +15,7 @@ enum TrustSDKErrorName: String {
     case unknown
 }
 
-public enum TrustSDKError: Swift.Error {
+public enum TrustSDKError: Error {
     case notInitialized
     case coinNotSupported
     case invalidResponse

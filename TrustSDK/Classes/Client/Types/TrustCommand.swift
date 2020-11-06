@@ -7,10 +7,11 @@
 import Foundation
 import WalletCore
 
-enum CommandName: String {
+public enum CommandName: String {
     case getAccounts = "sdk_get_accounts"
     case sign = "sdk_sign"
     case signMessage = "sdk_sign_message"
+    case transaction = "sdk_transaction"
 }
 
 enum SignMetadataName: String {
@@ -66,20 +67,15 @@ public extension TrustSDK {
         case sign(coin: CoinType, input: Data, send: Bool, metadata: SignMetadata?)
         case signMessage(coin: CoinType, message: Data, metadata: SignMetadata?)
         case getAccounts(coins: [CoinType])
+        case transaction(tx: Transaction, metadata: SignMetadata?)
 
-        public var name: String {
-            let name = { () -> CommandName in
-                switch self {
-                case .getAccounts:
-                    return .getAccounts
-                case .sign:
-                    return .sign
-                case .signMessage:
-                    return .signMessage
-                }
-            }()
-
-            return name.rawValue
+        public var name: CommandName {
+            switch self {
+            case .getAccounts: return .getAccounts
+            case .sign: return .sign
+            case .signMessage: return .signMessage
+            case .transaction: return.transaction
+            }
         }
 
         public var params: [String: Any] {
@@ -101,6 +97,8 @@ public extension TrustSDK {
                     "data": data.hex,
                     "meta": meta?.params ?? [:],
                 ]
+            case .transaction(let tx, let meta):
+                return tx.params(meta: meta)
             }
         }
 

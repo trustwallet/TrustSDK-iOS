@@ -18,44 +18,57 @@ public extension TrustSDK {
             self.coin = coin
         }
 
-        public func sign(message: Data, metadata: SignMetadata? = nil, callback: @escaping ((Result<String, Error>) -> Void)) {
-            if !TrustSDK.isSupported(coin: coin) {
-                callback(Result.failure(TrustSDKError.coinNotSupported))
+        public func sign(_ tx: Transaction, metadata: SignMetadata? = nil, callback: @escaping ((Result<String, Error>) -> Void)) {
+            guard self.coin == .ethereum else {
+                callback(.failure(TrustSDKError.coinNotSupported))
                 return
             }
             do {
-                let command: TrustSDK.Command = .signMessage(coin: coin, message: message, metadata: metadata)
+                let command = Command.transaction(tx: tx, metadata: metadata)
+                try TrustSDK.send(request: TransactionRequest(command: command, callback: callback))
+            } catch {
+                callback(.failure(error))
+            }
+        }
+
+        public func sign(message: Data, metadata: SignMetadata? = nil, callback: @escaping ((Result<String, Error>) -> Void)) {
+            if !TrustSDK.isSupported(coin: coin) {
+                callback(.failure(TrustSDKError.coinNotSupported))
+                return
+            }
+            do {
+                let command = Command.signMessage(coin: coin, message: message, metadata: metadata)
                 try TrustSDK.send(request: SignMessageRequest(command: command, callback: callback))
             } catch {
-                callback(Result.failure(error))
+                callback(.failure(error))
             }
         }
 
         public func sign(input: SigningInput, metadata: SignMetadata? = nil, callback: @escaping ((Result<Data, Error>) -> Void)) {
             if !TrustSDK.isSupported(coin: coin) {
-                callback(Result.failure(TrustSDKError.coinNotSupported))
+                callback(.failure(TrustSDKError.coinNotSupported))
                 return
             }
 
             do {
-                let command: TrustSDK.Command = .sign(coin: coin, input: try input.serializedData(), send: false, metadata: metadata)
+                let command = Command.sign(coin: coin, input: try input.serializedData(), send: false, metadata: metadata)
                 try TrustSDK.send(request: SignRequest(command: command, callback: callback))
             } catch {
-                callback(Result.failure(error))
+                callback(.failure(error))
             }
         }
 
         public func signThenSend(input: SigningInput, metadata: SignMetadata? = nil, callback: @escaping ((Result<String, Error>) -> Void)) {
             if !TrustSDK.isSupported(coin: coin) {
-                callback(Result.failure(TrustSDKError.coinNotSupported))
+                callback(.failure(TrustSDKError.coinNotSupported))
                 return
             }
 
             do {
-                let command: TrustSDK.Command = .sign(coin: coin, input: try input.serializedData(), send:true, metadata: metadata)
+                let command: TrustSDK.Command = .sign(coin: coin, input: try input.serializedData(), send: true, metadata: metadata)
                 try TrustSDK.send(request: SignThenSendRequest(command: command, callback: callback))
             } catch {
-                callback(Result.failure(error))
+                callback(.failure(error))
             }
         }
     }
