@@ -122,7 +122,7 @@ class CommandTests: XCTestCase {
             meta: "0xasdf"
         )
 
-        let command = TrustSDK.Command(name: CommandName.transaction.rawValue, params: tx.params())!
+        let command = TrustSDK.Command(name: CommandName.signSimple.rawValue, params: tx.params())!
 
         let url = wallet.build(
             command: command.name.rawValue,
