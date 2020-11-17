@@ -25,11 +25,9 @@ extension WalletApp {
     }
 
     func build(command: String, params: [URLQueryItem], app: String, callback: String, id: String) -> URL? {
-        guard
-            let url = URL(string: "\(scheme)://\(command)"),
-            var components = URLComponents(url: url, resolvingAgainstBaseURL: true),
-            let commandUrl = components.url, UIApplication.shared.canOpenURL(commandUrl) else {
-            return installURL
+        guard let url = URL(string: "\(scheme)://\(command)"),
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            return nil
         }
 
         components.queryItems = params
@@ -43,7 +41,7 @@ extension WalletApp {
     }
 
     func open(command: String, params: [URLQueryItem], app: String, callback: String, id: String) {
-        if let url = build(command: command, params: params, app: app, callback: callback, id: id) {
+        if let url = build(command: command, params: params, app: app, callback: callback, id: id), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
     }

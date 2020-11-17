@@ -150,7 +150,6 @@ class CommandTests: XCTestCase {
         XCTAssertEqual(tx.to, "0x514910771af9ca656af840dff83e8264ecf986ca")
         XCTAssertEqual(tx.amount, "0.01")
         XCTAssertEqual(tx.nonce, 2)
-        XCTAssertEqual(tx.amount, "0.01")
         XCTAssertEqual(tx.from, "0xF36f148D6FdEaCD6c765F8f59D4074109E311f0c")
         XCTAssertEqual(tx.meta, "memo")
         XCTAssertEqual(tx.feeLimit, "21000")
