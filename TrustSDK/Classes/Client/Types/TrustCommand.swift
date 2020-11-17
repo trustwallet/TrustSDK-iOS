@@ -11,7 +11,7 @@ public enum CommandName: String {
     case getAccounts = "sdk_get_accounts"
     case sign = "sdk_sign"
     case signMessage = "sdk_sign_message"
-    case transaction = "sdk_transaction"
+    case signSimple = "sdk_transaction"
 }
 
 enum SignMetadataName: String {
@@ -19,7 +19,7 @@ enum SignMetadataName: String {
 }
 
 public extension TrustSDK {
-    enum SignMetadata {
+    enum SignMetadata: CustomStringConvertible {
         case dApp(name: String, url: URL?)
 
         init?(params: [String: Any]) {
@@ -61,20 +61,24 @@ public extension TrustSDK {
             params["__name"] = self.name
             return params
         }
+
+        public var description: String {
+            return "\(params)"
+        }
     }
 
     enum Command {
         case sign(coin: CoinType, input: Data, send: Bool, metadata: SignMetadata?)
         case signMessage(coin: CoinType, message: Data, metadata: SignMetadata?)
         case getAccounts(coins: [CoinType])
-        case transaction(tx: Transaction, metadata: SignMetadata?)
+        case signSimple(tx: Transaction)
 
         public var name: CommandName {
             switch self {
             case .getAccounts: return .getAccounts
             case .sign: return .sign
             case .signMessage: return .signMessage
-            case .transaction: return.transaction
+            case .signSimple: return.signSimple
             }
         }
 
@@ -97,8 +101,8 @@ public extension TrustSDK {
                     "data": data.hex,
                     "meta": meta?.params ?? [:],
                 ]
-            case .transaction(let tx, let meta):
-                return tx.params(meta: meta)
+            case .signSimple(let tx):
+                return tx.params()
             }
         }
 
@@ -140,6 +144,11 @@ public extension TrustSDK {
                 }
                 let meta = params["meta"] as? [String: Any] ?? [:]
                 self = .signMessage(coin: coin, message: data, metadata: SignMetadata(params: meta))
+            case .signSimple:
+                guard let tx = Transaction(params: params) else {
+                    return nil
+                }
+                self = .signSimple(tx: tx)
             default:
                 return nil
             }

@@ -31,8 +31,6 @@ struct TransactionRequest: CallbackRequest {
 
         if let data = components.queryItem(for: QueryItems.data.rawValue)?.value {
             callback(.success(data))
-        } else if let hash = components.queryItem(for: QueryItems.hash.rawValue)?.value {
-            callback(.success(hash))
         } else {
             callback(.failure(TrustSDKError.invalidResponse))
         }

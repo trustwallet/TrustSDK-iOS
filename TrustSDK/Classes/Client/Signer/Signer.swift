@@ -18,13 +18,13 @@ public extension TrustSDK {
             self.coin = coin
         }
 
-        public func sign(_ tx: Transaction, metadata: SignMetadata? = nil, callback: @escaping ((Result<String, Error>) -> Void)) {
+        public func sign(_ tx: Transaction, callback: @escaping ((Result<String, Error>) -> Void)) {
             guard self.coin == .ethereum else {
                 callback(.failure(TrustSDKError.coinNotSupported))
                 return
             }
             do {
-                let command = Command.transaction(tx: tx, metadata: metadata)
+                let command = Command.signSimple(tx: tx)
                 try TrustSDK.send(request: TransactionRequest(command: command, callback: callback))
             } catch {
                 callback(.failure(error))
