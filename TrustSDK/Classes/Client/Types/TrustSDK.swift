@@ -53,7 +53,7 @@ extension TrustSDK {
         let id = requestRegistry.register(request: request)
         let command = request.command
         config.walletApp.open(
-            command: command.name,
+            command: command.name.rawValue,
             params: command.params.queryItems(),
             app: config.scheme,
             callback: config.callback,
@@ -67,7 +67,7 @@ public extension TrustSDK {
         do {
             for coin in coins {
                 if !isSupported(coin: coin) {
-                    callback(Result.failure(TrustSDKError.coinNotSupported))
+                    callback(.failure(TrustSDKError.coinNotSupported))
                     return
                 }
             }
@@ -75,7 +75,7 @@ public extension TrustSDK {
             let command: TrustSDK.Command = .getAccounts(coins: coins)
             try send(request: GetAccountsRequest(command: command, callback: callback))
         } catch {
-            callback(Result.failure(error))
+            callback(.failure(error))
         }
     }
 }

@@ -14,6 +14,8 @@ public extension WalletSDK {
         case signMessage(signature: Data)
         case accounts([String])
         case failure(error: TrustSDKError)
+        case signSimple(data: Data)
+        case sentSimple(hash: String)
 
         var params: [String: String] {
             switch self {
@@ -35,6 +37,14 @@ public extension WalletSDK {
                 ]
             case .failure(let error):
                 return error.params
+            case .signSimple(let data):
+                return [
+                    "data": "0x" + data.hex,
+                ]
+            case .sentSimple(let data):
+                return [
+                    "data": data,
+                ]
             }
         }
     }

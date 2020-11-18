@@ -5,13 +5,14 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import Foundation
+import WalletCore
 
-struct GetAccountsRequest: CallbackRequest {
+struct TransactionRequest: CallbackRequest {
     enum QueryItems: String {
-        case error, message, accounts
+        case error, message, data, hash = "tx_hash"
     }
 
-    typealias Response = [String]
+    typealias Response = String
 
     let command: TrustSDK.Command
     let callback: Callback
@@ -28,11 +29,10 @@ struct GetAccountsRequest: CallbackRequest {
             return
         }
 
-        guard let accounts = components.queryItem(for: QueryItems.accounts.rawValue)?.value else {
+        if let data = components.queryItem(for: QueryItems.data.rawValue)?.value {
+            callback(.success(data))
+        } else {
             callback(.failure(TrustSDKError.invalidResponse))
-            return
         }
-
-        callback(.success(accounts.components(separatedBy: ",")))
     }
 }
