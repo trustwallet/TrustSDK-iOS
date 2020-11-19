@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import XCTest
+import BigInt
 import WalletCore
 @testable import TrustSDK
 
@@ -117,8 +118,8 @@ class CommandTests: XCTestCase {
             confirm: .sign,
             from: nil,
             nonce: 447,
-            feePrice: "2112000000",
-            feeLimit: "21000",
+            feePrice: BigInt(2112000000),
+            feeLimit: BigInt(21000),
             meta: "0xasdf"
         )
 
