@@ -5,6 +5,8 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import Foundation
+import BigInt
+import WalletCore
 
 public extension TrustSDK {
     struct Transaction: Equatable {
@@ -19,8 +21,8 @@ public extension TrustSDK {
         public let confirm: ConfirmType
         public let from: String?
         public let nonce: UInt64?
-        public let feeLimit: String?
-        public let feePrice: String?
+        public let feeLimit: BigInt?
+        public let feePrice: BigInt?
         public let meta: String?
 
         public init(
@@ -31,8 +33,8 @@ public extension TrustSDK {
             confirm: ConfirmType,
             from: String? = nil,
             nonce: UInt64? = nil,
-            feePrice: String? = nil,
-            feeLimit: String? = nil,
+            feePrice: BigInt? = nil,
+            feeLimit: BigInt? = nil,
             meta: String? = nil
         ) {
             self.asset = asset
@@ -63,9 +65,20 @@ public extension TrustSDK {
             self.action = action
             self.confirm = confirm
             self.from = params["from"] as? String
-            self.feeLimit = params["fee_limit"] as? String
-            self.feePrice = params["fee_price"] as? String
             self.meta = params["meta"] as? String
+
+            if let limit = params["fee_limit"] as? String {
+                self.feeLimit = BigInt(limit)
+            } else {
+                self.feeLimit = nil
+            }
+
+            if let price = params["fee_price"] as? String {
+                self.feePrice = BigInt(price)
+            } else {
+                self.feePrice = nil
+            }
+
             if let nonceStr = params["nonce"] as? String {
                 self.nonce = UInt64(nonceStr)
             } else {
@@ -88,10 +101,10 @@ public extension TrustSDK {
                 params["nonce"] = nonce
             }
             if let feePrice = feePrice {
-                params["fee_price"] = feePrice
+                params["fee_price"] = feePrice.description
             }
             if let feeLimit = feeLimit {
-                params["fee_limit"] = feeLimit
+                params["fee_limit"] = feeLimit.description
             }
             if let meta = meta {
                 params["meta"] = meta

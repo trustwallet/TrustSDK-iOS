@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import XCTest
+import BigInt
 import WalletCore
 @testable import TrustSDK
 
@@ -110,15 +111,15 @@ class CommandTests: XCTestCase {
         let app = "trust"
         let wallet = WalletApp(scheme: app, installURL: URL(string: "https://trustwallet.com")!)
         let tx = TrustSDK.Transaction(
-            asset: UniversalAssetID(coin: .ethereum),
+            asset: UniversalAssetID(coin: .ethereum, token: ""),
             to: "0x728B02377230b5df73Aa4E3192E89b6090DD7312",
             amount: "0.01",
             action: .transfer,
             confirm: .sign,
             from: nil,
             nonce: 447,
-            feePrice: "2112000000",
-            feeLimit: "21000",
+            feePrice: BigInt(2112000000),
+            feeLimit: BigInt(21000),
             meta: "0xasdf"
         )
 

@@ -91,7 +91,7 @@ class ViewController: UIViewController {
 
     @IBAction func signSimpleEthTx(sender: UIButton) {
         let tx = TrustSDK.Transaction(
-            asset: UniversalAssetID(coin: .ethereum),
+            asset: UniversalAssetID(coin: .ethereum, token: ""),
             to: "0x728B02377230b5df73Aa4E3192E89b6090DD7312",
             amount: "0.01",
             action: .transfer,
