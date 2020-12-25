@@ -65,7 +65,11 @@ class ViewController: UIViewController {
             $0.nonce = BigInt("477").serialize()!
             $0.gasPrice = BigInt("2112000000").serialize()!
             $0.gasLimit = BigInt("21000").serialize()!
-            $0.amount = BigInt("100000000000000").serialize()!
+            $0.transaction = EthereumTransaction.with {
+                $0.transfer = EthereumTransaction.Transfer.with {
+                    $0.amount = BigInt("100000000000000").serialize()!
+                }
+            }
         }
 
         signTransactionButton.apply(theme: TrustButtonTheme
@@ -110,7 +114,11 @@ class ViewController: UIViewController {
         let input = EthereumSigningInput.with {
             $0.toAddress = "0x728B02377230b5df73Aa4E3192E89b6090DD7312"
             $0.chainID = BigInt("1").serialize()!
-            $0.amount = BigInt("100000000000000").serialize()!
+            $0.transaction = EthereumTransaction.with {
+                $0.transfer = EthereumTransaction.Transfer.with {
+                    $0.amount = BigInt("100000000000000").serialize()!
+                }
+            }
         }
 
         payWithTrustButton.apply(theme: TrustButtonTheme
