@@ -30,10 +30,10 @@
 		1E3D659225B76D70002E7425 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D656F25B76D70002E7425 /* AppDelegate.swift */; };
 		1E3D659325B76D70002E7425 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657225B76D70002E7425 /* AppView.swift */; };
 		1E3D659425B76D70002E7425 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657425B76D70002E7425 /* OnboardView.swift */; };
-		1E3D659525B76D70002E7425 /* OnboardModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657525B76D70002E7425 /* OnboardModule.swift */; };
+		1E3D659525B76D70002E7425 /* OnboardViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657525B76D70002E7425 /* OnboardViewFactory.swift */; };
 		1E3D659625B76D70002E7425 /* OnboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657625B76D70002E7425 /* OnboardViewModel.swift */; };
 		1E3D659725B76D70002E7425 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657825B76D70002E7425 /* DashboardView.swift */; };
-		1E3D659825B76D70002E7425 /* DashboardModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657925B76D70002E7425 /* DashboardModule.swift */; };
+		1E3D659825B76D70002E7425 /* DashboardViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657925B76D70002E7425 /* DashboardViewFactory.swift */; };
 		1E3D659925B76D70002E7425 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657A25B76D70002E7425 /* DashboardViewModel.swift */; };
 		1E3D659A25B76D70002E7425 /* TokenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D657B25B76D70002E7425 /* TokenRow.swift */; };
 		1E3D659B25B76D70002E7425 /* tokenList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E3D657D25B76D70002E7425 /* tokenList.json */; };
@@ -45,6 +45,9 @@
 		1ECE59C725B76EFB001B765D /* TokenNetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE59BF25B76EFB001B765D /* TokenNetworkServiceTests.swift */; };
 		1ECE59C825B76EFB001B765D /* MoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE59C025B76EFB001B765D /* MoneyTests.swift */; };
 		1ECE59C925B76EFB001B765D /* ImageLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE59C125B76EFB001B765D /* ImageLoaderTests.swift */; };
+		1ECE59E825B77E0C001B765D /* TrustService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE59E025B77AA1001B765D /* TrustService.swift */; };
+		1ECE59EC25B7828A001B765D /* WalletServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE59EB25B7828A001B765D /* WalletServiceTests.swift */; };
+		1ECE59F025B783E9001B765D /* MockWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE59EF25B783E9001B765D /* MockWalletService.swift */; };
 		2FD67F7E4A7463DFF28E3DB7 /* Pods_TrustSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D6535858A45225CBB70BA8 /* Pods_TrustSDK_Example.framework */; };
 		33758FFB3D21DDEAA9C93AA9 /* Pods_TrustSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D9043738C8AAF9420A137C /* Pods_TrustSDK_Tests.framework */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -93,10 +96,10 @@
 		1E3D656F25B76D70002E7425 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E3D657225B76D70002E7425 /* AppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		1E3D657425B76D70002E7425 /* OnboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
-		1E3D657525B76D70002E7425 /* OnboardModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardModule.swift; sourceTree = "<group>"; };
+		1E3D657525B76D70002E7425 /* OnboardViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewFactory.swift; sourceTree = "<group>"; };
 		1E3D657625B76D70002E7425 /* OnboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewModel.swift; sourceTree = "<group>"; };
 		1E3D657825B76D70002E7425 /* DashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		1E3D657925B76D70002E7425 /* DashboardModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardModule.swift; sourceTree = "<group>"; };
+		1E3D657925B76D70002E7425 /* DashboardViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewFactory.swift; sourceTree = "<group>"; };
 		1E3D657A25B76D70002E7425 /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		1E3D657B25B76D70002E7425 /* TokenRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenRow.swift; sourceTree = "<group>"; };
 		1E3D657D25B76D70002E7425 /* tokenList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tokenList.json; sourceTree = "<group>"; };
@@ -108,6 +111,9 @@
 		1ECE59BF25B76EFB001B765D /* TokenNetworkServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenNetworkServiceTests.swift; sourceTree = "<group>"; };
 		1ECE59C025B76EFB001B765D /* MoneyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyTests.swift; sourceTree = "<group>"; };
 		1ECE59C125B76EFB001B765D /* ImageLoaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderTests.swift; sourceTree = "<group>"; };
+		1ECE59E025B77AA1001B765D /* TrustService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustService.swift; sourceTree = "<group>"; };
+		1ECE59EB25B7828A001B765D /* WalletServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletServiceTests.swift; sourceTree = "<group>"; };
+		1ECE59EF25B783E9001B765D /* MockWalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWalletService.swift; sourceTree = "<group>"; };
 		27A447C41E9C2F17EC207F57 /* Pods-TrustSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustSDK_Example.release.xcconfig"; path = "Target Support Files/Pods-TrustSDK_Example/Pods-TrustSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		42D6535858A45225CBB70BA8 /* Pods_TrustSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* TrustSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +191,7 @@
 		1E3D655425B76D70002E7425 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1ECE59DD25B77A96001B765D /* Trust */,
 				1E3D655525B76D70002E7425 /* Token */,
 				1E3D655725B76D70002E7425 /* Network */,
 				1E3D655C25B76D70002E7425 /* Balance */,
@@ -305,9 +312,9 @@
 		1E3D657325B76D70002E7425 /* Onboard */ = {
 			isa = PBXGroup;
 			children = (
-				1E3D657425B76D70002E7425 /* OnboardView.swift */,
-				1E3D657525B76D70002E7425 /* OnboardModule.swift */,
+				1E3D657525B76D70002E7425 /* OnboardViewFactory.swift */,
 				1E3D657625B76D70002E7425 /* OnboardViewModel.swift */,
+				1E3D657425B76D70002E7425 /* OnboardView.swift */,
 			);
 			path = Onboard;
 			sourceTree = "<group>";
@@ -315,9 +322,9 @@
 		1E3D657725B76D70002E7425 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				1E3D657825B76D70002E7425 /* DashboardView.swift */,
-				1E3D657925B76D70002E7425 /* DashboardModule.swift */,
+				1E3D657925B76D70002E7425 /* DashboardViewFactory.swift */,
 				1E3D657A25B76D70002E7425 /* DashboardViewModel.swift */,
+				1E3D657825B76D70002E7425 /* DashboardView.swift */,
 				1E3D657B25B76D70002E7425 /* TokenRow.swift */,
 			);
 			path = Dashboard;
@@ -341,6 +348,7 @@
 				1ECE59BF25B76EFB001B765D /* TokenNetworkServiceTests.swift */,
 				1ECE59C025B76EFB001B765D /* MoneyTests.swift */,
 				1ECE59C125B76EFB001B765D /* ImageLoaderTests.swift */,
+				1ECE59EB25B7828A001B765D /* WalletServiceTests.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -349,9 +357,18 @@
 			isa = PBXGroup;
 			children = (
 				1ECE59BA25B76EFB001B765D /* MockNetworking.swift */,
+				1ECE59EF25B783E9001B765D /* MockWalletService.swift */,
 				1ECE59BB25B76EFB001B765D /* MockTokenListFactory.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		1ECE59DD25B77A96001B765D /* Trust */ = {
+			isa = PBXGroup;
+			children = (
+				1ECE59E025B77AA1001B765D /* TrustService.swift */,
+			);
+			path = Trust;
 			sourceTree = "<group>";
 		};
 		3FDECD3AF8AAE4C02D48FD4E /* Pods */ = {
@@ -391,8 +408,8 @@
 			children = (
 				1E3D654D25B76D70002E7425 /* Classes */,
 				1E3D657C25B76D70002E7425 /* Resources */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				75CD0D8224A41DC300242DA3 /* Main.storyboard */,
+				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -656,11 +673,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ECE59E825B77E0C001B765D /* TrustService.swift in Sources */,
 				1E3D658925B76D70002E7425 /* ImageLoader.swift in Sources */,
 				1E3D658C25B76D70002E7425 /* Constants.swift in Sources */,
-				1E3D659825B76D70002E7425 /* DashboardModule.swift in Sources */,
+				1E3D659825B76D70002E7425 /* DashboardViewFactory.swift in Sources */,
 				1E3D659025B76D70002E7425 /* RemoteImageViewModel.swift in Sources */,
-				1E3D659525B76D70002E7425 /* OnboardModule.swift in Sources */,
+				1E3D659525B76D70002E7425 /* OnboardViewFactory.swift in Sources */,
 				1E3D659A25B76D70002E7425 /* TokenRow.swift in Sources */,
 				1E3D657E25B76D70002E7425 /* Address.swift in Sources */,
 				1E3D658025B76D70002E7425 /* Token.swift in Sources */,
@@ -696,10 +714,12 @@
 				7507FFE3240D774300DE2741 /* WalletRequestTests.swift in Sources */,
 				1ECE59C725B76EFB001B765D /* TokenNetworkServiceTests.swift in Sources */,
 				1ECE59C825B76EFB001B765D /* MoneyTests.swift in Sources */,
+				1ECE59EC25B7828A001B765D /* WalletServiceTests.swift in Sources */,
 				1ECE59C425B76EFB001B765D /* RequestTests.swift in Sources */,
 				1ECE59C525B76EFB001B765D /* BalanceNetworkServiceTests.swift in Sources */,
 				7598AD192414175000421EFA /* DictionaryTests.swift in Sources */,
 				7507FFE1240D75AE00DE2741 /* WalletResponseTests.swift in Sources */,
+				1ECE59F025B783E9001B765D /* MockWalletService.swift in Sources */,
 				1ECE59C925B76EFB001B765D /* ImageLoaderTests.swift in Sources */,
 				1ECE59C625B76EFB001B765D /* TokenListServiceTests.swift in Sources */,
 				1ECE59C225B76EFB001B765D /* MockNetworking.swift in Sources */,

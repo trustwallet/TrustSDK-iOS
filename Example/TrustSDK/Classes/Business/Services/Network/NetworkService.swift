@@ -1,9 +1,9 @@
+// Copyright Trust Wallet. All rights reserved.
 //
-//  NetworkService.swift
-//  Portfolio
-//
-//  Created by Artur Guseinov on 16.01.2021.
-//
+// This file is part of TrustSDK. The full TrustSDK copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
+
 
 import Foundation
 import Combine
@@ -15,7 +15,7 @@ protocol Networking {
 
 final class NetworkService: Networking {
 	
-	// MARK: Private properties
+	// MARK: Dependencies
 	
 	private let session: URLSession
 	

@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct OnboardView: View {
+struct OnboardView: UIViewControllerRepresentable {
 	
-	@ObservedObject
-	var viewModel: OnboardViewModel
+	func makeUIViewController(context: Context) -> UIViewController {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		return storyboard.instantiateInitialViewController()!
+	}
 	
-	var body: some View {
-		Text("Onboard")
+	func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+		
 	}
 }

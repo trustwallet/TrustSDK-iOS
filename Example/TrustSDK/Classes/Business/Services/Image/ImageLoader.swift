@@ -1,9 +1,9 @@
+// Copyright Trust Wallet. All rights reserved.
 //
-//  ImageLoader.swift
-//  Portfolio
-//
-//  Created by Guseinov Artur on 18.01.2021.
-//
+// This file is part of TrustSDK. The full TrustSDK copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
+
 
 import Foundation
 import Combine

@@ -1,9 +1,9 @@
+// Copyright Trust Wallet. All rights reserved.
 //
-//  Dashboard.swift
-//  Portfolio
-//
-//  Created by Artur Guseinov on 14.01.2021.
-//
+// This file is part of TrustSDK. The full TrustSDK copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
+
 
 import Foundation
 import Combine
@@ -14,6 +14,7 @@ final class DashboardViewModel: ObservableObject {
 	
 	private let balanceService: BalanceService
 	private let tokenService: TokenService
+	private let walletService: WalletService
 	
 	@Published
 	var balance: Balance
@@ -21,23 +22,40 @@ final class DashboardViewModel: ObservableObject {
 	@Published
 	var tokenBalanceList: [TokenBalance]
 	
-	let address = "0x458fC1CB7e18331F696Dc38d3D15B5f4a52F5DE3"
+	@Published
+	var addresses: [Address] {
+		didSet {
+			reloadBalance()
+			reloadTokens()
+		}
+	}
 	
 	var cancellables = Set<AnyCancellable>()
 	
 	// MARK Initialization
 	
-	init(balanceService: BalanceService, tokenService: TokenService) {
+	init(balanceService: BalanceService, tokenService: TokenService, walletService: WalletService) {
 		self.balanceService = balanceService
 		self.tokenService = tokenService
+		self.walletService = walletService
+		
 		self.balance = Balance(value: 0)
 		self.tokenBalanceList = []
-		
-		reloadBalance()
-		reloadTokens()
+		self.addresses = []
+
+		reloadAddress()
+	}
+	
+	func reloadAddress() {
+		walletService.getAccounts()
+			.replaceError(with: [])
+			.assign(to: \DashboardViewModel.addresses, on: self)
+			.store(in: &cancellables)
 	}
 	
 	func reloadBalance() {
+		guard let address = addresses.first else { return }
+		
 		balanceService.balance(for: address)
 			.replaceError(with: Balance(value: 0))
 			.assign(to: \DashboardViewModel.balance, on: self)
@@ -45,10 +63,12 @@ final class DashboardViewModel: ObservableObject {
 	}
 	
 	func reloadTokens() {
+		guard let address = addresses.first else { return }
+		
 		tokenService.tokenList(for: address)
 			.flatMap { [unowned self] tokens in
 				Publishers.MergeMany(tokens.map {
-					self.balanceService.tokenBalance(for: self.address, token: $0)
+					self.balanceService.tokenBalance(for: address, token: $0)
 				})
 			}
 			.collect()

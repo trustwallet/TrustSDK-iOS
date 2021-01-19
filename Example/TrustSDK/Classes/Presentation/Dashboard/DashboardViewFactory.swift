@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DashboardModule {
+final class DashboardViewFactory {
 	
 	static func create() -> DashboardView {
 		let session = URLSession.shared
@@ -16,7 +16,8 @@ final class DashboardModule {
 		let tokenListFactory = TokenListBundleFactory()
 		let tokenListService = TokenListStoreService(factory: tokenListFactory)
 		let tokenService = TokenNetworkService(networking: networkService, tokenListService: tokenListService)
-		let viewModel = DashboardViewModel(balanceService: balanceService, tokenService: tokenService)
+		let walletService = TrustSDKService()
+		let viewModel = DashboardViewModel(balanceService: balanceService, tokenService: tokenService, walletService: walletService)
 		return DashboardView(viewModel: viewModel)
 	}
 }

@@ -9,13 +9,13 @@ import SwiftUI
 struct AppView: View {
 	var body: some View {
 		TabView {
-			OnboardModule.create()
+			OnboardViewFactory.create()
 				.tabItem {
 					Image(systemName: "square.and.pencil")
 					Text("Onboard")
 				}
 			
-			DashboardModule.create()
+			DashboardViewFactory.create()
 				.tabItem {
 					Image(systemName: "list.dash")
 					Text("Dashboard")
