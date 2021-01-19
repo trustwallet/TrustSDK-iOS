@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import UIKit
+import SwiftUI
 import TrustSDK
 
 @UIApplicationMain
@@ -14,6 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         TrustSDK.initialize(with: TrustSDK.Configuration(scheme: "trustsdk"))
+
+		
+		window = UIWindow(frame: UIScreen.main.bounds)
+		
+		if let window = window {
+			window.backgroundColor = UIColor.white
+			window.rootViewController = UIHostingController(rootView: AppView())
+			window.makeKeyAndVisible()
+		}
+		
         return true
     }
 
