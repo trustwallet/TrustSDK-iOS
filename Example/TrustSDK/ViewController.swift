@@ -11,10 +11,11 @@ import CryptoSwift
 import WalletCore
 
 class ViewController: UIViewController {
-    @IBOutlet var signMesageButton: TrustButton!
-    @IBOutlet var signTransactionButton: TrustButton!
-    @IBOutlet var payWithTrustButton: TrustButton!
-    @IBOutlet var getAccountsButton: TrustButton!
+    @IBOutlet weak var signMesageButton: TrustButton!
+    @IBOutlet weak var signTransactionButton: TrustButton!
+    @IBOutlet weak var payWithTrustButton: TrustButton!
+    @IBOutlet weak var getAccountsButton: TrustButton!
+    @IBOutlet weak var signSimpleTxButton: UIButton!
 
     let meta = TrustSDK.SignMetadata.dApp(name: "Test", url: URL(string: "https://dapptest.com"))
 
@@ -64,7 +65,11 @@ class ViewController: UIViewController {
             $0.nonce = BigInt("477").serialize()!
             $0.gasPrice = BigInt("2112000000").serialize()!
             $0.gasLimit = BigInt("21000").serialize()!
-            $0.amount = BigInt("100000000000000").serialize()!
+            $0.transaction = EthereumTransaction.with {
+                $0.transfer = EthereumTransaction.Transfer.with {
+                    $0.amount = BigInt("100000000000000").serialize()!
+                }
+            }
         }
 
         signTransactionButton.apply(theme: TrustButtonTheme
@@ -88,11 +93,32 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func signSimpleEthTx(sender: UIButton) {
+        let tx = TrustSDK.Transaction(
+            asset: UniversalAssetID(coin: .ethereum, token: ""),
+            to: "0x728B02377230b5df73Aa4E3192E89b6090DD7312",
+            amount: "0.01",
+            action: .transfer,
+            confirm: .sign,
+            from: nil,
+            nonce: 447,
+            feePrice: "2112000000",
+            feeLimit: "21000"
+        )
+        TrustSDK.Signer(coin: .ethereum).sign(tx) { result in
+            print(result)
+        }
+    }
+
     func setupPayWithTrustButton() {
         let input = EthereumSigningInput.with {
             $0.toAddress = "0x728B02377230b5df73Aa4E3192E89b6090DD7312"
             $0.chainID = BigInt("1").serialize()!
-            $0.amount = BigInt("100000000000000").serialize()!
+            $0.transaction = EthereumTransaction.with {
+                $0.transfer = EthereumTransaction.Transfer.with {
+                    $0.amount = BigInt("100000000000000").serialize()!
+                }
+            }
         }
 
         payWithTrustButton.apply(theme: TrustButtonTheme

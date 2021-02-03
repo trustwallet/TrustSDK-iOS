@@ -30,7 +30,8 @@ public struct SigningInputEncoder {
             return input
         case .cosmos,
              .kava,
-             .terra:
+             .terra,
+             .bandChain:
             var input = try CosmosSigningInput(serializedData: data)
             input.privateKey = privateKey
             return input
@@ -41,7 +42,8 @@ public struct SigningInputEncoder {
              .poanetwork,
              .tomoChain,
              .thunderToken,
-             .wanchain:
+             .wanchain,
+             .smartChain:
             var input = try EthereumSigningInput(serializedData: data)
             input.privateKey = privateKey
             return input
@@ -133,6 +135,15 @@ public struct SigningInputEncoder {
             return input
         case .zilliqa:
             var input = try ZilliqaSigningInput(serializedData: data)
+            input.privateKey = privateKey
+            return input
+        case .ontology:
+            var input = try OntologySigningInput(serializedData: data)
+            input.payerPrivateKey = privateKey
+            input.ownerPrivateKey = privateKey
+            return input
+        case .elrond:
+            var input = try ElrondSigningInput(serializedData: data)
             input.privateKey = privateKey
             return input
         default:

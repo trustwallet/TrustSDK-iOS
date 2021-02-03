@@ -16,7 +16,7 @@ public struct WalletSDK {
     ) -> Bool {
         guard
             let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-            let request = WalletSDK.Request(components: components)else {
+            let request = WalletSDK.Request(components: components) else {
             return false
         }
 

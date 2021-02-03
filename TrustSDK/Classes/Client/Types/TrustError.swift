@@ -12,15 +12,17 @@ enum TrustSDKErrorName: String {
     case invalidResponse = "invalid_response"
     case rejectedByUser = "rejected_by_user"
     case signError = "sign_error"
+    case accountError = "account_error"
     case unknown
 }
 
-public enum TrustSDKError: Swift.Error {
+public enum TrustSDKError: Error {
     case notInitialized
     case coinNotSupported
     case invalidResponse
     case rejectedByUser
     case signError(message: String)
+    case accountError
     case unknown
 
     init?(from name: String, value: String? = nil) {
@@ -35,6 +37,8 @@ public enum TrustSDKError: Swift.Error {
             self = .rejectedByUser
         case .signError:
             self = .signError(message: value ?? "")
+        case .accountError:
+            self = .accountError
         case .unknown:
             self = .unknown
         default:
@@ -60,6 +64,8 @@ public enum TrustSDKError: Swift.Error {
                 return .rejectedByUser
             case .signError:
                 return .signError
+            case .accountError:
+                return .accountError
             case .unknown:
                 return .unknown
             }
