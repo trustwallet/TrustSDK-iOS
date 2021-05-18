@@ -12,7 +12,6 @@ PODS:
     - SwiftProtobuf
 
 DEPENDENCIES:
-  - BigInt
   - CryptoSwift
   - SwiftLint
   - TrustSDK/Wallet (from `../`)
@@ -37,6 +36,6 @@ SPEC CHECKSUMS:
   TrustSDK: e1b5f33d3df28044a6b2ed07407f640b227e7f0c
   TrustWalletCore: 182a5dc39512187878d5968b8a9a25406b181d96
 
-PODFILE CHECKSUM: 3bf91512e2b70289d29bdcf9760e44a999dcb82c
+PODFILE CHECKSUM: c172da0a8f94e804c320befae5bffabca7cc177f
 
 COCOAPODS: 1.10.1
