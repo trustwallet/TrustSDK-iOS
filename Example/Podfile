@@ -1,4 +1,4 @@
-platform :ios, '11.0'
+platform :ios, '12.0'
 use_frameworks!
 
 target 'TrustSDK_Example' do
@@ -6,6 +6,7 @@ target 'TrustSDK_Example' do
   pod 'TrustSDK/Wallet', :path => '../'
   pod 'SwiftLint'
   pod 'CryptoSwift'
+  pod 'BigInt'
   target 'TrustSDK_Tests' do
     inherit! :search_paths
   end
