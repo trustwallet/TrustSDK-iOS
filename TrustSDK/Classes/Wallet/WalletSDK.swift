@@ -33,6 +33,6 @@ public struct WalletSDK {
     }
 }
 
-public protocol WalletSDKDelegate: class {
+public protocol WalletSDKDelegate: AnyObject {
     func didReceive(request: WalletSDK.Request, callback: @escaping ((WalletSDK.Response) -> Void))
 }
